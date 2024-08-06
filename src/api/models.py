@@ -24,17 +24,17 @@ class UserAccount(db.Model):
     __tablename__ = 'user_account'
     
     user_id = db.Column(db.Integer, primary_key=True)
-    dog_name = db.Column(db.String, nullable=False)
-    owner_name = db.Column(db.String, nullable=False)
-    nick_name = db.Column(db.String, nullable=True)
+    dog_name = db.Column(db.String(100), nullable=False)
+    owner_name = db.Column(db.String(100), nullable=False)
+    nick_name = db.Column(db.String(100), nullable=True)
     dog_age = db.Column(db.Integer, nullable=False)
-    location = db.Column(db.String, nullable=False)
-    breed = db.Column(db.String, nullable=False)
-    dog_sex = db.Column(db.String, nullable=False)
-    bio = db.Column(db.String, nullable=True)
-    interests = db.Column(db.String, nullable=True)
-    email = db.Column(db.String, unique=True, nullable=False)
-    password = db.Column(db.String, nullable=False)
+    location = db.Column(db.String(250), nullable=False)
+    breed = db.Column(db.String(100), nullable=False)
+    dog_sex = db.Column(db.String(50), nullable=False)
+    bio = db.Column(db.Text, nullable=True)
+    interests = db.Column(db.Text, nullable=True)
+    email = db.Column(db.String(250), unique=True, nullable=False)
+    password = db.Column(db.String(250), nullable=False)
     account_created = db.Column(db.Date, default=datetime.utcnow)
     
     def __repr__(self):

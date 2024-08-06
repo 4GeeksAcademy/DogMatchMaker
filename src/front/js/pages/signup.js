@@ -15,13 +15,6 @@ export const Signup = () => {
         setInputs(values => ({...values, [name]: value}))
     }
 
-    const handleChangeCheck = (event) => {
-        const name = event.target.name;
-        const value = event.target.checked;
-        
-        setInputs(values => ({...values, [name]: value}))
-    }
-
     const handleSubmit = (event) => {
         event.preventDefault();
         
@@ -59,14 +52,6 @@ export const Signup = () => {
                     <input type="password" className="form-control" id="pwd" placeholder="Enter password" name="pswd" value={inputs.pswd || ""} onChange={handleChange} required/>
                     <div className="valid-feedback">
                     Looks good!
-                    </div>
-                </div>
-                <div className="col-12">
-                    <div className="form-check">
-                        <input className="form-check-input" type="checkbox" id="active" name="active" value={inputs.active || false} onChange={handleChangeCheck} />
-                        <label className="form-check-label" htmlFor="active">
-                            Is Active
-                        </label>
                     </div>
                 </div>
                 <div className="col-12 text-center">

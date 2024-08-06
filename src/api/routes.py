@@ -3,7 +3,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, UserAccount
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from flask_jwt_extended import create_access_token
@@ -29,13 +29,12 @@ def create_user():
     
     data = request.get_json()
 
-    user = User()
+    userAccount = UserAccount()
 
-    user.email = data['email']
-    user.password = data['pswd']
-    user.is_active = data['active']
+    userAccount.email = data['email']
+    userAccount.password = data['pswd']
 
-    db.session.add(user)
+    db.session.add(userAccount)
     db.session.commit()
     
     response_body = {
@@ -51,14 +50,14 @@ def create_token():
     password = request.json.get("password", None)
 
     # Query your database for username and password
-    user = User.query.filter_by(email=email, password=password).first()
+    userAccount = UserAccount.query.filter_by(email=email, password=password).first()
 
-    if user is None:
+    if userAccount is None:
         # The user was not found on the database
         return jsonify({"msg": "Bad username or password"}), 401
     
     # Create a new token with the user id inside
-    access_token = create_access_token(identity=user.email)
+    access_token = create_access_token(identity=userAccount.email)
     return jsonify({ "access_token": access_token })
 
 
@@ -66,11 +65,11 @@ def create_token():
 @jwt_required()
 def private_hello():
 
-    user = get_jwt_identity() 
+    userAccount = get_jwt_identity() 
 
     response_body = {
         "section": "Private",
-        "message": "Hello "+str(user)
+        "message": "Hello "+str(userAccount)
     }
 
     return jsonify(response_body), 200

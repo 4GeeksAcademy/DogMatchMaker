@@ -13,18 +13,11 @@ export const Private = () => {
 	}, [store.token])
 
 	return (
-		<div className="container-fluid col-12">
-			<div className="text-center mt-5">
-				<div className="container col-4">
-					<div className="alert alert-info">
-						{store.message}
-					</div>
-				</div>
-					<div className="row">
-						<div className="col-3"></div>
-						<div className="col-6">#</div>
-						<div className="col-3">$</div>
-					</div>
+		<div className="text-center">
+			<div className="row">
+				<div className="col-3"></div>
+				<div className="col-6"><h1>Discover Page</h1></div>
+				<div className="col-3"><h4>Opened profile info space</h4></div>
 			</div>
 		</div>
 	);

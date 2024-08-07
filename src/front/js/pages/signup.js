@@ -1,63 +1,74 @@
-import React, { useContext, useState } from "react";
-import { Context } from "../store/appContext";
-import "../../styles/home.css";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Signup = () => {
-	const { store, actions } = useContext(Context);
-
-    const [inputs, setInputs] = useState({});
+    const [inputs, setInputs] = useState({ email: '', password: '' });
     const navigate = useNavigate();
 
     const handleChange = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        setInputs(values => ({...values, [name]: value}))
+        const { name, value } = event.target;
+        setInputs(prevInputs => ({ ...prevInputs, [name]: value }));
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        
-        let requestOptions = {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body : JSON.stringify(inputs)
-        };
-        
-        fetch(process.env.BACKEND_URL+"/api/user", requestOptions).then(res => {
-            return res.json();
-        }).then(() =>{
-            navigate("/login");
-        })		
-      }
+        // Navigate to Signup2 with email and password
+        navigate("/signup2", { state: { email: inputs.email, password: inputs.password } });
+    }
 
-	return (
-		<div className="mt-5 d-flex justify-content-center">
-			<form className="row g-3" onSubmit={handleSubmit} >
-                <div className="mb-3 mt-3 text-end">
-                    Already have an account?<Link to="/login">Log in</Link>
-                </div>
-                <div className="mb-3 mt-3">
-                    <label htmlFor="email" className="form-label">Email:</label>                    
-                    <div className="input-group has-validation">
-                        <span className="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="email" className="form-control" id="email" placeholder="Enter email" name="email" value={inputs.email || ""} onChange={handleChange} required/>
-                        <div className="valid-feedback">
-                            Looks good!
+    return (
+        <section className="h-100 h-custom" style={{ backgroundColor: "#30598a" }}>
+            <div className="container py-5 h-100">
+                <div className="row d-flex justify-content-center align-items-center h-100">
+                    <div className="col-lg-8 col-xl-6">
+                        <img 
+                            src="https://www.dogster.com/wp-content/uploads/2024/03/owner-petting-happy-dog_Bachkova-Natalia_Shutterstock.jpeg"
+                            className="w-100"
+                            style={{ 
+                                borderTopLeftRadius: ".3rem", 
+                                borderTopRightRadius: ".3rem", 
+                                height: '400px', 
+                                maxHeight: '400px', 
+                            }}
+                            alt="Sample photo"
+                        />
+                        <div className="card rounded-3">
+                            <div className="card-body p-4 p-md-5">
+                                <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Sign Up</h3>
+                                <form className="px-md-2" onSubmit={handleSubmit}>
+                                    <div className="form-outline mb-4">
+                                        <input 
+                                            type="email" 
+                                            id="email" 
+                                            className="form-control" 
+                                            name="email" 
+                                            placeholder="Enter email" 
+                                            value={inputs.email} 
+                                            onChange={handleChange} 
+                                            required 
+                                        />
+                                        <label className="form-label" htmlFor="email">Email <span style={{ color: 'red' }}>*</span></label>
+                                    </div>
+                                    <div className="form-outline mb-4">
+                                        <input 
+                                            type="password" 
+                                            id="password" 
+                                            className="form-control" 
+                                            name="password" 
+                                            placeholder="Enter password" 
+                                            value={inputs.password} 
+                                            onChange={handleChange} 
+                                            required 
+                                        />
+                                        <label className="form-label" htmlFor="password">Password <span style={{ color: 'red' }}>*</span></label>
+                                    </div>
+                                    <button type="submit" className="btn btn-success btn-lg mb-1" style={{ backgroundColor: "#f1b873" }}>Next</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="pwd" className="form-label">Password:</label>
-                    <input type="password" className="form-control" id="pwd" placeholder="Enter password" name="pswd" value={inputs.pswd || ""} onChange={handleChange} required/>
-                    <div className="valid-feedback">
-                    Looks good!
-                    </div>
-                </div>
-                <div className="col-12 text-center">
-                    <button className="btn btn-primary" type="submit" >Sign up</button>
-                </div>
-            </form>
-		</div>
-	);
+            </div>
+        </section>
+    );
 };

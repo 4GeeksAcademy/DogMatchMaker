@@ -1,8 +1,8 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
-		store: {
+		store: {			
 			message: null,
-			token: null,
+			token: '',
 			section: null,
 			demo: [
 				{
@@ -54,21 +54,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (token && token != '' && token != undefined ) setStore({ token : token})
 			},
 			logout: () => {
-				sessionStorage.removeItem('token')
-				setStore({ token : null, section: 'logout', message: null})
-
+				try{
+					sessionStorage.removeItem('token')
+					setStore({ token : null, section: 'logout', message: null})
+					const resp = fetch(process.env.BACKEND_URL+"/api/logout", {
+						method: 'POST',
+						credentials: 'include'
+					}).then(response => response.json())
+					.then(data => setStore({ message: data.message }));
+					
+				}catch(error){
+					console.log("Error log out", error)
+				}
 			},
 			privateArea: async () => {
 				try{
 					const store = getStore();
-					let requestOptions = {
-						headers: { 'Authorization': 'Bearer '+store.token }
-					};
-					const resp = await fetch(process.env.BACKEND_URL + "/api/private")
-					const data = await resp.json()
+					const resp = await fetch(process.env.BACKEND_URL + "/api/private", {
+						method: 'GET',
+						credentials: 'include'
+					  })					
 					if (resp.status == 401) {
 						getActions().logout()
 					}
+					const data = await resp.json()
 					setStore({ message: data.message, section: data.section })
 					// don't forget to return something, that is how the async resolves
 					return data;
@@ -81,6 +90,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					let requestOptions = {
 						method: 'POST',
+						credentials: 'include',
 						headers: { 'Content-Type': 'application/json' },
 						body : JSON.stringify({
 							'email': email,
@@ -92,30 +102,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					
 					if (resp.status !== 200) {
 						alert("There has been some error")
-						const data = await resp.json()
-						console.log(data)
 						return false;
 					}
 
 					const data = await resp.json()
-					console.log(data)
-					
-					resp.raise_for_status()
-					console.log(resp.cookies)
-					console.log(resp.headers)
-					
-					resp.headers.forEach(
-						//function(Value, Header) { let x= Header + "\n" + Value + "\n\n"; console.log(x) }
-					 );
-					
-
-					function parseHttpHeaders(httpHeaders) {
-						return httpHeaders.split("\n")
-						 .map(x=>x.split(/: */,2))
-						 .filter(x=>x[0])
-						 .reduce((ac, x)=>{ac[x[0]] = x[1];return ac;}, {});
-					}
-					
+				
 					sessionStorage.setItem("token", data.access_token)
 					setStore({ token : data.access_token})
 					return true

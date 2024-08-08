@@ -7,17 +7,12 @@ from api.models import db, UserAccount
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 import json
-from flask_jwt_extended import create_access_token
-from flask_jwt_extended import jwt_required
-from flask_jwt_extended import get_jwt_identity
-from flask_jwt_extended import set_access_cookies
-from flask_jwt_extended import create_refresh_token, set_refresh_cookies, get_csrf_token
-
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, set_access_cookies, unset_jwt_cookies
 
 api = Blueprint('api', __name__)
 
 # Allow CORS requests to this API
-CORS(api)
+CORS(api, supports_credentials=True)
 
 @api.route('/hello', methods=['POST', 'GET'])
 def handle_hello():
@@ -65,24 +60,11 @@ def create_token():
         
     # Create a new token with the user id inside
     access_token = create_access_token(identity=userAccount.email)
-    refresh_token = create_refresh_token(identity=userAccount.email)
-    response = jsonify({"msg": "login successful"})
-    #response = jsonify({ "access_token": access_token })
+    response = jsonify({ "access_token": access_token[10-20] })
     
-   
-    #return response
-    #response = make_response(response)
-    
-    response.headers['csrf_access_token'] = get_csrf_token(access_token)
-    response.headers['csrf_refresh_token'] = get_csrf_token(refresh_token)
-
     set_access_cookies(response, access_token)
-    set_refresh_cookies(response, refresh_token)
     
     return response
-
-    #return jsonify({ "access_token": access_token })
-
 
 @api.route('/private', methods=['GET'])
 @jwt_required()
@@ -97,36 +79,10 @@ def private_hello():
 
     return jsonify(response_body), 200
 
-@api.after_request
-def after_request_func(response):
-    print("after_request executing!")
-    """
-    resp = Response()
-    resp
-    
-    js = response.data.decode('UTF-8')
-    #js = json.loads(js)
-    dic = {}
-    dataform = str(js).strip("'<>() ")
-    #dic = json.loads(dataform)
-    dataform = dataform.strip()
-    dataform = dataform[:-1]
-    dataform += ', "some" :  "asdasd" }'
-    
-    print(dataform)
-    
-    
-    js['new_one'] = 'some'
-    print(js)
-    dic = {}
-    dic['new_one'] = 'some'
-    
-    obj = jsonify(eval(dataform))
-    response.data = obj.data
-    """
-    
-    #print(js)#['some'] = 'asdas'
-    #response.data = {"some" :  'asdasd'}
-    #obj.data = jsonify({ "access_token": 'token' })
-
+@api.route("/logout", methods=["POST"])
+def logout():
+    response = jsonify({"message": "logout successful"})
+    unset_jwt_cookies(response)
     return response
+
+

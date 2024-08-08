@@ -21,15 +21,15 @@ import React from 'react';
           </div>
           <div className="col-md-4 mb-3">
             <h5>Follow Us</h5>
-            <a href="https://www.facebook.com/pawfriends" className="text-white me-2" target="_blank" rel="noopener noreferrer">
+            <a href="#" className="text-white me-2" target="_blank" rel="noopener noreferrer">
               <i className="bi bi-facebook"></i> Facebook
             </a>
             <br />
-            <a href="https://twitter.com/pawfriends" className="text-white me-2" target="_blank" rel="noopener noreferrer">
+            <a href="#" className="text-white me-2" target="_blank" rel="noopener noreferrer">
               <i className="bi bi-twitter"></i> Twitter
             </a>
             <br />
-            <a href="https://www.instagram.com/pawfriends" className="text-white" target="_blank" rel="noopener noreferrer">
+            <a href="#" className="text-white" target="_blank" rel="noopener noreferrer">
               <i className="bi bi-instagram"></i> Instagram
             </a>
           </div>

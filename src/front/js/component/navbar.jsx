@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
-import Paw from "../../img/Paw.jpg";
+import Paw from "../../img/Paw.png";
 import { useLocation } from 'react-router-dom';
 import "../../styles/navbar.css";
 
@@ -18,10 +18,10 @@ export const Navbar = () => {
     }, [store.section, navigate]);
 
     return (
-        <nav className={`navbar navbar-expand-lg ${isPricingPage ? 'navbar-pricing' : 'navbar-default'} navbar-light p-3`}>
+        <nav className={`navbar navbar-expand-lg ${isPricingPage ? 'navbar-pricing' : 'navbar-default'} navbar-light p-3 sticky-top`}>
             <div className="container-fluid col-12">
                 <Link to="/">
-                    <img src={Paw} width={80} height={80} alt="Dog paw logo" className="bg-transparent" />
+                    <img src={Paw} width={90} height={90} alt="Dog paw logo" className="bg-transparent" />
                 </Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>

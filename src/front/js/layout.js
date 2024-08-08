@@ -1,6 +1,6 @@
 
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, useLocation , Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
@@ -10,9 +10,11 @@ import { Signup } from "./pages/signup";
 import { Private } from "./pages/private";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
+import { Pricing } from "./pages/Pricing.jsx"
+import { About } from "./pages/About.jsx"
 import injectContext from "./store/appContext";
 
-import { Navbar } from "./component/navbar";
+import { Navbar } from "./component/navbar.jsx";
 import { Footer } from "./component/footer";
 
 //create your first component
@@ -35,6 +37,8 @@ const Layout = () => {
                         <Route element={<Private />} path="/private" />
                         <Route element={<Signup />} path="/signup" />
                         <Route element={<Single />} path="/single/:theid" />
+                        <Route element={<Pricing />} path="/Pricing" />
+                        <Route element={<About />} path="/About" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />

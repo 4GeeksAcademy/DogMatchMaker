@@ -1,0 +1,12 @@
+.custom-blue {
+    background-color: 	#2b2c41;
+  }
+  .navbar-default {
+    background-color: #2b2c41;
+  
+  }
+
+  .navbar-pricing {
+    background-color: #e27a37 /* Replace with your desired color for the pricing page */
+     /* Ensure text color contrasts well with background */
+  }

@@ -1,12 +1,67 @@
-/*
-    home.css: This website contains selectors only used in home.css
-
-    All pages share the styles on index.css but you should create 
-    one more css for each page that will contain the selected used 
-    on that page only (the ones not reused in other pages).
-*/
 @media (min-width: 1025px) {
     .h-custom {
-    height: 110vh !important;
+    height: 115vh !important;
     }
     }
+
+    .image-preview {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1rem; 
+    }
+    
+    .img-preview {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #ddd;
+    }
+    
+    .placeholder-preview {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        border: 2px dashed #ddd;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: #aaa;
+    }
+    
+    .image-preview button {
+        position: absolute;
+        top: 0px;
+        right: 0;
+        margin: 5px;
+        padding: 0.5rem;
+        background-color: red;
+        border: none;
+        color: white;
+        font-size: 0.5rem;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .image-preview button:hover {
+        background-color: darkred;
+    }
+    
+    input[type="file"] {
+        display: none;
+    }
+    
+    label.btn-primary {
+        display: inline-block;
+        background-color: #72bfed;
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 0.25rem;
+        cursor: pointer;
+        font-weight: 500;
+        border: none;
+    } 

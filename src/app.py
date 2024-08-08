@@ -2,6 +2,9 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 import os
+from datetime import datetime
+from datetime import timedelta
+from datetime import timezone
 from flask import Flask, request, jsonify, url_for, send_from_directory
 from flask_migrate import Migrate
 from flask_swagger import swagger
@@ -16,10 +19,14 @@ from flask_jwt_extended import JWTManager
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
 static_file_dir = os.path.join(os.path.dirname(
-    os.path.realpath(__file__)), '../public/')
+os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 app.config["JWT_SECRET_KEY"] = "asdasdask1458asda5654asd654asd651asd61sdf6as1d6"
+app.config["JWT_COOKIE_SECURE"] = False
+app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=10)
+
 jwt = JWTManager(app)
 
 # database condiguration

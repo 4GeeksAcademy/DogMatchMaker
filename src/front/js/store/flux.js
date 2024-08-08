@@ -64,7 +64,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					let requestOptions = {
 						headers: { 'Authorization': 'Bearer '+store.token }
 					};
-					const resp = await fetch(process.env.BACKEND_URL + "/api/private", requestOptions)
+					const resp = await fetch(process.env.BACKEND_URL + "/api/private")
 					const data = await resp.json()
 					if (resp.status == 401) {
 						getActions().logout()
@@ -92,16 +92,36 @@ const getState = ({ getStore, getActions, setStore }) => {
 					
 					if (resp.status !== 200) {
 						alert("There has been some error")
+						const data = await resp.json()
+						console.log(data)
 						return false;
 					}
 
 					const data = await resp.json()
+					console.log(data)
+					
+					resp.raise_for_status()
+					console.log(resp.cookies)
+					console.log(resp.headers)
+					
+					resp.headers.forEach(
+						//function(Value, Header) { let x= Header + "\n" + Value + "\n\n"; console.log(x) }
+					 );
+					
+
+					function parseHttpHeaders(httpHeaders) {
+						return httpHeaders.split("\n")
+						 .map(x=>x.split(/: */,2))
+						 .filter(x=>x[0])
+						 .reduce((ac, x)=>{ac[x[0]] = x[1];return ac;}, {});
+					}
+					
 					sessionStorage.setItem("token", data.access_token)
 					setStore({ token : data.access_token})
 					return true
 
 				} catch (error) {
-					console.error('There has been an error log in')
+					console.error('There has been an error log in', error)
 				}
 			}
 		}

@@ -2,7 +2,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-from flask import Flask, request, jsonify, url_for, Blueprint, Response, make_response
+from flask import Flask, request, jsonify, Blueprint
 from api.models import db, UserAccount
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
@@ -60,7 +60,7 @@ def create_token():
         
     # Create a new token with the user id inside
     access_token = create_access_token(identity=userAccount.email)
-    response = jsonify({ "access_token": access_token[10-20] })
+    response = jsonify({ "access_token": access_token[10:20] })
     
     set_access_cookies(response, access_token)
     

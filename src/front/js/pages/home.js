@@ -1,8 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import rigoImageUrl from "../../img/rigo-baby.jpg";
 import "../../styles/home.css";
 import { useNavigate } from "react-router-dom";
+import { ChatEngine, getOrCreateChat } from 'react-chat-engine';
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -14,14 +15,59 @@ export const Home = () => {
 			navigate("/private");
 	}, [store.section])
 
+	useEffect(() => {
+		navigate("/");
+	}, [currentTab])
 
+	const [username, setUsername] = useState('')
+	const [currentUser, setCurrentUser] = useState('ale')
+
+	function createDirectChat(creds) {
+		getOrCreateChat(
+			creds,
+			{ is_direct_chat: true, usernames: [username] },
+			() => setUsername('')
+		)
+	}
+
+	function renderChatForm(creds) {
+		return (
+			<div>
+				<input 
+					placeholder='Username' 
+					value={username} 
+					onChange={(e) => setUsername(e.target.value)} 
+				/>
+				<button onClick={() => createDirectChat(creds)}>
+					Create
+				</button>
+			</div>
+		)
+	}
 
 	return (
 		<div className="text-center mt-5">
-			<h1>Authentication system with Python Flask and React.js</h1>
+			<h1>Authentication system with Python Flask and React.js {currentUser}</h1>
 			<p>
 				<img src={rigoImageUrl} />
 			</p>
+			<input type="user" name="email" value={currentUser} onChange={e => setCurrentUser(e.target.value)}/>
+
+			<ChatEngine
+				height='100vh'
+				projectID='229944ba-3c50-4575-9ad6-8715d919d3dc'
+				userName='ale'
+				userSecret='123'
+				renderNewChatForm={(creds) => renderChatForm(creds)}
+			/>
+			<ChatEngine
+				height='100vh'
+				projectID='229944ba-3c50-4575-9ad6-8715d919d3dc'
+				userName='billy'
+				userSecret='123'
+				renderNewChatForm={(creds) => renderChatForm(creds)}
+			/>
+
 			<nav>
 			<div className="nav nav-tabs" id="nav-tab" role="tablist">
 				<button className={currentTab == 1 ? "nav-link active" : "nav-link"} id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#tab-1" type="button" role="tab" aria-controls="nav-home" aria-selected={currentTab == 1 ? true : false}>Home</button>

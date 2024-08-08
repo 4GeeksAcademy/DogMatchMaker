@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Context } from '../store/appContext';
+import Notifications from './notifications.jsx';
 
 const Sidebar = () => {
     const { store, actions } = useContext(Context);
@@ -51,6 +52,10 @@ const Sidebar = () => {
                         Messages
                     </Link>
                 </li>
+                <li>
+                    <Notifications />
+                </li>
+                
                 {/* Uncomment and use these links if needed */}
                 {/* <li>
                     <Link 
@@ -84,11 +89,11 @@ const Sidebar = () => {
                     data-bs-toggle="dropdown"
                     aria-expanded="false"
                 >
-                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
-                    <strong>mdo</strong>
+                    <img src="https://github.com/mdo.png" alt="" width="52" height="52" className="rounded-circle me-2" />
+                    <strong style={{fontSize: '15px'}}>UserName</strong>
                 </Link>
                 <ul className="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                    <li><Link className="dropdown-item" to="#">Profile</Link></li>
+                    <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
                     <li><hr className="dropdown-divider" /></li>
                     <li><Link onClick={() => actions.logout()} className="dropdown-item" to="#">Sign out</Link></li>
                 </ul>

@@ -1,5 +1,4 @@
 import React from "react";
-import Sidebar from "../component/sidebar.jsx";
 
 const Messages = () => {
     return(

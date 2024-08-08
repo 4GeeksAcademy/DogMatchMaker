@@ -17,6 +17,7 @@ import { Footer } from "./component/footer";
 import Messages from "./pages/messages.jsx";
 import Sidebar from "./component/sidebar.jsx";
 import Profile from "./pages/profile.jsx";
+import Notifications from "./component/notifications.jsx";
 
 //create your first component
 const Layout = () => {
@@ -40,6 +41,7 @@ const Layout = () => {
                         <Route element={<Private />} path="/private" />
                         <Route element={< Messages/>} path="/messages" />
                         <Route element={< Profile/>} path="/profile" />
+                        <Route element={< Notifications/>} path="/notifications" />
                         <Route element={<Signup />} path="/signup" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<h1>Not found!</h1>} />

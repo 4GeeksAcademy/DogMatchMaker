@@ -1,105 +1,104 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { Context } from '../store/appContext';
-import Notifications from './notifications.jsx';
+import React, { useState, useEffect, useContext } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Context } from "../store/appContext";
+import Notifications from "./notifications.jsx";
+import img from "../../img/m101.jpg";
+import logo from "../../img/updatedlogo.png";
 
 const Sidebar = () => {
-    const { store, actions } = useContext(Context);
-    const location = useLocation();
-    const [activeLink, setActiveLink] = useState(location.pathname);
+  const { store, actions } = useContext(Context);
+  
+  const [style, setStyle] = useState("redglow");
+	const autoCycle = () => {
+		if (style == "yellowglow"){
+			setStyle("redglow")
+		}else if(style == "redglow"){
+			setStyle("greenglow")
+		}else if(style == "greenglow"){
+			setStyle("yellowglow")
+		}
+	}
 
-    useEffect(() => {
-        setActiveLink(location.pathname);
-    }, [location.pathname]);
+  const sidebarStyle = {
+    width: "280px",
+  };
 
-    const getLinkClass = (link) => {
-        return link === activeLink ? 'nav-link active bg-primary text-white' : 'nav-link link-dark';
-    };
-
-    const sidebarStyle = {
-        width: '280px'
-    };
-
-    return (
-        <div className="sidebar d-flex flex-column flex-shrink-0 p-3 bg-light" style={sidebarStyle}>
-            <Link to="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                <svg className="bi me-2" width="40" height="32">
-                    <use xlinkHref="#bootstrap" />
-                </svg>
-                <span className="fs-4">Logo</span>
+  return (
+    <div
+      className="sidebar d-flex flex-column flex-shrink-0 p-3 bg-light "
+      style={sidebarStyle}
+    >
+      <Link
+        to="/"
+        className="d-flex align-items-center mb-3 mb-md-0 me-0 link-dark text-decoration-none justify-content-center"
+      >
+        <span><img style={{width: '202px', height: '202px', padding: '0'}} src={logo}/></span>
+      </Link>
+      <hr />
+      <ul className="nav nav-pills flex-column mb-auto">
+        <li className="nav-item">
+          <Link id="discover" to={'/private'} className={style == "redglow" ? "glow": ""} onClick={() => {
+						console.log("Clicked on red")
+						if (style !== "redglow") setStyle("redglow");
+					}}>
+            Discover
+          </Link>
+        </li>
+        <li>
+          <Link id="messages" to={'/messages'} className={style == "yellowglow" ? "glow": ""} onClick={() => {
+					console.log("clicked on yellow")
+					if (style !== "yellowglow") setStyle("yellowglow");
+					}}>
+            Messages
+          </Link>
+        </li>
+        <li>
+            <Notifications style={style} setStyle={setStyle}/>
+        </li>
+      </ul>
+      <hr />
+      <div className="dropdown">
+        <Link
+          to="#"
+          className="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+          id="dropdownUser2"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img
+            src={img}
+            alt=""
+            width="52"
+            height="52"
+            className="rounded-circle me-2"
+          />
+          <strong style={{ fontSize: "15px" }}>UserName</strong>
+        </Link>
+        <ul
+          className="dropdown-menu text-small shadow"
+          aria-labelledby="dropdownUser2"
+        >
+          <li>
+            <Link className="dropdown-item" to="/profile">
+              Profile
             </Link>
-            <hr />
-            <ul className="nav nav-pills flex-column mb-auto">
-                <li className="nav-item">
-                    <Link 
-                        className={getLinkClass('/private')} 
-                        to="/private"
-                    >
-                        <svg className="bi me-2" width="16" height="16">
-                            <use xlinkHref="#home" />
-                        </svg>
-                        Discover 
-                    </Link>
-                </li>
-                <li>
-                    <Link 
-                        className={getLinkClass('/messages')} 
-                        to="/messages"
-                    >
-                        <svg className="bi me-2" width="16" height="16">
-                            <use xlinkHref="#speedometer2" />
-                        </svg>
-                        Messages
-                    </Link>
-                </li>
-                <li>
-                    <Notifications />
-                </li>
-                
-                {/* Uncomment and use these links if needed */}
-                {/* <li>
-                    <Link 
-                        className={getLinkClass('/matches')} 
-                        to="/matches"
-                    >
-                        <svg className="bi me-2" width="16" height="16">
-                            <use xlinkHref="#table" />
-                        </svg>
-                        Matches
-                    </Link>
-                </li>
-                <li>
-                    <Link 
-                        className={getLinkClass('/settings')} 
-                        to="/settings"
-                    >
-                        <svg className="bi me-2" width="16" height="16">
-                            <use xlinkHref="#grid" />
-                        </svg>
-                        Settings
-                    </Link>
-                </li> */}
-            </ul>
-            <hr />
-            <div className="dropdown">
-                <Link
-                    to="#"
-                    className="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
-                    id="dropdownUser2"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                >
-                    <img src="https://github.com/mdo.png" alt="" width="52" height="52" className="rounded-circle me-2" />
-                    <strong style={{fontSize: '15px'}}>UserName</strong>
-                </Link>
-                <ul className="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-                    <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
-                    <li><hr className="dropdown-divider" /></li>
-                    <li><Link onClick={() => actions.logout()} className="dropdown-item" to="#">Sign out</Link></li>
-                </ul>
-            </div>
-        </div>
-    );
+          </li>
+          <li>
+            <hr className="dropdown-divider" />
+          </li>
+          <li>
+            <Link
+              onClick={() => actions.logout()}
+              className="dropdown-item"
+              to="#"
+            >
+              Sign out
+            </Link>
+          </li>
+        </ul>
+      </div>
+    </div>
+  );
 };
 
 export default Sidebar;

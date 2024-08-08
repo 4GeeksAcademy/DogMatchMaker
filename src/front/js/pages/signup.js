@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export const Signup = () => {
@@ -17,8 +17,25 @@ export const Signup = () => {
         interests: ''
     });
     const [profilePicture, setProfilePicture] = useState(null);
-    const [preview, setPreview] = useState(null); // State for preview image
+    const [preview, setPreview] = useState(null);
+    const [breeds, setBreeds] = useState([]);
     const navigate = useNavigate();
+
+    // Fetch breeds from API
+    useEffect(() => {
+        const fetchBreeds = async () => {
+            try {
+                const response = await fetch('https://dog.ceo/api/breeds/list/all');
+                const data = await response.json();
+                const breedList = Object.keys(data.message).flatMap(breed => data.message[breed].length > 0 ? data.message[breed].map(subBreed => `${breed} ${subBreed}`) : breed);
+                setBreeds(breedList);
+            } catch (error) {
+                console.error('Error fetching breeds:', error);
+            }
+        };
+
+        fetchBreeds();
+    }, []);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -29,7 +46,7 @@ export const Signup = () => {
         const file = event.target.files[0];
         setProfilePicture(file);
         if (file) {
-            setPreview(URL.createObjectURL(file)); // Set preview URL
+            setPreview(URL.createObjectURL(file));
         }
     }
 
@@ -49,32 +66,33 @@ export const Signup = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
+        const backendUrl = process.env.BACKEND_URL;
+        if (!backendUrl) {
+            console.error('Backend URL is not defined in the environment variables');
+            return;
+        }
+
         const formData = new FormData();
-        formData.append('email', inputs.email);
-        formData.append('password', inputs.password);
-        formData.append('dog_name', inputs.dog_name);
-        formData.append('owner_name', inputs.owner_name);
-        formData.append('nick_name', inputs.nick_name);
-        formData.append('dog_age', inputs.dog_age);
-        formData.append('location', inputs.location);
-        formData.append('breed', inputs.breed);
-        formData.append('dog_sex', inputs.dog_sex);
-        formData.append('bio', inputs.bio);
-        formData.append('interests', inputs.interests);
+        Object.keys(inputs).forEach(key => formData.append(key, inputs[key]));
         if (profilePicture) {
             formData.append('profile_picture', profilePicture);
         }
 
-        const response = await fetch(`${process.env.BACKEND_URL}/api/user`, {
-            method: 'POST',
-            body: formData
-        });
-        
-        if (response.ok) {
-            navigate("/login");
-        } else {
-            const errorData = await response.json();
-            alert(`Error: ${errorData.error || 'Error completing signup.'}`);
+        try {
+            const response = await fetch(`${backendUrl}/api/user`, {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+
+            const result = await response.json();
+            console.log(result);
+            navigate('/login');
+        } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
         }
     }
 
@@ -126,7 +144,13 @@ export const Signup = () => {
                                                 />
                                                 <label className="form-label" htmlFor="password">Password <span style={{ color: 'red' }}>*</span></label>
                                             </div>
-                                            <button type="submit" className="btn btn-success btn-lg mb-1" style={{ backgroundColor: "#f1b873", color:"black"}}>Next</button>
+                                            <button 
+                                                type="submit" 
+                                                className="btn btn-success btn-lg mb-1" 
+                                                style={{ backgroundColor: "#f1b873", color: "black" }}
+                                            >
+                                                Next
+                                            </button>
                                         </form>
                                     </div>
                                 </>
@@ -207,7 +231,12 @@ export const Signup = () => {
                                                     <div className="image-preview d-flex align-items-center">
                                                         {preview ? (
                                                             <div className="position-relative">
-                                                                <img src={preview} alt="Profile Preview" className="img-preview" />
+                                                                <img 
+                                                                    src={preview} 
+                                                                    alt="Profile Preview" 
+                                                                    className="img-preview" 
+                                                                    style={{ width: '100px', height: '100px', objectFit: 'cover' }} 
+                                                                />
                                                                 <button 
                                                                     type="button" 
                                                                     className="btn btn-danger btn-sm position-absolute top-0 end-0" 
@@ -239,32 +268,36 @@ export const Signup = () => {
                                             <div className="col-md-6">
                                                 {/* Right Column */}
                                                 <div className="form-outline mb-4">
-                                                    <input 
-                                                        type="text" 
-                                                        id="breed" 
-                                                        className="form-control" 
-                                                        name="breed" 
-                                                        placeholder="Breed" 
-                                                        value={inputs.breed} 
-                                                        onChange={handleChange} 
-                                                        required 
-                                                    />
-                                                    <label className="form-label" htmlFor="breed">Breed <span style={{ color: 'red' }}>*</span></label>
-                                                </div>
-                                                <div className="form-outline mb-4">
                                                     <select 
                                                         id="dogSex" 
                                                         className="form-control" 
                                                         name="dog_sex" 
                                                         value={inputs.dog_sex} 
                                                         onChange={handleChange}
-                                                        required 
+                                                        required
                                                     >
-                                                        <option value="">Select Sex</option>
-                                                        <option value="Male">Male</option>
-                                                        <option value="Female">Female</option>
+                                                        <option value="">Select Dog Sex</option>
+                                                        <option value="male">Male</option>
+                                                        <option value="female">Female</option>
+                                                        <option value="other">Other</option>
                                                     </select>
                                                     <label className="form-label" htmlFor="dogSex">Dog Sex <span style={{ color: 'red' }}>*</span></label>
+                                                </div>
+                                                <div className="form-outline mb-4">
+                                                    <select 
+                                                        id="breed" 
+                                                        className="form-control" 
+                                                        name="breed" 
+                                                        value={inputs.breed} 
+                                                        onChange={handleChange} 
+                                                        required
+                                                    >
+                                                        <option value="">Select Breed</option>
+                                                        {breeds.map((breed, index) => (
+                                                            <option key={index} value={breed}>{breed}</option>
+                                                        ))}
+                                                    </select>
+                                                    <label className="form-label" htmlFor="breed">Breed <span style={{ color: 'red' }}>*</span></label>
                                                 </div>
                                                 <div className="form-outline mb-4">
                                                     <textarea 
@@ -273,8 +306,8 @@ export const Signup = () => {
                                                         name="bio" 
                                                         placeholder="Bio" 
                                                         value={inputs.bio} 
-                                                        onChange={handleChange}
-                                                        rows="4"
+                                                        onChange={handleChange} 
+                                                        rows="3"
                                                     />
                                                     <label className="form-label" htmlFor="bio">Bio</label>
                                                 </div>
@@ -285,16 +318,28 @@ export const Signup = () => {
                                                         name="interests" 
                                                         placeholder="Interests" 
                                                         value={inputs.interests} 
-                                                        onChange={handleChange}
-                                                        rows="4"
+                                                        onChange={handleChange} 
+                                                        rows="3"
                                                     />
                                                     <label className="form-label" htmlFor="interests">Interests</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div className="d-flex justify-content-between">
-                                            <button type="button" className="btn btn-success" style={{ backgroundColor:"#f1b873", color:"black"}} onClick={handlePrevious}>Previous</button>
-                                            <button type="submit" className="btn btn-success" style={{ backgroundColor: "#f1b873", color: "black"}}>Submit</button>
+                                            <button 
+                                                type="button" 
+                                                className="btn btn-secondary btn-lg" 
+                                                onClick={handlePrevious}
+                                            >
+                                                Previous
+                                            </button>
+                                            <button 
+                                                type="submit" 
+                                                className="btn btn-success btn-lg" 
+                                                style={{ backgroundColor: "#f1b873", color: "black" }}
+                                            >
+                                                Sign Up
+                                            </button>
                                         </div>
                                     </form>
                                 </div>
@@ -305,4 +350,4 @@ export const Signup = () => {
             </div>
         </section>
     );
-};
+}

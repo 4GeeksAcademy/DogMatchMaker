@@ -1,46 +1,164 @@
-/* 
-    General Styles used on every website (Don't Repeat Yourself)
-*/
+/* General Styles used on every website (Don't Repeat Yourself) */
 .sidebar {
-    position:fixed;
+    position: fixed;
     width: 200px;
     z-index: 1000;
     left: 0;
     top: 0;
     border-right: 1px solid #162636;
     height: 100%;
-  }
+}
 
-  .offcanvas {
+#offcanvasScrolling1{
     width: 320px;
-  }
+}
 
-#discover {
+#offcanvasScrolling2{
+    height: 100%;
+}
+
+#discover, #messages, #notifications {
     cursor: pointer;
     text-decoration: none; 
     font-size: 20px;
 }
-#messages{
-    cursor: pointer;
-    text-decoration: none; 
-    font-size: 20px;
-}
-#notifications{
-    padding: 0px;
-    text-align: left;
-    font-size: 20px;
-    cursor: pointer;
-    text-decoration: none; 
 
+a {
+    color: black;
+    padding: 5px;
 }
 
+a:hover {
+    color: black;
+}
 
 .selected {
-   /*  box-shadow: 0 0 50px 15px red; */
     cursor: pointer;
     background-color: steelblue;
-    color: blue;
     border: 1px slateblue solid;
     border-radius: 5px;
     padding: 5px;
+    text-decoration: none; 
+}
+
+.profile-card {
+    filter: drop-shadow(8px 8px 10px gray);
+    border-radius: 5%;
+    overflow: hidden;
+    position: relative;
+    width: 25rem;
+}
+
+.card-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.profile-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.80) 25%,
+        rgba(0, 0, 0, 0.1) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    z-index: 1;
+}
+
+#close{
+    border-radius: 80%;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 5px;
+    margin-left: 20px;
+    border: 1px solid rgb(220, 53, 69);
+    outline-style: solid;
+    background-color: rgb(220, 53, 69);
+    
+}
+
+#close:hover {
+    cursor: pointer;
+    color: rgb(220, 53, 69);
+    background-color: white;
+}
+
+#like{
+    border-radius: 80%;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 5px;
+    border: 1px solid rgb(25, 135, 84);
+    outline-style: solid;
+    background-color: rgb(25, 135, 84);
+}
+
+#like:hover {
+    cursor: pointer;
+    color: rgb(25, 135, 84);
+    background-color: white;
+}
+
+#reverse{
+    border-radius: 80%;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 5px;
+    margin-right: 25px;
+    margin-left: 25px;
+    border: 1px solid rgb(255, 193, 7);
+    outline-style: solid;
+    background-color: rgb(255, 193, 7);
+}
+
+#reverse:hover {
+    cursor: pointer;
+    color: rgb(255, 193, 7);
+    background-color: white;
+}
+
+#info{
+    border-radius: 80%;
+    position: relative;
+    z-index: 2;
+    margin-bottom: 5px;
+    margin-right: 25px;
+    margin-left: 25px;
+    border: 1px solid rgb(245, 164, 59);
+    outline-style: solid;
+    background-color: rgb(245, 164, 59);
+}
+
+#info:hover {
+    cursor: pointer;
+    color: rgb(245, 164, 59);
+    background-color: white;
+}
+
+.names {
+    color: white;
+    position: absolute; /* Ensure it overlays correctly */
+    bottom: 100px; /* Adjust position as needed */
+    left: 20px; /* Adjust position as needed */
+    z-index: 2;
+    margin: 0;
+}
+
+.namessub {
+    color: white;
+    position: absolute; /* Ensure it overlays correctly */
+    bottom: 80px; /* Adjust position as needed */
+    left: 40px; /* Adjust position as needed */
+    z-index: 2;
+    margin: 0;
+}
+
+#proinfo{
+    color: red;
 }

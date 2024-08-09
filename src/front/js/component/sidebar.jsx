@@ -29,7 +29,7 @@ const Sidebar = () => {
       style={sidebarStyle}
     >
       <Link
-        to="/"
+        to="/private"
         className="d-flex align-items-center mb-3 mb-md-0 me-0 link-dark text-decoration-none justify-content-center"
       >
         <span>

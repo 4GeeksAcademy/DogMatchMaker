@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { useNavigate } from "react-router-dom";
+import ProfileCard from "../component/profilecard.jsx";
 
 export const Private = () => {
 	const { store, actions } = useContext(Context);
@@ -16,7 +17,7 @@ export const Private = () => {
 		<div className="text-center">
 			<div className="row">
 				<div className="col-3"></div>
-				<div className="col-6"><h1>Discover Page</h1></div>
+				<div className="col-6 justify-content-center d-flex"><ProfileCard/></div>
 				<div className="col-3"></div>
 			</div>
 		</div>

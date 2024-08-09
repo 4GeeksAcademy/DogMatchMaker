@@ -14,17 +14,17 @@ const Notifications = ({ style, setStyle }) => {
             if (style !== "notifications") setStyle("notifications");
           }}
           data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasScrolling"
-          aria-controls="offcanvasScrolling"
+          data-bs-target="#offcanvasScrolling1"
+          aria-controls="offcanvasScrolling1"
         >
           Notifications
         </a>
       <div
-        className="offcanvas offcanvas-end" // Changed from offcanvas-start to offcanvas-end
+        className="offcanvas offcanvas-end"
         data-bs-scroll="true"
         data-bs-backdrop="false"
         tabIndex="-1"
-        id="offcanvasScrolling"
+        id="offcanvasScrolling1"
         aria-labelledby="offcanvasScrollingLabel"
       >
         <div className="offcanvas-header">

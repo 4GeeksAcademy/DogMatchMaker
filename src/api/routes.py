@@ -60,9 +60,11 @@ def create_token():
         
     # Create a new token with the user id inside
     access_token = create_access_token(identity=userAccount.email)
-    response = jsonify({ "access_token": access_token[10:20] })
+    response = jsonify({ "access_token": access_token })
     
     set_access_cookies(response, access_token)
+
+
     
     return response
 

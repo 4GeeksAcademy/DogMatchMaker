@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {			
 			message: null,
+			user: '',
 			token: '',
 			section: null,
 			demo: [
@@ -56,10 +57,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logout: () => {
 				try{
 					sessionStorage.removeItem('token')
-					setStore({ token : null, section: 'logout', message: null})
+					setStore({ token : null, section: 'logout', message: null, user: null})
 					const resp = fetch(process.env.BACKEND_URL+"/api/logout", {
-						method: 'POST',
-						credentials: 'include'
+						method: 'POST'
+						//credentials: 'include'
 					}).then(response => response.json())
 					.then(data => setStore({ message: data.message }));
 					
@@ -72,7 +73,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const store = getStore();
 					const resp = await fetch(process.env.BACKEND_URL + "/api/private", {
 						method: 'GET',
-						credentials: 'include'
+						headers: { 'Authorization': 'Bearer '+store.token }
+						//credentials: 'include'
 					  })					
 					if (resp.status == 401) {
 						getActions().logout()
@@ -90,7 +92,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					let requestOptions = {
 						method: 'POST',
-						credentials: 'include',
+						//credentials: 'include',
 						headers: { 'Content-Type': 'application/json' },
 						body : JSON.stringify({
 							'email': email,
@@ -108,7 +110,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await resp.json()
 				
 					sessionStorage.setItem("token", data.access_token)
-					setStore({ token : data.access_token})
+					setStore({ token : data.access_token, user: email})
 					return true
 
 				} catch (error) {

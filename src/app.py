@@ -24,7 +24,7 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 app.config["JWT_SECRET_KEY"] = "asdasdask1458asda5654asd654asd651asd61sdf6as1d6"
 app.config["JWT_COOKIE_SECURE"] = False
-app.config["JWT_TOKEN_LOCATION"] = ["cookies"]
+app.config["JWT_TOKEN_LOCATION"] = ["headers"]
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=10)
 
 jwt = JWTManager(app)
@@ -52,6 +52,9 @@ app.register_blueprint(api, url_prefix='/api')
 
 # Handle/serialize errors like a JSON object
 
+
+    
+print(sum)
 
 @app.errorhandler(APIException)
 def handle_invalid_usage(error):
@@ -82,3 +85,6 @@ def serve_any_other_file(path):
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3001))
     app.run(host='0.0.0.0', port=PORT, debug=True)
+
+
+

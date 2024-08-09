@@ -11,6 +11,9 @@
     height: 100%;
   }
 
+  .offcanvas {
+    width: 320px;
+  }
 
 #discover {
     cursor: pointer;
@@ -24,17 +27,20 @@
 }
 #notifications{
     padding: 0px;
-    border: none;
     text-align: left;
-    text-decoration: none; 
     font-size: 20px;
     cursor: pointer;
+    text-decoration: none; 
+
 }
 
 
-
-  .glow{
+.selected {
+   /*  box-shadow: 0 0 50px 15px red; */
+    cursor: pointer;
+    background-color: steelblue;
+    color: blue;
+    border: 1px slateblue solid;
+    border-radius: 5px;
     padding: 5px;
-    border-radius: 50px;
-    cursor: pointer
 }

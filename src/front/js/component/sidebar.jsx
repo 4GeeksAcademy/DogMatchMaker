@@ -7,20 +7,20 @@ import logo from "../../img/updatedlogo.png";
 
 const Sidebar = () => {
   const { store, actions } = useContext(Context);
-  
-  const [style, setStyle] = useState("redglow");
-	const autoCycle = () => {
-		if (style == "yellowglow"){
-			setStyle("redglow")
-		}else if(style == "redglow"){
-			setStyle("greenglow")
-		}else if(style == "greenglow"){
-			setStyle("yellowglow")
-		}
-	}
+
+  const [style, setStyle] = useState("discover");
+  const changeSelected = () => {
+    if (style == "messages") {
+      setStyle("discover");
+    } else if (style == "discover") {
+      setStyle("notifications");
+    } else if (style == "notifications") {
+      setStyle("messages");
+    }
+  };
 
   const sidebarStyle = {
-    width: "280px",
+    width: "250px",
   };
 
   return (
@@ -32,28 +32,43 @@ const Sidebar = () => {
         to="/"
         className="d-flex align-items-center mb-3 mb-md-0 me-0 link-dark text-decoration-none justify-content-center"
       >
-        <span><img style={{width: '202px', height: '202px', padding: '0'}} src={logo}/></span>
+        <span>
+          <img
+            style={{ width: "202px", height: "202px", padding: "0" }}
+            src={logo}
+          />
+        </span>
       </Link>
       <hr />
       <ul className="nav nav-pills flex-column mb-auto">
         <li className="nav-item">
-          <Link id="discover" to={'/private'} className={style == "redglow" ? "glow": ""} onClick={() => {
-						console.log("Clicked on red")
-						if (style !== "redglow") setStyle("redglow");
-					}}>
+          <Link
+            id="discover"
+            to={"/private"}
+            className={style == "discover" ? "selected" : ""}
+            onClick={() => {
+              console.log("Clicked on discover");
+              if (style !== "discover") setStyle("discover");
+            }}
+          >
             Discover
           </Link>
         </li>
         <li>
-          <Link id="messages" to={'/messages'} className={style == "yellowglow" ? "glow": ""} onClick={() => {
-					console.log("clicked on yellow")
-					if (style !== "yellowglow") setStyle("yellowglow");
-					}}>
+          <Link
+            id="messages"
+            to={"/messages"}
+            className={style == "messages" ? "selected" : ""}
+            onClick={() => {
+              console.log("clicked on messages");
+              if (style !== "messages") setStyle("messages");
+            }}
+          >
             Messages
           </Link>
         </li>
         <li>
-            <Notifications style={style} setStyle={setStyle}/>
+          <Notifications style={style} setStyle={setStyle} />
         </li>
       </ul>
       <hr />

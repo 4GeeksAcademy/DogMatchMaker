@@ -6,8 +6,10 @@ const ProfileCard = () => {
   return (
     <div className="profile-card mb-4">
       <img src={girlwithdog} className="card-img" />
-        <h2 className="names">Shaggy</h2>
-        <h5 className="namessub">& Kelsey</h5>
+        <h2 className="names" >Shaggy</h2>
+        <h5 className="sub-name">& Kelsey</h5>
+        <h6 className="breed-pill">Breed</h6>
+        <h6 className="dog-age-pill">12</h6>
       <div className="justify-content-center d-flex">
         <i
           id="close"

@@ -4,9 +4,8 @@ const ProfileInfo = () => {
     return(
         <div>
         <i
-          id="info"
+          id="view-info"
           className="fa regular fa-circle-info"
-          style={{ fontSize: "50px" }}
           onClick={() => {
         }}
         data-bs-toggle="offcanvas"

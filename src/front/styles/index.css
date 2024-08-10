@@ -20,12 +20,43 @@
 #discover, #messages, #notifications {
     cursor: pointer;
     text-decoration: none; 
-    font-size: 20px;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 10px 8px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    border: 1px black solid;
+    padding: 5px 15px 5px 15px;
 }
+
+#discover:hover, #messages:hover,
+#notifications:hover {
+    background: radial-gradient(circle, rgba(79,155,197,1) 0%, rgba(76,140,172,1) 100%);
+  box-shadow: 0px 15px 20px rgb(79,155,197);
+  color: #fff;
+  transform: translateY(-7px);
+  padding: 5px 15px 5px 15px;
+  font-size: 18px;
+}
+
+/* #discover:focus, #messages:focus,
+#notifications:focus {
+  background: radial-gradient(circle, rgba(79,155,197,1) 0%, rgba(76,140,172,1) 100%);
+  box-shadow: 0px 15px 20px rgb(79,155,197);
+  color: #fff;
+  transform: translateY(-7px);
+  padding: 5px 15px 5px 15px;
+  font-size: 18px;
+} */
 
 a {
     color: black;
-    padding: 5px;
 }
 
 a:hover {
@@ -34,7 +65,6 @@ a:hover {
 
 .selected {
     cursor: pointer;
-    background-color: steelblue;
     border: 1px slateblue solid;
     border-radius: 5px;
     padding: 5px;
@@ -80,7 +110,8 @@ a:hover {
     border: 1px solid rgb(220, 53, 69);
     outline-style: solid;
     background-color: rgb(220, 53, 69);
-    
+    outline: rgb(220, 53, 69) solid;
+    margin-top: 5px;
 }
 
 #close:hover {
@@ -94,9 +125,12 @@ a:hover {
     position: relative;
     z-index: 2;
     margin-bottom: 5px;
+    margin-right: 20px;
     border: 1px solid rgb(25, 135, 84);
     outline-style: solid;
     background-color: rgb(25, 135, 84);
+    outline: rgb(25, 135, 84) solid;
+    margin-top: 5px;
 }
 
 #like:hover {
@@ -115,6 +149,8 @@ a:hover {
     border: 1px solid rgb(255, 193, 7);
     outline-style: solid;
     background-color: rgb(255, 193, 7);
+    outline: rgb(255, 193, 7)solid;
+    margin-top: 5px;
 }
 
 #reverse:hover {
@@ -133,6 +169,7 @@ a:hover {
     border: 1px solid rgb(245, 164, 59);
     outline-style: solid;
     background-color: rgb(245, 164, 59);
+    margin-top: 5px;
 }
 
 #info:hover {
@@ -144,21 +181,62 @@ a:hover {
 .names {
     color: white;
     position: absolute; /* Ensure it overlays correctly */
-    bottom: 100px; /* Adjust position as needed */
-    left: 20px; /* Adjust position as needed */
+    bottom: 120px; /* Adjust position as needed */
+    left: 15px; /* Adjust position as needed */
     z-index: 2;
     margin: 0;
 }
 
-.namessub {
+.sub-name{
     color: white;
     position: absolute; /* Ensure it overlays correctly */
-    bottom: 80px; /* Adjust position as needed */
-    left: 40px; /* Adjust position as needed */
+    bottom: 100px; /* Adjust position as needed */
+    left: 35px; /* Adjust position as needed */
     z-index: 2;
     margin: 0;
 }
 
-#proinfo{
-    color: red;
+.breed-pill{
+    color: white;
+    position: absolute; /* Ensure it overlays correctly */
+    bottom: 70px; /* Adjust position as needed */
+    left: 10px; /* Adjust position as needed */
+    z-index: 2;
+    margin: 0;
+    border: 1px solid;
+    border-radius: 45px;
+    padding: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+    font-size: 13px;
+}
+
+.dog-age-pill {
+    color: white;
+    position: absolute; /* Ensure it overlays correctly */
+    bottom: 70px; /* Adjust position as needed */
+    left: 80px; /* Adjust position as needed */
+    z-index: 2;
+    margin: 0;
+    border: 1px solid;
+    border-radius: 45px;
+    padding: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 13px;
+}
+
+
+#view-info {
+    color: white;
+    background-color: none;
+    border: black;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 2;
+    padding: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+    font-size: 35px;
 }

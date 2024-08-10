@@ -5,7 +5,7 @@ import "../../styles/index.css";
 const Notifications = ({ style, setStyle }) => {
   console.log(style);
   return (
-    <div>
+    <div className="mt-4">
       <a
           id="notifications"
           className={style === "notifications" ? "selected" : ""}
@@ -17,7 +17,7 @@ const Notifications = ({ style, setStyle }) => {
           data-bs-target="#offcanvasScrolling1"
           aria-controls="offcanvasScrolling1"
         >
-          Notifications
+          <strong>Notifications</strong>
         </a>
       <div
         className="offcanvas offcanvas-end"

@@ -41,7 +41,7 @@ const Sidebar = () => {
       </Link>
       <hr />
       <ul className="nav nav-pills flex-column mb-auto">
-        <li className="nav-item">
+        <li className="nav-item mt-3 mb-2">
           <Link
             id="discover"
             to={"/private"}
@@ -51,10 +51,10 @@ const Sidebar = () => {
               if (style !== "discover") setStyle("discover");
             }}
           >
-            Discover
+            <strong>Discover</strong>
           </Link>
         </li>
-        <li>
+        <li className="rounded mt-3">
           <Link
             id="messages"
             to={"/messages"}
@@ -64,7 +64,7 @@ const Sidebar = () => {
               if (style !== "messages") setStyle("messages");
             }}
           >
-            Messages
+            <strong>Messages</strong>
           </Link>
         </li>
         <li>

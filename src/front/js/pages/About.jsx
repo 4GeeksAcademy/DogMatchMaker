@@ -78,7 +78,7 @@ export const About = () => {
               <img src={Paw_Meet3} className="card-img-top" alt="Review 3" />
               <div className="card-body">
                 <h5 className="card-title">Emily & Luna</h5>
-                <p className="card-text">Paw Friends has been a life-changing experience for both of us and our dogs. Through the platform, we connected and quickly discovered that our dogs were a perfect match. What started as a simple meetup turned into a weekly routine filled with joy and excitement, as our dogs eagerly anticipate their next playdate. The bond between our dogs has also brought us closer as owners, creating a meaningful friendship that we both cherish. Thanks to Paw Friends, our lives are richer, and our dogs couldn't be happier.</p>
+                <p className="card-text">Paw Friends has truly transformed our lives and the lives of our dogs. We connected through the platform and quickly realized that our dogs were the perfect match. What began as a casual meetup soon became a weekly tradition filled with joy and excitement, with our dogs eagerly looking forward to each playdate. The growing bond between our dogs has brought us closer as owners, leading to a friendship we both deeply value. Thanks to Paw Friends, our lives are fuller, and our dogs have never been happier.</p>
               </div>
             </div>
           </div>

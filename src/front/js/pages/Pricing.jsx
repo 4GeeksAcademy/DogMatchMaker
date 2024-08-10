@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 
 export const Pricing = () => (
-  <div className="pricing-header p-3 pb-md-4 mx-auto text-center text-dark ">
+  <div className="pricing-header p-3  dog_color pb-md-4 mx-auto text-center text-dark ">
     <h1 className="display-4 fw-normal fw-bold ">Pricing</h1>
     <p className="fs-5 text-dark fw-bold ">At Paw Friends, we believe every tail deserves to wag with joy, which is why we offer a range of affordable plans to fit every budget. Whether you're looking for basic features or more comprehensive options, our pricing is designed to ensure that both you and your furry friend get the best value and care. Explore our flexible plans and find the perfect fit that makes connecting with other paws and discovering new adventures a breeze. With Paw Friends, great value and endless fun are just a click away!</p>
     <div className="row row-cols-1 row-cols-md-3 mb-3 text-center ">
@@ -45,7 +45,9 @@ export const Pricing = () => (
               <li>Customizable profiles</li>
 
             </ul>
+            <Link to="/signup">
             <button type="button" className="w-100 btn btn-lg btn-outline-primary">Get started</button>
+            </Link>
           </div>
         </div>
       </div>
@@ -63,7 +65,9 @@ export const Pricing = () => (
               <li>All in one solution</li>
              
             </ul>
-            <button type="button" className="w-100 btn btn-lg btn-outline-primary ">Contact us</button>
+            <Link to= "/signup">
+            <button type="button" className="w-100 btn btn-lg btn-outline-primary ">Get Started</button>
+            </Link>
           </div>
 
         </div>

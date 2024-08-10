@@ -4,4 +4,7 @@
     All pages share the styles on index.css but you should create 
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
-*/
+*/.dog_color{
+
+    background-color: 	#88cafc;
+}

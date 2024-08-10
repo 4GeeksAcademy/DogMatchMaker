@@ -11,21 +11,24 @@ const ProfileCard = () => {
         <h6 className="breed-pill">Breed</h6>
         <h6 className="dog-age-pill">12</h6>
       <div className="justify-content-center d-flex">
+        <div>
         <i
           id="close"
           className="fa regular fa-circle-xmark"
-          style={{ fontSize: "50px" }}
         ></i>
+        </div>
+        <div>
         <i
           id="reverse"
           className="fa regular fa-circle-left"
-          style={{ fontSize: "50px" }}
         ></i>
+        </div>
+        <div>
         <i
           id="like"
           className="fa regular fa-circle-check"
-          style={{ fontSize: "50px" }}
         ></i>
+        </div>
         <ProfileInfo />
       </div>
     </div>

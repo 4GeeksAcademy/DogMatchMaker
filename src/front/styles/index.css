@@ -98,8 +98,21 @@ a:hover {
         rgba(0, 0, 0, 0.1) 50%,
         rgba(255, 255, 255, 0) 100%
     );
-    z-index: 1;
+    z-index: 1; /* Gradient layer */
 }
+
+.profile-card .justify-content-center {
+    position: absolute;
+    bottom: 10px; 
+    width: 100%;
+    z-index: 2; 
+}
+
+.profile-card .fa {
+    color: white;
+    background-color: transparent; 
+}
+
 
 #close{
     border-radius: 80%;
@@ -112,12 +125,14 @@ a:hover {
     background-color: rgb(220, 53, 69);
     outline: rgb(220, 53, 69) solid;
     margin-top: 5px;
+    font-size: 40px;
 }
 
 #close:hover {
     cursor: pointer;
     color: rgb(220, 53, 69);
     background-color: white;
+    transform: translateY(-7px);
 }
 
 #like{
@@ -131,12 +146,14 @@ a:hover {
     background-color: rgb(25, 135, 84);
     outline: rgb(25, 135, 84) solid;
     margin-top: 5px;
+    font-size: 40px;
 }
 
 #like:hover {
     cursor: pointer;
     color: rgb(25, 135, 84);
     background-color: white;
+    transform: translateY(-7px);
 }
 
 #reverse{
@@ -151,31 +168,14 @@ a:hover {
     background-color: rgb(255, 193, 7);
     outline: rgb(255, 193, 7)solid;
     margin-top: 5px;
+    font-size: 40px;
 }
 
 #reverse:hover {
     cursor: pointer;
     color: rgb(255, 193, 7);
     background-color: white;
-}
-
-#info{
-    border-radius: 80%;
-    position: relative;
-    z-index: 2;
-    margin-bottom: 5px;
-    margin-right: 25px;
-    margin-left: 25px;
-    border: 1px solid rgb(245, 164, 59);
-    outline-style: solid;
-    background-color: rgb(245, 164, 59);
-    margin-top: 5px;
-}
-
-#info:hover {
-    cursor: pointer;
-    color: rgb(245, 164, 59);
-    background-color: white;
+    transform: translateY(-7px);
 }
 
 .names {
@@ -191,7 +191,7 @@ a:hover {
     color: white;
     position: absolute; /* Ensure it overlays correctly */
     bottom: 100px; /* Adjust position as needed */
-    left: 35px; /* Adjust position as needed */
+    left: 40px; /* Adjust position as needed */
     z-index: 2;
     margin: 0;
 }
@@ -232,11 +232,24 @@ a:hover {
     background-color: none;
     border: black;
     position: absolute;
-    bottom: 10px;
+    bottom: 7px;
     right: 10px;
     z-index: 2;
     padding: 5px;
     padding-right: 15px;
     padding-left: 15px;
-    font-size: 35px;
+    font-size: 28px;
+}
+
+#view-info:hover {
+    color: white;
+    background-color: none;
+    border: black;
+    position: absolute;
+    z-index: 2;
+    padding: 5px;
+    padding-right: 15px;
+    padding-left: 15px;
+    transform: translateY(-7px);
+    cursor: pointer;
 }

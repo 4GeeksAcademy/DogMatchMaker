@@ -7,6 +7,7 @@ class UserAccount(db.Model):
     __tablename__ = 'user_account'
     
     user_id = db.Column(db.Integer, primary_key=True)
+    profile_picture = db.Column(db.String(250), nullable=True)
     dog_name = db.Column(db.String(100), nullable=False)
     owner_name = db.Column(db.String(100), nullable=False)
     nick_name = db.Column(db.String(100), nullable=True)
@@ -26,6 +27,7 @@ class UserAccount(db.Model):
     def serialize(self):
         return {
             'user_id': self.user_id,
+            'profile_picture': self.profile_picture,
             'dog_name': self.dog_name,
             'owner_name': self.owner_name,
             'nick_name': self.nick_name,

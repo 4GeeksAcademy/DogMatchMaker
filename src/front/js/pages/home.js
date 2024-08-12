@@ -17,8 +17,11 @@ export const Home = () => {
 
 	return (
 		<div className="text-center mt-5">
-			<h1>Authentication system with Python Flask and React.js {store.user}</h1>
 			<Chat name='ajgonzale@gmail.com'	pass='123'/>
+
+			
+			<h1>Authentication system with Python Flask and React.js {store.user}</h1>
+			
 			<p>
 				<img src={rigoImageUrl} />
 			</p>

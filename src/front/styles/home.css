@@ -5,3 +5,15 @@
     one more css for each page that will contain the selected used 
     on that page only (the ones not reused in other pages).
 */
+
+.chat {
+    background-color: blueviolet;
+}
+
+.ce-settings-column {
+    display: none;
+}
+
+.ce-chat-engine {
+    background-color: unset;
+}

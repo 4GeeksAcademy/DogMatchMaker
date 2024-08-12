@@ -37,7 +37,8 @@ export const Chat = (props) => {
 
 	return (
         <>
-        {props.name}{props.pass}
+		<div className="chat d-flex justify-content-center">
+        
 
         <ChatEngine
  			projectID='229944ba-3c50-4575-9ad6-8715d919d3dc'
@@ -46,6 +47,7 @@ export const Chat = (props) => {
             renderChatSettings={(creds) => {}}
             renderNewChatForm={(creds) => {}}
  		/>
+		</div>
         </>
     );
 };

@@ -5,8 +5,8 @@ import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
 import { Home } from "./pages/home.jsx";
-import { Login } from "./pages/login";
-import { Signup } from "./pages/signup";
+import { Login } from "./pages/login.jsx";
+import { Signup } from "./pages/signup.jsx";
 import { Private } from "./pages/private";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";

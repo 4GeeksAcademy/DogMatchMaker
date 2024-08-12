@@ -10,7 +10,7 @@ import Paw_Meet3 from "../../img/Paw_Meet3.jpeg";
 export const About = () => {
   return (
     <>
-      <section className="container py-5 ">
+      <section className="container pt-5 ">
         <div className="row align-items-center container-fluid">
           {/* Text Section */}
           <div className="col-md-6">
@@ -39,7 +39,7 @@ export const About = () => {
           </div>
         </div>
         {/* Review Section */}
-        <section className="container py-5">
+        <section className="container pt-5">
           <div className="row">
             <div className="col-12">
               <h2 className="fw-bold text-center mb-4">What Our Community Says</h2>
@@ -54,7 +54,7 @@ export const About = () => {
             <div className="col-md-4 mb-4">
               <div className="card">
                 <img src={Paw_Meet} className="card-img-top" alt="Review 1" />
-                <div className="card-body">
+                <div className="card-body overflow-auto max-h-350">
                   <h5 className="card-title">Arrow & Daisy</h5>
                   <p className="card-text">Paw Friends has been a life-changing experience for both of us and our dogs. Through the platform, we connected and quickly discovered that our dogs were a perfect match. What started as a simple meetup turned into a weekly routine filled with joy and excitement, as our dogs eagerly anticipate their next playdate. The bond between our dogs has also brought us closer as owners, creating a meaningful friendship that we both cherish. Thanks to Paw Friends, our lives are richer, and our dogs couldn't be happier.</p>
                 </div>
@@ -65,7 +65,7 @@ export const About = () => {
             <div className="col-md-4 mb-4">
               <div className="card ">
                 <img src={Paw_Meet2} className="card-img-top" alt="Review 2" />
-                <div className="card-body overflow-auto " style={{ height: "377px" }}>
+                <div className="card-body overflow-auto max-h-350">
                   <h5 className="card-title">Bells & Max</h5>
                   <p className="card-text">Paw Friends changed our lives in unexpected and wonderful ways. We initially looked for playmates for our dogs, Bella and Max, but our first meetup brought more than just a joyful bond between them. As we watched them play together, we started talking and soon realized we shared a deep connection. What began as a shared love for our dogs quickly grew into a meaningful relationship. Our regular meetups blossomed into a beautiful love story, proving that Paw Friends united not only our dogs but also our hearts and lives.</p>
                 </div>
@@ -76,7 +76,7 @@ export const About = () => {
             <div className="col-md-4 mb-4">
               <div className="card">
                 <img src={Paw_Meet3} className="card-img-top" alt="Review 3" />
-                <div className="card-body">
+                <div className="card-body overflow-auto max-h-350">
                   <h5 className="card-title">Emily & Luna</h5>
                   <p className="card-text">Paw Friends has truly transformed our lives and the lives of our dogs. We connected through the platform and quickly realized that our dogs were the perfect match. What began as a casual meetup soon became a weekly tradition filled with joy and excitement, with our dogs eagerly looking forward to each playdate. The growing bond between our dogs has brought us closer as owners, leading to a friendship we both deeply value. Thanks to Paw Friends, our lives are fuller, and our dogs have never been happier.</p>
                 </div>

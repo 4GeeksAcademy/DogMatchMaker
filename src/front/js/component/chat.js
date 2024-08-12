@@ -37,7 +37,7 @@ export const Chat = (props) => {
 
 	return (
         <>
-		<div className="chat d-flex justify-content-center">
+		<div className="chats">
         
 
         <ChatEngine

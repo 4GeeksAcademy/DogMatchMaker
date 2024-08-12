@@ -15,5 +15,5 @@
 }
 
 .ce-chat-engine {
-    background-color: unset;
+    background-color: unset !important;
 }

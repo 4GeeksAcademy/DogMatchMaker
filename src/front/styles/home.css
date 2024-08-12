@@ -10,7 +10,7 @@
     background-color: blueviolet;
 }
 
-.ce-settings-column {
+.ce-settings-column, .ce-chat-settings-mobile-option {
     display: none;
 }
 

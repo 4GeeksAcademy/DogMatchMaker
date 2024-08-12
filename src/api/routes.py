@@ -8,6 +8,7 @@ from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 import json
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, set_access_cookies, unset_jwt_cookies
+import requests
 
 api = Blueprint('api', __name__)
 
@@ -88,3 +89,37 @@ def logout():
     return response
 
 
+@api.route("/userChat", methods=['POST'])
+def create_user_chat(name):
+    
+    name = request.json.get("name", None)
+    
+    resp = requests.post("https://api.chatengine.io/users",
+                        headers={"PRIVATE-KEY": "bf275b72-da68-4bd2-8f95-a00436f7aee7"},
+                        data={
+                            "username": name,
+                            "first_name": name,
+                            "last_name": ' ',
+                            "secret": "123456"
+                        })
+     
+    return jsonify(resp.json())
+
+
+
+@api.route("/privateChat", methods=['PUT'])
+def create_private_chat(name, guest):
+    
+    name = request.json.get("name", None)
+    guest = request.json.get("guest", None)
+    
+    resp = requests.put("https://api.chatengine.io/chats",
+                        headers={"Project-ID": "bf275b72-da68-4bd2-8f95-a00436f7aee7",
+                                 "User-Name" : name,
+                                 "User-Secret" : "123456"},
+                        data={
+                                "usernames": [guest],
+                                "is_direct_chat": True
+                            })
+        
+    return jsonify(resp.json())

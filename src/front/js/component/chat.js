@@ -41,11 +41,13 @@ export const Chat = (props) => {
         
 
         <ChatEngine
+			height='70vh'
  			projectID='229944ba-3c50-4575-9ad6-8715d919d3dc'
  			userName={props.name}
  			userSecret={props.pass}
+			renderNewChatForm={(creds) => renderChatForm(creds)}
             renderChatSettings={(creds) => {}}
-            renderNewChatForm={(creds) => {}}
+           
  		/>
 		</div>
         </>

@@ -97,6 +97,9 @@ const Sidebar = () => {
             <Link className="dropdown-item" to="/profile">
               Profile
             </Link>
+            <Link className="dropdown-item" to="/settings">
+              Settings
+            </Link>
           </li>
           <li>
             <hr className="dropdown-divider" />

@@ -14,26 +14,19 @@ export const Navbar = () => {
 	}, [store.section])
 
 	return (
-		<nav className="navbar navbar-light bg-light p-0">
-			<div className="container-fluid mx-0 p-0">
+		<nav className="navbar navbar-light bg-light p-0 justify-content-start">
 				<Link to="/">
 					<span className="navbar-brand mb-0 h1"></span>
 				</Link>
 				<div className="d-flex row">
 					{store.token && store.token != '' && store.token != undefined ?		
-					<div>	
-						<i className="fa-solid fa-bars text-start" style={{fontSize: '28px'}}
-						onClick={() => {
-						}}
-						data-bs-toggle="offcanvas"
-						data-bs-target="#offcanvasScrolling3"
-						aria-controls="offcanvasScrolling3">
-						</i>
+					<div>
+						<Link to ="/private">	
 						<img
 						style={{ width: "95px", height: "95px", padding: "0" }}
-						src={logo}
-					  	/>
-						</div>
+						src={logo}/>
+						</Link>
+					</div>
 						:
 						<Link to="/login">
 							<button  type="button" className="btn btn-primary">Log in</button>
@@ -41,7 +34,6 @@ export const Navbar = () => {
 					}
 					
 				</div>
-			</div>
 		</nav>
 	);
 };

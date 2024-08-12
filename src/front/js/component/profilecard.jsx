@@ -4,7 +4,7 @@ import ProfileInfo from "./profilecardinfo.jsx";
 
 const ProfileCard = () => {
   return (
-    <div className="profile-card mt-5">
+    <div className="profile-card mt-2">
       <img src={girlwithdog} className="card-img" />
         <h2 className="names" >Shaggy</h2>
         <h5 className="sub-name">& Kelsey</h5>

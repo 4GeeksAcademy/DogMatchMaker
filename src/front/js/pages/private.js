@@ -3,7 +3,6 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { useNavigate } from "react-router-dom";
 import ProfileCard from "../component/profilecard.jsx";
-import Sidebar from "../component/sidebar.jsx";
 
 export const Private = () => {
 	const { store, actions } = useContext(Context);
@@ -17,7 +16,9 @@ export const Private = () => {
 	return (
 		<div className="text-center">
 			<div className="row">
-				<div className="col-12 justify-content-center d-flex"><ProfileCard/></div>
+				<div className="col-1 text-start"></div>
+				<div className="col-10 justify-content-center d-flex"><ProfileCard/></div>
+				<div className="col-1 text-start"></div>
 			</div>
 		</div>
 	);

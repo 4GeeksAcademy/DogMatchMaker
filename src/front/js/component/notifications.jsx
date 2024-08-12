@@ -1,20 +1,39 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import "../../styles/index.css";
+import { Link } from "react-router-dom";
 
 const Notifications = ({ style, setStyle }) => {
-  console.log(style);
+  const [navbarHeight, setNavbarHeight] = useState(0);
+
+  useEffect(() => {
+    // Get the height of the navbar and set it to state
+    const navbarElement = document.querySelector(".navbar");
+    if (navbarElement) {
+      setNavbarHeight(navbarElement.offsetHeight);
+    }
+  }, []);
+
+  const toggleNotifications = () => {
+    const notificationsOffcanvas = document.getElementById("offcanvasScrolling1");
+    const bootstrapOffcanvas = bootstrap.Offcanvas.getOrCreateInstance(notificationsOffcanvas);
+
+    if (notificationsOffcanvas.classList.contains("show")) {
+      bootstrapOffcanvas.hide();
+    } else {
+      bootstrapOffcanvas.show();
+    }
+  };
+
   return (
-    <div className="mt-4">
+    <div className="mt-4 ms-2">
       <a
         id="notifications"
         onClick={() => {
           console.log("clicked on notifications");
+          toggleNotifications();
         }}
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasScrolling1"
-        aria-controls="offcanvasScrolling1"
       >
-        <strong>Notifications</strong>
+        <strong><i class="fa-solid fa-envelope"></i>Notifications</strong>
       </a>
       <div
         className="offcanvas offcanvas-end"
@@ -23,6 +42,12 @@ const Notifications = ({ style, setStyle }) => {
         tabIndex="-1"
         id="offcanvasScrolling1"
         aria-labelledby="offcanvasScrollingLabel"
+        style={{
+          top: `${navbarHeight}px`, // Position it below the navbar
+          height: `calc(100vh - ${navbarHeight}px)`, // Full height minus navbar
+          width: '25%', // Full width of the right side
+          borderTop: '1px solid lightgray',
+        }}
       >
         <div className="offcanvas-header">
           <h5 className="offcanvas-title" id="offcanvasScrollingLabel">

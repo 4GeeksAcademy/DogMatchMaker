@@ -45,15 +45,15 @@
   font-size: 18px;
 }
 
-/* #discover:focus, #messages:focus,
-#notifications:focus {
+#discover.selected, #messages.selected
+ {
   background: radial-gradient(circle, rgba(79,155,197,1) 0%, rgba(76,140,172,1) 100%);
   box-shadow: 0px 15px 20px rgb(79,155,197);
   color: #fff;
   transform: translateY(-7px);
   padding: 5px 15px 5px 15px;
   font-size: 18px;
-} */
+}
 
 a {
     color: black;
@@ -252,4 +252,12 @@ a:hover {
     padding-left: 15px;
     transform: translateY(-7px);
     cursor: pointer;
+}
+
+#pullout-sidebar {
+    font-size: 30px;
+}
+
+#offcanvasScrolling3{
+    width: 200px;
 }

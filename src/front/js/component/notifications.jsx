@@ -1,24 +1,21 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../../styles/index.css";
 
-
 const Notifications = ({ style, setStyle }) => {
   console.log(style);
   return (
     <div className="mt-4">
       <a
-          id="notifications"
-          className={style === "notifications" ? "selected" : ""}
-          onClick={() => {
-            console.log("clicked on notifications");
-            if (style !== "notifications") setStyle("notifications");
-          }}
-          data-bs-toggle="offcanvas"
-          data-bs-target="#offcanvasScrolling1"
-          aria-controls="offcanvasScrolling1"
-        >
-          <strong>Notifications</strong>
-        </a>
+        id="notifications"
+        onClick={() => {
+          console.log("clicked on notifications");
+        }}
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasScrolling1"
+        aria-controls="offcanvasScrolling1"
+      >
+        <strong>Notifications</strong>
+      </a>
       <div
         className="offcanvas offcanvas-end"
         data-bs-scroll="true"

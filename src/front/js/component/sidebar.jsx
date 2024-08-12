@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Notifications from "./notifications.jsx";
 import img from "../../img/m101.jpg";
@@ -7,113 +7,132 @@ import logo from "../../img/updatedlogo.png";
 
 const Sidebar = () => {
   const { store, actions } = useContext(Context);
-
   const [style, setStyle] = useState("discover");
+  const [navbarHeight, setNavbarHeight] = useState(0);
+
+  useEffect(() => {
+    // Get the height of the navbar and set it to state
+    const navbarElement = document.querySelector(".navbar");
+    if (navbarElement) {
+      setNavbarHeight(navbarElement.offsetHeight);
+    }
+  }, []);
+
   const changeSelected = () => {
-    if (style == "messages") {
+    if (style === "messages") {
       setStyle("discover");
-    } else if (style == "discover") {
+    } else if (style === "discover") {
       setStyle("notifications");
-    } else if (style == "notifications") {
+    } else if (style === "notifications") {
       setStyle("messages");
     }
   };
 
-  const sidebarStyle = {
-    width: "250px",
-  };
-
   return (
-    <div
-      className="sidebar d-flex flex-column flex-shrink-0 p-3 bg-light "
-      style={sidebarStyle}
-    >
-      <Link
-        to="/private"
-        className="d-flex align-items-center mb-3 mb-md-0 me-0 link-dark text-decoration-none justify-content-center"
+    <div>
+      <a
+        id="pullout-sidebar"
+        onClick={() => {}}
+        data-bs-toggle="offcanvas"
+        data-bs-target="#offcanvasScrolling3"
+        aria-controls="offcanvasScrolling3"
       >
-        <span>
-          <img
-            style={{ width: "202px", height: "202px", padding: "0" }}
-            src={logo}
-          />
-        </span>
-      </Link>
-      <hr />
-      <ul className="nav nav-pills flex-column mb-auto">
-        <li className="nav-item mt-3 mb-2">
-          <Link
-            id="discover"
-            to={"/private"}
-            className={style == "discover" ? "selected" : ""}
-            onClick={() => {
-              console.log("Clicked on discover");
-              if (style !== "discover") setStyle("discover");
-            }}
-          >
-            <strong>Discover</strong>
-          </Link>
-        </li>
-        <li className="rounded mt-3">
-          <Link
-            id="messages"
-            to={"/messages"}
-            className={style == "messages" ? "selected" : ""}
-            onClick={() => {
-              console.log("clicked on messages");
-              if (style !== "messages") setStyle("messages");
-            }}
-          >
-            <strong>Messages</strong>
-          </Link>
-        </li>
-        <li>
-          <Notifications style={style} setStyle={setStyle} />
-        </li>
-      </ul>
-      <hr />
-      <div className="dropdown">
+      </a>
+      <hr className="mt-0"/>
+      <div
+        className="offcanvas offcanvas-start"
+        data-bs-scroll="true"
+        data-bs-backdrop="false"
+        tabIndex="-1"
+        id="offcanvasScrolling3"
+        aria-labelledby="offcanvasScrollingLabel"
+        style={{
+          top: `${navbarHeight}px`,       // Position it below the navbar
+          height: `calc(100vh - ${navbarHeight}px)`,  // Full height minus navbar
+          width: '250px',  // Adjust width as needed
+          borderTop: '1px solid lightgray',  // Add a top border
+        }}
+      >
         <Link
-          to="#"
-          className="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
-          id="dropdownUser2"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
+          to="/private"
+          className="d-flex align-items-center mb-3 mb-md-0 me-0 link-dark text-decoration-none justify-content-center"
         >
-          <img
-            src={img}
-            alt=""
-            width="52"
-            height="52"
-            className="rounded-circle me-2"
-          />
-          <strong style={{ fontSize: "15px" }}>UserName</strong>
         </Link>
-        <ul
-          className="dropdown-menu text-small shadow"
-          aria-labelledby="dropdownUser2"
-        >
-          <li>
-            <Link className="dropdown-item" to="/profile">
-              Profile
-            </Link>
-            <Link className="dropdown-item" to="/settings">
-              Settings
-            </Link>
-          </li>
-          <li>
-            <hr className="dropdown-divider" />
-          </li>
-          <li>
+        <ul className="nav nav-pills flex-column mb-auto">
+          <li className="nav-item mt-3 mb-2">
             <Link
-              onClick={() => actions.logout()}
-              className="dropdown-item"
-              to="#"
+              id="discover"
+              to={"/private"}
+              className={style === "discover" ? "selected" : ""}
+              onClick={() => {
+                console.log("Clicked on discover");
+                if (style !== "discover") setStyle("discover");
+              }}
             >
-              Sign out
+              <strong>Discover</strong>
             </Link>
+          </li>
+          <li className="rounded mt-3">
+            <Link
+              id="messages"
+              to={"/messages"}
+              className={style === "messages" ? "selected" : ""}
+              onClick={() => {
+                console.log("clicked on messages");
+                if (style !== "messages") setStyle("messages");
+              }}
+            >
+              <strong>Messages</strong>
+            </Link>
+          </li>
+          <li>
+            <Notifications style={style} setStyle={setStyle} />
           </li>
         </ul>
+        <hr />
+        <div className="dropdown">
+          <Link
+            to="#"
+            className="d-flex align-items-center link-dark text-decoration-none dropdown-toggle"
+            id="dropdownUser2"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              src={img}
+              alt=""
+              width="52"
+              height="52"
+              className="rounded-circle me-2"
+            />
+            <strong style={{ fontSize: "15px" }}>UserName</strong>
+          </Link>
+          <ul
+            className="dropdown-menu text-small shadow"
+            aria-labelledby="dropdownUser2"
+          >
+            <li>
+              <Link className="dropdown-item" to="/profile">
+                Profile
+              </Link>
+              <Link className="dropdown-item" to="/settings">
+                Settings
+              </Link>
+            </li>
+            <li>
+              <hr className="dropdown-divider" />
+            </li>
+            <li>
+              <Link
+                onClick={() => actions.logout()}
+                className="dropdown-item"
+                to="#"
+              >
+                Sign out
+              </Link>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   );

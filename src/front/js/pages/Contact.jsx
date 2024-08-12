@@ -30,6 +30,21 @@ export const Contact = () => {
 
       <div className="row">
         <div className="col-md-6">
+          <h2 className="mb-4">Other ways to reach us</h2>
+          <p>Email: <a href="mailto:contact@pawfriends.com">contact@pawfriends.com</a></p>
+          <p>Phone: 1-800-123-4567</p>
+          <p>Address: 123 Paw Street, Petville, PA 12345</p>
+          <h3 className="mt-4">Follow Us</h3>
+          <ul className="list-unstyled">
+            <li><a href="#" className="text-primary" target="_blank" rel="noopener noreferrer">Facebook</a></li>
+            <li><a href="#" className="text-primary" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+            <li><a href="#" className="text-primary" target="_blank" rel="noopener noreferrer">Instagram</a></li>
+          </ul>
+          <h4 className="mt-4">Our Support Hours</h4>
+          <p>Monday - Friday: 9 AM - 5 PM</p>
+          <p>Saturday - Sunday: Closed</p>
+        </div>
+        <div className="col-md-6">
           <form onSubmit={handleSubmit}>
             <div className="mb-3">
               <label htmlFor="name" className="form-label">Name</label>
@@ -90,25 +105,13 @@ export const Contact = () => {
                 required
               ></textarea>
             </div>
-            <button type="submit" className="btn btn-primary">Submit</button>
+            <div className= "justify-content-end">
+            <button type="submit" className="btn btn-primary d-flex ms-auto">Submit</button>
+            </div>
           </form>
         </div>
-        <div className="col-md-6">
-          <h2 className="mb-4">Other Ways to Reach Us</h2>
-          <p>Email: <a href="mailto:contact@pawfriends.com">contact@pawfriends.com</a></p>
-          <p>Phone: 1-800-123-4567</p>
-          <p>Address: 123 Paw Street, Petville, PA 12345</p>
-          <h3 className="mt-4">Follow Us</h3>
-          <ul className="list-unstyled">
-            <li><a href="#" className="text-primary" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-            <li><a href="#" className="text-primary" target="_blank" rel="noopener noreferrer">Twitter</a></li>
-            <li><a href="#" className="text-primary" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-          </ul>
-          <h4 className="mt-4">Our Support Hours</h4>
-          <p>Monday - Friday: 9 AM - 5 PM</p>
-          <p>Saturday - Sunday: Closed</p>
-        </div>
       </div>
+      
     </div>
   );
 };

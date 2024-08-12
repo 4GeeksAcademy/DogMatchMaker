@@ -7,7 +7,6 @@ import "../../styles/navbar.css";
 
 export const Navbar = () => {
    
-    const isPricingPage = location.pathname === '/pricing'; // Ensure the path matches your routing
     const { store, actions } = useContext(Context);
     const navigate = useNavigate();
 
@@ -18,8 +17,8 @@ export const Navbar = () => {
     }, [store.section, navigate]);
 
     return (
-        <nav className="navbar custom-blue navbar-expand-lg  navbar-light p-3 sticky-top">
-            <div className="container-fluid col-12">
+        <nav className="navbar custom-blue navbar-expand-lg  navbar-light  sticky-top ">
+            <div className="col-12 container-fluid">
                 <Link to="/">
                     <img src={Paw} width={90} height={90} alt="Dog paw logo" className="bg-transparent" />
                 </Link>
@@ -32,13 +31,13 @@ export const Navbar = () => {
                             <Link to="/" className="text-decoration-none m-3 my-3 text-light">Home</Link>
                         </li>
                         <li className="nav-item my-3">
-                            <Link to="/about" className="text-decoration-none my-3 text-light">About Us</Link>
+                            <Link to="/about" className="text-decoration-none  mx-3 my-3 text-light">About Us</Link>
                         </li>
-                        <li className="nav-item mx-3 my-3">
-                            <Link to="/pricing" className="text-decoration-none my-3 text-light">Pricing</Link>
+                        <li className="nav-item my-3">
+                            <Link to="/pricing" className="text-decoration-none  mx-3 text-light">Pricing</Link>
                         </li>
                         <li className="nav-item my-3 mx-3">
-                            <Link to="/contact" className="text-decoration-none my-3 text-light">Contact</Link>
+                            <Link to="/contact" className="text-decoration-none  text-light">Contact</Link>
                         </li>
                     </ul>
                     

@@ -41,5 +41,3 @@ import React from 'react';
     </footer>
   );
 };
-
-export default Footer;

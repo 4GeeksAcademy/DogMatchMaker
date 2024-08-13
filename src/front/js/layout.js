@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 import injectContext, { Context } from "./store/appContext";
 
@@ -11,10 +10,11 @@ import { Private } from "./pages/private";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
 import { Contact } from "./pages/Contact.jsx"
-import { Pricing } from "./pages/Pricing.jsx"
+import Pricing from "./pages/Pricing.jsx"
 import { About } from "./pages/About.jsx"
-import { Navbar } from "./component/navbar";
-import { Footer } from "./component/footer";
+import { Navbar } from "./component/navbar.jsx";
+import { Footer } from "./component/footer.jsx";
+import ScrollToTop from "./component/scrollToTop.jsx";
 import Messages from "./pages/messages.jsx";
 import Sidebar from "./component/sidebar.jsx";
 import Profile from "./pages/profile.jsx";

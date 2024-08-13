@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -56,7 +58,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			logout: () => {
 				sessionStorage.removeItem('token')
 				setStore({ token : null, section: 'logout', message: null})
-
 			},
 			privateArea: async () => {
 				try{

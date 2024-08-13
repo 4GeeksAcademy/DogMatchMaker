@@ -2,6 +2,7 @@
 import React, { useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
+import logo from "../../img/updatedlogo.png";
 
 export const Navbar = () => {
 	const { store, actions } = useContext(Context);
@@ -13,17 +14,19 @@ export const Navbar = () => {
 	}, [store.section])
 
 	return (
-		<nav className="navbar navbar-light bg-light">
-			<div className="container">
+		<nav id="navbar" className="navbar navbar-light bg-light p-0 justify-content-start">
 				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
+					<span className="navbar-brand mb-0 h1"></span>
 				</Link>
-				<div className="ml-auto">
-					<Link to="/demo">
-						<button type="button" className="btn btn-primary">Check the Context in action</button>
-					</Link>
-					{store.token && store.token != '' && store.token != undefined ?						
-						<button onClick={() => actions.logout()} type="button" className="btn btn-primary">Log out</button>						
+				<div className="d-flex row">
+					{store.token && store.token != '' && store.token != undefined ?		
+					<div>
+						<Link to ="/private">	
+						<img
+						style={{ width: "95px", height: "95px", padding: "0" }}
+						src={logo}/>
+						</Link>
+					</div>
 						:
 						<Link to="/login">
 							<button  type="button" className="btn btn-primary">Log in</button>
@@ -31,7 +34,6 @@ export const Navbar = () => {
 					}
 					
 				</div>
-			</div>
 		</nav>
 	);
 };

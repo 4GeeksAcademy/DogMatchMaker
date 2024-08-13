@@ -17,23 +17,15 @@ export const Login = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        
+        actions.login(inputs['email'], inputs['pswd']).then(() =>{
+            navigate("/");
+        })
+      }
 
-        try {
-            const response = await actions.login(inputs['email'], inputs['pswd']);
-            if (response.success) { // Assuming your login function returns an object with a success property
-                navigate("/");
-            } else {
-                setErrorMessage("Wrong login information. Please try again."); // Set error message on failure
-            }
-        } catch (error) {
-            console.error('Login error:', error);
-            setErrorMessage("An unexpected error occurred. Please try again later.");
-        }
-    }
-
-    useEffect(() => {
-        if (store.token && store.token !== '' && store.token !== undefined) navigate("/");
-    }, [store.token]);
+      useEffect(() => {
+        if (store.token && store.token != '' && store.token != undefined ) navigate("/")
+      }, [store.token])
 
     return (
         <section className="h-100 h-custom" style={{ backgroundColor: "#72bfed" }}>

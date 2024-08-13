@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import "../../styles/profilecardinfo.css";
 
 const ProfileInfo = () => {
   const toggleNotifications = () => {
@@ -37,17 +38,33 @@ const ProfileInfo = () => {
         aria-labelledby="offcanvasScrollingLabel"
       >
         <div className="offcanvas-header">
-          <h3 className="offcanvas-title" id="offcanvasScrollingLabel">
-            Names - Ages
+          <h3 className="offcanvas-title" id="offcanvasScrollingLabel" style={{fontWeight: 'bolder'}}>
+           Shaggy
           </h3>
+          <h5 className="dog-pill-info-breed">
+            Breed
+          </h5>
+          <h5 className="dog-pill-info-age">
+            12 
+          </h5>
+          {/*ANOTHER COLOR/TEXT CONDITIONAL*/}
+          <h5 className="dog-pill-info-male">
+            Male
+          </h5>
+          {/* <h5 className="dog-pill-info-female">
+            Female
+          </h5> */}
+          <h5 className="sub-name-info">
+            & Kelsey
+          </h5>
           <i 
           id="view-info-close"
-          className="fa-solid fa-arrow-down"
+          className="fa-solid fa-circle-down"
           data-bs-dismiss="offcanvas"
           aria-label="Close">
-
           </i>
         </div>
+        <hr/>
         <div className="offcanvas-body">
           <p>
             Try scrolling the rest of the page to see this option in action.

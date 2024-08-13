@@ -26,7 +26,16 @@ export const Navbar = () => {
 						style={{ width: "95px", height: "95px", padding: "0" }}
 						src={logo}/>
 						</Link>
+						<a
+						id="pullout-sidebar"
+						onClick={() => {}}
+						data-bs-toggle="offcanvas"
+						data-bs-target="#offcanvasScrolling3"
+						aria-controls="offcanvasScrolling3">
+							<i className="hamburg fa-solid fa-bars"></i>
+						</a>
 					</div>
+					
 						:
 						<Link to="/login">
 							<button  type="button" className="btn btn-primary">Log in</button>

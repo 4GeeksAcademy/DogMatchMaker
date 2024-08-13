@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Notifications from "./notifications.jsx";
 import img from "../../img/m101.jpg";
+import "../../styles/sidebar.css";
+
 
 const Sidebar = () => {
   const { store, actions } = useContext(Context);
@@ -34,13 +36,6 @@ const Sidebar = () => {
 
   return (
     <div className="">
-      <a
-        id="pullout-sidebar"
-        onClick={() => {}}
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasScrolling3"
-        aria-controls="offcanvasScrolling3"
-      ></a>
       <hr className="mt-0" />
       <div
         className="offcanvas offcanvas-start"

@@ -25,7 +25,7 @@ const Notifications = ({ style, setStyle }) => {
   };
 
   return (
-    <div className="mt-4 ms-2">
+    <div className="mt-2 ms-2">
       <a
         id="notifications"
         onClick={() => {

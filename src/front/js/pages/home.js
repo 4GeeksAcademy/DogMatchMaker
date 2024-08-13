@@ -8,6 +8,10 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 	const navigate = useNavigate();
 
+	useEffect(() => { 
+		actions.logout()
+	}, [])
+
 	useEffect(() => {
 		if (store.section == 'Private' && store.token && store.token != null && store.token != undefined)
 			navigate("/private");

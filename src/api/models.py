@@ -9,7 +9,6 @@ class UserAccount(db.Model):
     user_id = db.Column(db.Integer, primary_key=True)
     dog_name = db.Column(db.String(100), nullable=False)
     owner_name = db.Column(db.String(100), nullable=False)
-    nick_name = db.Column(db.String(100), nullable=True)
     dog_age = db.Column(db.Integer, nullable=False)
     location = db.Column(db.String(250), nullable=False)
     breed = db.Column(db.String(100), nullable=False)
@@ -28,7 +27,6 @@ class UserAccount(db.Model):
             'user_id': self.user_id,
             'dog_name': self.dog_name,
             'owner_name': self.owner_name,
-            'nick_name': self.nick_name,
             'dog_age': self.dog_age,
             'location': self.location,
             'breed': self.breed,

@@ -25,7 +25,7 @@
     cursor: pointer;
 }
 
-#view-info-close{
+#view-info-close {
     color: rgb(220, 53, 69);
     font-size: 30px;
     position: relative;
@@ -44,7 +44,7 @@
 .dog-pill-info-breed {
     color: white;
     margin: 0;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 45px;
     padding: 5px;
     padding-right: 10px;
@@ -53,12 +53,13 @@
     position: absolute;
     right: 254px;
     top: 28px;
-    background-color:tan;
+    background-color: tan;
 }
+
 .dog-pill-info-age {
     color: white;
     margin: 0;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 45px;
     padding: 5px;
     padding-right: 10px;
@@ -67,13 +68,13 @@
     position: absolute;
     right: 216px;
     top: 28px;
-    background-color:slategrey
+    background-color: slategrey
 }
 
 .dog-pill-info-male {
     color: white;
     margin: 0;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 45px;
     padding: 5px;
     padding-right: 10px;
@@ -88,7 +89,7 @@
 .dog-pill-info-female {
     color: white;
     margin: 0;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 45px;
     padding: 5px;
     padding-right: 10px;
@@ -122,10 +123,34 @@
 
 }
 
-.sub-name-info{
-    color: black;
+#dog-name {
+    color: white;
+}
+
+.sub-name-info {
+    color: white;
     font-style: italic;
     position: absolute;
     top: 50px;
     right: 320px;
+}
+
+#location {
+    font-size: 18px;
+    position: absolute;
+    right: 400px;
+    top: 80px;
+    color: rgb(220, 53, 69);
+}
+
+#location-text {
+    font-size: 15px;
+    position: absolute;
+    right: 255px;
+    top: 78px;
+    color: white;
+}
+
+.bg-dark-top {
+    height: 25%;
 }

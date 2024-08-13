@@ -24,15 +24,6 @@ const Sidebar = () => {
     bsOffcanvas.show();
   }, []);
 
-  const changeSelected = () => {
-    if (style === "messages") {
-      setStyle("discover");
-    } else if (style === "discover") {
-      setStyle("notifications");
-    } else if (style === "notifications") {
-      setStyle("messages");
-    }
-  };
 
   return (
     <div className="">
@@ -71,7 +62,7 @@ const Sidebar = () => {
               </strong>
             </Link>
           </li>
-          <li className="rounded mt-4 mb-4 ms-2">
+          <li className="nav-item mt-2 mb-4 ms-2">
             <Link
               id="messages"
               to={"/messages"}
@@ -86,8 +77,34 @@ const Sidebar = () => {
               </strong>
             </Link>
           </li>
-          <li className="">
+          <li className="nav-item mb-2">
             <Notifications style={style} setStyle={setStyle} />
+          </li>
+          <li className="nav-item mt-4 mb-4 ms-2">
+            <Link
+              id="profile-pill"
+              to="/profile"
+              className={style === "profile" ? "selected" : ""}
+              onClick={() => {
+                console.log("clicked on profile");
+                if (style !== "profile") setStyle("profile");
+              }}
+            >
+              <strong><i class="fa-solid fa-circle-user"></i>Profile</strong>
+            </Link>
+          </li>
+          <li className="nav-item mt-2 mb-4 ms-2">
+            <Link
+              id="settings-pill"
+              to="/settings"
+              className={style === "settings" ? "selected" : ""}
+              onClick={() => {
+                console.log("clicked on settings");
+                if (style !== "settings") setStyle("settings");
+              }}
+            >
+              <strong><i class="fa-solid fa-gear"></i>Settings</strong>
+            </Link>
           </li>
         </ul>
         <hr />
@@ -113,15 +130,6 @@ const Sidebar = () => {
             aria-labelledby="dropdownUser2"
           >
             <li>
-              <Link className="dropdown-item" to="/profile">
-                Profile
-              </Link>
-              <Link className="dropdown-item" to="/settings">
-                Settings
-              </Link>
-            </li>
-            <li>
-              <hr className="dropdown-divider" />
             </li>
             <li>
               <Link

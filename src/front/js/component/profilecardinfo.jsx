@@ -37,38 +37,54 @@ const ProfileInfo = () => {
         id="offcanvasScrolling2"
         aria-labelledby="offcanvasScrollingLabel"
       >
-        <div className="offcanvas-header">
-          <h3 className="offcanvas-title" id="offcanvasScrollingLabel" style={{fontWeight: 'bolder'}}>
-           Shaggy
-          </h3>
-          <h5 className="dog-pill-info-breed">
-            Breed
-          </h5>
-          <h5 className="dog-pill-info-age">
-            12 
-          </h5>
-          {/*ANOTHER COLOR/TEXT CONDITIONAL*/}
-          <h5 className="dog-pill-info-male">
-            Male
-          </h5>
-          {/* <h5 className="dog-pill-info-female">
+        <div className="bg-dark-top bg-dark">
+          <div className="offcanvas-header">
+            <h3 className="offcanvas-title" id="dog-name" style={{ fontWeight: 'bolder' }}>
+              Shaggy
+            </h3>
+            <h5 className="dog-pill-info-breed">
+              Breed
+            </h5>
+            <h5 className="dog-pill-info-age">
+              12
+            </h5>
+            {/*ANOTHER COLOR/TEXT CONDITIONAL*/}
+            <h5 className="dog-pill-info-male">
+              Male
+            </h5>
+            {/* <h5 className="dog-pill-info-female">
             Female
           </h5> */}
-          <h5 className="sub-name-info">
-            & Kelsey
-          </h5>
-          <i 
-          id="view-info-close"
-          className="fa-solid fa-circle-down"
-          data-bs-dismiss="offcanvas"
-          aria-label="Close">
-          </i>
+            <h5 className="sub-name-info">
+              & Kelsey
+            </h5>
+            <i
+              id="view-info-close"
+              className="fa-solid fa-circle-down"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close">
+            </i>
+            <i id="location" className="fa-solid fa-location-dot"></i>
+            <p id="location-text">currently lives in city</p>
+          </div>
         </div>
-        <hr/>
         <div className="offcanvas-body">
-          <p>
-            Try scrolling the rest of the page to see this option in action.
-          </p>
+          <div className="text-start">
+            <label htmlFor="exampleFormControlTextarea1" className="form-label">Bio</label>
+            <textarea
+              className="form-control"
+              id="exampleFormControlTextarea1"
+              placeholder="Your super cool bio!"
+              rows="5"
+              readOnly>
+            </textarea>
+          </div>
+          <hr />
+          <div>
+            <p>
+              More about us...
+            </p>
+          </div>
         </div>
       </div>
     </div>

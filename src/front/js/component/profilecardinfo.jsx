@@ -29,7 +29,7 @@ const ProfileInfo = () => {
         aria-controls="offcanvasScrolling2"
       ></i>
       <div
-        className="offcanvas offcanvas-top"
+        className="offcanvas offcanvas-bottom"
         data-bs-scroll="true"
         data-bs-backdrop="false"
         tabIndex="-1"
@@ -37,9 +37,9 @@ const ProfileInfo = () => {
         aria-labelledby="offcanvasScrollingLabel"
       >
         <div className="offcanvas-header">
-          <h5 className="offcanvas-title" id="offcanvasScrollingLabel">
-            About person profile
-          </h5>
+          <h3 className="offcanvas-title" id="offcanvasScrollingLabel">
+            Names - Ages
+          </h3>
           <i 
           id="view-info-close"
           className="fa-solid fa-arrow-down"

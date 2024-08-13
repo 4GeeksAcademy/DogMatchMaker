@@ -1,3 +1,9 @@
+#navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #fff; 
+}
 
 
 #offcanvasScrolling1{
@@ -171,27 +177,27 @@ a:hover {
 
 .names {
     color: white;
-    position: absolute; /* Ensure it overlays correctly */
-    bottom: 120px; /* Adjust position as needed */
-    left: 15px; /* Adjust position as needed */
+    position: absolute; 
+    bottom: 120px; 
+    left: 15px; 
     z-index: 2;
     margin: 0;
 }
 
 .sub-name{
     color: white;
-    position: absolute; /* Ensure it overlays correctly */
-    bottom: 100px; /* Adjust position as needed */
-    left: 40px; /* Adjust position as needed */
+    position: absolute; 
+    bottom: 100px; 
+    left: 40px; 
     z-index: 2;
     margin: 0;
 }
 
 .breed-pill{
     color: white;
-    position: absolute; /* Ensure it overlays correctly */
-    bottom: 70px; /* Adjust position as needed */
-    left: 10px; /* Adjust position as needed */
+    position: absolute; 
+    bottom: 70px; 
+    left: 10px; 
     z-index: 2;
     margin: 0;
     border: 1px solid;
@@ -204,9 +210,9 @@ a:hover {
 
 .dog-age-pill {
     color: white;
-    position: absolute; /* Ensure it overlays correctly */
-    bottom: 70px; /* Adjust position as needed */
-    left: 80px; /* Adjust position as needed */
+    position: absolute; 
+    bottom: 70px; 
+    left: 80px; 
     z-index: 2;
     margin: 0;
     border: 1px solid;
@@ -248,6 +254,10 @@ a:hover {
 #view-info-close{
     color: rgb(220, 53, 69);
     font-size: 30px;
+    position: relative;
+    top: 525px;
+    right: 13px;
+    bottom: 10px;
 }
 
 #view-info-close:hover {

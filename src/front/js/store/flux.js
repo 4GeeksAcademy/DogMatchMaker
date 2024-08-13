@@ -1,111 +1,47 @@
-const getState = ({ getStore, getActions, setStore }) => {
-	return {
-		store: {
-			message: null,
-			token: null,
-			section: null,
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
-		},
-		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
+import React, { useState, useEffect } from "react";
+import getState from "./flux.js";
 
-			getMessage: async () => {
-				try{
-					// fetching data from the backend
-					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
-					const data = await resp.json()
-					setStore({ message: data.message })
-					// don't forget to return something, that is how the async resolves
-					return data;
-				}catch(error){
-					console.log("Error loading message from backend", error)
-				}
-			},
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
+// Don't change, here is where we initialize our context, by default it's just going to be null.
+export const Context = React.createContext(null);
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+// This function injects the global store to any view/component where you want to use it, we will inject the context to layout.js, you can see it here:
+// https://github.com/4GeeksAcademy/react-hello-webapp/blob/master/src/js/layout.js#L35
+const injectContext = PassedComponent => {
+	const StoreWrapper = props => {
+		//this will be passed as the context value
+		const [state, setState] = useState(
+			getState({
+				getStore: () => state.store,
+				getActions: () => state.actions,
+				setStore: updatedStore =>
+					setState({
+						store: Object.assign(state.store, updatedStore),
+						actions: { ...state.actions }
+					})
+			})
+		);
 
-				//reset the global store
-				setStore({ demo: demo });
-			},
-			syncTokenFromSessionStorage: () => {
-				const token = sessionStorage.getItem('token')
-				if (token && token != '' && token != undefined ) setStore({ token : token})
-			},
-			logout: () => {
-				sessionStorage.removeItem('token')
-				setStore({ token : null, section: 'logout', message: null})
+		useEffect(() => {
+			/**
+			 * EDIT THIS!
+			 * This function is the equivalent to "window.onLoad", it only runs once on the entire application lifetime
+			 * you should do your ajax requests or fetch api requests here. Do not use setState() to save data in the
+			 * store, instead use actions, like this:
+			 **/
+			state.actions.getMessage(); // <---- calling this function from the flux.js actions
+			state.actions.syncTokenFromSessionStorage();
+		}, []);
 
-			},
-			privateArea: async () => {
-				try{
-					const store = getStore();
-					let requestOptions = {
-						headers: { 'Authorization': 'Bearer '+store.token }
-					};
-					const resp = await fetch(process.env.BACKEND_URL + "/api/private", requestOptions)
-					const data = await resp.json()
-					if (resp.status == 401) {
-						getActions().logout()
-					}
-					setStore({ message: data.message, section: data.section })
-					// don't forget to return something, that is how the async resolves
-					return data;
-				}catch(error){
-					console.log("Error loading message from backend", error)
-				}
-			},
-			login: async (email, password) => {
-				try{
-
-					let requestOptions = {
-						method: 'POST',
-						headers: { 'Content-Type': 'application/json' },
-						body : JSON.stringify({
-							'email': email,
-							'password': password
-						})
-					};
-
-					const resp = await fetch(process.env.BACKEND_URL+"/api/token", requestOptions)
-					
-					if (resp.status !== 200) {
-						alert("There has been some error")
-						return false;
-					}
-
-					const data = await resp.json()
-					sessionStorage.setItem("token", data.access_token)
-					setStore({ token : data.access_token})
-					return true
-
-				} catch (error) {
-					console.error('There has been an error log in')
-				}
-			}
-		}
+		// The initial value for the context is not null anymore, but the current state of this component,
+		// the context will now have a getStore, getActions and setStore functions available, because they were declared
+		// on the state of this component
+		return (
+			<Context.Provider value={state}>
+				<PassedComponent {...props} />
+			</Context.Provider>
+		);
 	};
+	return StoreWrapper;
 };
 
-export default getState;
+export default injectContext;

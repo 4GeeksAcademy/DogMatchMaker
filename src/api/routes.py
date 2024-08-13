@@ -83,7 +83,7 @@ def private_hello():
 
     response_body = {
         "section": "Private",
-        "message": "Hello " + str(userAccount)
+        "message": "Logged in as "+str(userAccount)
     }
 
     return jsonify(response_body), 200

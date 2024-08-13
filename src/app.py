@@ -1,4 +1,7 @@
 import os
+from datetime import datetime
+from datetime import timedelta
+from datetime import timezone
 from flask import Flask, request, jsonify, send_from_directory
 from flask_migrate import Migrate
 from api.utils import APIException, generate_sitemap
@@ -10,12 +13,17 @@ from flask_jwt_extended import JWTManager
 from flask_cors import CORS
 
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
-static_file_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), '../public/')
+static_file_dir = os.path.join(os.path.dirname(
+os.path.realpath(__file__)), '../public/')
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 # Configurations
 app.config["JWT_SECRET_KEY"] = "asdasdask1458asda5654asd654asd651asd61sdf6as1d6"
+app.config["JWT_COOKIE_SECURE"] = False
+app.config["JWT_TOKEN_LOCATION"] = ["headers"]
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=10)
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Database URL
@@ -40,6 +48,8 @@ setup_commands(app)
 app.register_blueprint(api, url_prefix='/api')
 
 # Handle/serialize errors like a JSON object
+
+
 @app.errorhandler(APIException)
 def handle_invalid_usage(error):
     return jsonify(error.to_dict()), error.status_code
@@ -68,3 +78,6 @@ def serve_uploads(filename):
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3001))
     app.run(host='0.0.0.0', port=PORT, debug=True)
+
+
+

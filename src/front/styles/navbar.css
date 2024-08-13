@@ -2,5 +2,16 @@
     background-color: 	#2b2c41;
   }
   
+  /* Phone and Under Small Devices*/
+  @media (min-width: 576px) {
+    .sm-style {
+      justify-content: start;
+    }
+  }
 
-  
+  /* Tablets and Larger LG Devices */
+  @media (min-width: 992px) { 
+    .md-style {
+      justify-content: center;
+    }
+  }

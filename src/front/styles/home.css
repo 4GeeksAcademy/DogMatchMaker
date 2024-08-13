@@ -8,3 +8,10 @@
 
     background-color: 	#88cafc;
 }
+
+@media (min-width: 576px) {
+    .btn-primary-sm {
+      text-align: center;
+    }
+  }
+

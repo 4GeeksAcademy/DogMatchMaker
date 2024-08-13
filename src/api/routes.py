@@ -5,7 +5,7 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 from flask import Flask, request, jsonify, Blueprint
 from api.models import db, UserAccount
 from api.utils import generate_sitemap, APIException
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 import json
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, set_access_cookies, unset_jwt_cookies
 import requests
@@ -78,6 +78,7 @@ def create_user():
 
 
 @api.route("/token", methods=["POST"])
+@cross_origin()
 def create_token():
     data = request.json
     email = data.get("email")

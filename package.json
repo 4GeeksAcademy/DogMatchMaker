@@ -79,6 +79,7 @@
 		"react-awesome-button": "^7.0.5",
 		"react-chat-engine": "^1.11.28",
 		"react-dom": "^16.8.4",
+		"react-hello-webapp": "file:",
 		"react-polyfills": "0.0.1",
 		"react-router-dom": "^6.3.0"
 	}

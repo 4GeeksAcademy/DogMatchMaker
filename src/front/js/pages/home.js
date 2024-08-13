@@ -17,9 +17,7 @@ export const Home = () => {
 
 	return (
 		<div className="text-center mt-5">
-			<Chat name='hernest@a.com' pass='123456'/>
-
-			
+					
 			<h1>Authentication system with Python Flask and React.js {store.user}</h1>
 			
 			<p>

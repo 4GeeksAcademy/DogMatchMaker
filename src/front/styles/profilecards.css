@@ -6,6 +6,11 @@
     width: 27rem;
 }
 
+.cpi{
+    z-index: 3;
+    height: 88%;
+}
+
 
 .top-indicators {
     top: 10px; 

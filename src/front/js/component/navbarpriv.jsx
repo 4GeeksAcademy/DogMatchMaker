@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../store/appContext";
 import logo from "../../img/updatedlogo.png";
 
-export const Navbar = () => {
+export const NavbarPriv = () => {
 	const { store, actions } = useContext(Context);
 	const navigate = useNavigate();
 

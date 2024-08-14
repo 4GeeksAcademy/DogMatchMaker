@@ -1,10 +1,11 @@
 from flask import Blueprint, request, jsonify
-from api.models import db, UserAccount
+from api.models import db, UserAccount,Contact
 from api.utils import APIException
 from flask_cors import cross_origin
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 from werkzeug.utils import secure_filename
 import os
+import re
 
 api = Blueprint('api', __name__)
 
@@ -87,3 +88,49 @@ def private_hello():
     }
 
     return jsonify(response_body), 200
+
+
+@api.route('/contact', methods=['GET'])
+def get_contacts():
+    # Retrieve all contact entries from the database
+    contacts = Contact.query.all()
+
+    # Serialize the contact data
+    serialized_contacts = [contact.serialize() for contact in contacts]
+
+    # Return the serialized contact data as JSON
+    return jsonify(serialized_contacts), 200
+
+@api.route('/contact', methods=['POST'])
+def contact():
+    data = request.get_json()
+
+    if not re.match(r'^[A-Za-z\s]+$', data['name']):
+        return jsonify({"error": "Name must contain only alphabetic characters"}), 400
+
+    # Validation for email (must contain @)
+    if '@' not in data['email']:
+        return jsonify({"error": "Invalid email address"}), 400
+
+    # Validation for phone (only digits, optional)
+    if data.get('phone') and not re.match(r'^\d{10,15}$', data['phone']):
+        return jsonify({"error": "Phone number must contain 10-15 digits"}), 400
+
+    # Validation for subject and message (minimum length)
+    if len(data['subject']) < 5:
+        return jsonify({"error": "Subject must be at least 5 characters long"}), 400
+    if len(data['message']) < 10:
+        return jsonify({"error": "Message must be at least 10 characters long"}), 400
+
+    new_contact = Contact(
+        name=data['name'],
+        email=data['email'],
+        phone=data.get('phone'),
+        subject=data['subject'],
+        message=data['message']
+    )
+
+    db.session.add(new_contact)
+    db.session.commit()
+
+    return jsonify({"message": "Contact information saved!"}), 201

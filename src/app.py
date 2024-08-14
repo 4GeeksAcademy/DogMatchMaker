@@ -15,7 +15,7 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 # Configurations
-app.config["JWT_SECRET_KEY"] = "asdasdask1458asda5654asd654asd651asd61sdf6as1d6"
+app.config["JWT_SECRET_KEY"] = "your_secret_key_here"  # Ensure this is set
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Database URL
@@ -64,7 +64,7 @@ def serve_any_other_file(path):
 def serve_uploads(filename):
     return send_from_directory('uploads', filename)
 
-# This only runs if `$ python app.py` is executed
+# This only runs if $ python app.py is executed
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3001))
     app.run(host='0.0.0.0', port=PORT, debug=True)

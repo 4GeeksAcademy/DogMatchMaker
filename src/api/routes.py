@@ -8,13 +8,12 @@ import os
 
 api = Blueprint('api', __name__)
 
-# Define the path where profile pictures will be stored
 UPLOAD_FOLDER = 'uploads'
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
 @api.route('/user', methods=['POST'])
-@cross_origin()  # Allow CORS requests to this endpoint
+@cross_origin()
 def create_user():
     email = request.form.get('email')
     password = request.form.get('password')
@@ -28,7 +27,6 @@ def create_user():
     bio = request.form.get('bio')
     interests = request.form.get('interests')
     
-    # Save profile picture if available
     profile_picture = request.files.get('profile_picture')
     profile_picture_filename = None
     if profile_picture:
@@ -37,7 +35,7 @@ def create_user():
     
     userAccount = UserAccount(
         email=email,
-        password=password,  # Ideally, you should hash this password before saving
+        password=password,
         dog_name=dog_name,
         owner_name=owner_name,
         nick_name=nick_name,
@@ -47,7 +45,7 @@ def create_user():
         dog_sex=dog_sex,
         bio=bio,
         interests=interests,
-        profile_picture=profile_picture_filename  # Save filename to the database
+        profile_picture=profile_picture_filename
     )
 
     db.session.add(userAccount)
@@ -60,13 +58,12 @@ def create_user():
     return jsonify(response_body), 200
 
 @api.route("/token", methods=["POST"])
-@cross_origin()  # Allow CORS requests to this endpoint
+@cross_origin()
 def create_token():
     data = request.json
     email = data.get("email")
     password = data.get("password")
 
-    # Query your database for email and password
     userAccount = UserAccount.query.filter_by(email=email, password=password).first()
 
     if userAccount is None:
@@ -77,7 +74,7 @@ def create_token():
 
 @api.route('/private', methods=['GET'])
 @jwt_required()
-@cross_origin()  # Allow CORS requests to this endpoint
+@cross_origin()
 def private_hello():
     userAccount = get_jwt_identity() 
 
@@ -86,4 +83,13 @@ def private_hello():
         "message": "Hello " + str(userAccount)
     }
 
+    return jsonify(response_body), 200
+
+@api.route('/users', methods=['GET'])
+@cross_origin()
+def get_users():
+    users = UserAccount.query.all()
+    response_body = {
+        "users": [user.serialize() for user in users]
+    }
     return jsonify(response_body), 200

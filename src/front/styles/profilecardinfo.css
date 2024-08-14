@@ -1,6 +1,6 @@
 /*Profile info view*/
 #offcanvasScrolling2 {
-    height: 55%;
+    height: 45%;
 }
 
 
@@ -10,13 +10,13 @@
     background-color: none;
     border: black;
     position: absolute;
-    bottom: 7px;
+    bottom: 1px;
     right: 10px;
     z-index: 2;
     padding: 5px;
     padding-right: 15px;
     padding-left: 15px;
-    font-size: 28px;
+    font-size: 30px;
 }
 
 #view-info:hover {
@@ -36,8 +36,8 @@
     color: rgb(220, 53, 69);
     position: absolute;
     font-size: 30px;
-    top: 290px;
-    right: 17px;
+    top: 280px;
+    right: 20px;
     bottom: 10px;
     z-index: 3;
 }
@@ -74,10 +74,11 @@
     padding-left: 10px;
     font-size: 13px;
     position: absolute;
-    right: 140px;
+    right: 137px;
     top: 10px;
     background-color: slategrey
 }
+
 
 .dog-pill-info-male {
     color: white;
@@ -136,13 +137,14 @@
     right: 250px;
     position: absolute;
     font-size: 32px;
+    padding-top: 8px;
 }
 
 .sub-name-info {
     color: white;
     font-style: italic;
     position: absolute;
-    top: 32px;
+    top: 35px;
     right: 250px;
     font-size: 25px;
 }
@@ -164,7 +166,7 @@
 }
 
 .offcanvas-top {
-    height: 24%;
+    height: 30%;
     background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0.7161458333333333) 58%);
     border: none;
 }
@@ -179,8 +181,8 @@
     padding-left: 10px;
     font-size: 13px;
     position: absolute;
-    right: 295px;
-    top: 80px;
+    right: 305px;
+    top: 9px;
     background-color:yellowgreen;
 }
 
@@ -194,8 +196,8 @@
     padding-left: 10px;
     font-size: 13px;
     position: absolute;
-    right: 135px;
-    top: 80px;
+    right: 145px;
+    top: 9px;
     background-color:blueviolet;
 }
 
@@ -209,8 +211,8 @@
     padding-left: 10px;
     font-size: 13px;
     position: absolute;
-    right: 65px;
-    top: 80px;
+    right: 75px;
+    top: 9px;
     background-color:tomato;
 }
 
@@ -224,8 +226,8 @@
     padding-left: 10px;
     font-size: 13px;
     position: absolute;
-    right: 225px;
-    top: 80px;
+    right: 235px;
+    top: 9px;
     background-color:cadetblue;
 }
 
@@ -247,4 +249,10 @@
 .trait-pill4:hover{
     transform: translateY(-2px);
     cursor: default;
+}
+
+.bio {
+    position: absolute;
+    bottom: 45px;
+    width: 90%;
 }

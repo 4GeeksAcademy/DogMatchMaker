@@ -4,24 +4,27 @@ import { Context } from "../store/appContext";
 import Notifications from "./notifications.jsx";
 import img from "../../img/m101.jpg";
 import "../../styles/sidebar.css";
+import { useNavigate } from "react-router-dom";
 
 
 const Sidebar = () => {
   const { store, actions } = useContext(Context);
   const [style, setStyle] = useState("discover");
   const [navbarHeight, setNavbarHeight] = useState(0);
+  const navigate = useNavigate()
 
   useEffect(() => {
-    // Get the height of the navbar and set it to state
     const navbarElement = document.querySelector(".navbar");
     if (navbarElement) {
       setNavbarHeight(navbarElement.offsetHeight);
     }
-
-    // Show the offcanvas by default
     const offcanvasElement = document.getElementById("offcanvasScrolling3");
     const bsOffcanvas = new bootstrap.Offcanvas(offcanvasElement);
     bsOffcanvas.show();
+  }, []);
+
+  useEffect(() => {
+    navigate('/private')
   }, []);
 
 

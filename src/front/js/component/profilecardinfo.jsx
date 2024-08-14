@@ -85,7 +85,7 @@ const ProfileInfo = () => {
               Happy
           </h5>
             <textarea
-              className="form-control mt-4"
+              className="bio form-control p-1 m-0"
               id="exampleFormControlTextarea1"
               placeholder="Your super cool bio!"
               rows="6"

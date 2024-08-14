@@ -36,10 +36,10 @@ const Sidebar = () => {
         id="offcanvasScrolling3"
         aria-labelledby="offcanvasScrollingLabel"
         style={{
-          top: `${navbarHeight}px`, // Position it below the navbar
-          height: `calc(100vh - ${navbarHeight}px)`, // Full height minus navbar
-          width: "17%", // Adjust width as needed
-          borderTop: "1px solid lightgray", // Add a top border
+          top: `${navbarHeight}px`,
+          height: `calc(100vh - ${navbarHeight}px)`,
+          width: "17%", 
+          borderTop: "1px solid lightgray",
         }}
       >
         <Link

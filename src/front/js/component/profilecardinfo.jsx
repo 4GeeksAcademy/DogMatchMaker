@@ -37,7 +37,7 @@ const ProfileInfo = () => {
         id="offcanvasScrolling2"
         aria-labelledby="offcanvasScrollingLabel"
       >
-        <div className="bg-dark-top bg-dark">
+        <div className="offcanvas-top">
           <div className="offcanvas-header">
             <h3 className="offcanvas-title" id="dog-name" style={{ fontWeight: 'bolder' }}>
               Shaggy
@@ -58,32 +58,41 @@ const ProfileInfo = () => {
             <h5 className="sub-name-info">
               & Kelsey
             </h5>
+            <div>
             <i
               id="view-info-close"
               className="fa-solid fa-circle-down"
               data-bs-dismiss="offcanvas"
               aria-label="Close">
             </i>
+            </div>
             <i id="location" className="fa-solid fa-location-dot"></i>
-            <p id="location-text">currently lives in city</p>
+            <p id="location-text">currently living in city</p>
           </div>
         </div>
-        <div className="offcanvas-body">
+        <div className="offcanvas-body my-1 mx-1">
           <div className="text-start">
-            <label htmlFor="exampleFormControlTextarea1" className="form-label">Bio</label>
+          <h5 className="trait-pill1">
+              Friendly
+          </h5>
+          <h5 className="trait-pill2">
+              Energetic
+          </h5>
+          <h5 className="trait-pill3">
+              Gentle
+          </h5>
+          <h5 className="trait-pill4">
+              Happy
+          </h5>
             <textarea
-              className="form-control"
+              className="form-control mt-4"
               id="exampleFormControlTextarea1"
               placeholder="Your super cool bio!"
-              rows="5"
+              rows="6"
               readOnly>
             </textarea>
           </div>
-          <hr />
           <div>
-            <p>
-              More about us...
-            </p>
           </div>
         </div>
       </div>

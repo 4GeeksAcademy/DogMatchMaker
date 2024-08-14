@@ -1,3 +1,10 @@
+/*Profile info view*/
+#offcanvasScrolling2 {
+    height: 55%;
+}
+
+
+
 #view-info {
     color: white;
     background-color: none;
@@ -21,24 +28,25 @@
     padding: 5px;
     padding-right: 15px;
     padding-left: 15px;
-    transform: translateY(-7px);
+    transform: translateY(-2px);
     cursor: pointer;
 }
 
 #view-info-close {
     color: rgb(220, 53, 69);
+    position: absolute;
     font-size: 30px;
-    position: relative;
-    top: 460px;
-    right: 8px;
+    top: 290px;
+    right: 17px;
     bottom: 10px;
     z-index: 3;
 }
 
 #view-info-close:hover {
     cursor: pointer;
-    font-size: 35px;
     z-index: 3;
+    font-size: 33px;
+    transform: translateY(-2px);
 }
 
 .dog-pill-info-breed {
@@ -51,8 +59,8 @@
     padding-left: 10px;
     font-size: 13px;
     position: absolute;
-    right: 254px;
-    top: 28px;
+    right: 180px;
+    top: 10px;
     background-color: tan;
 }
 
@@ -66,8 +74,8 @@
     padding-left: 10px;
     font-size: 13px;
     position: absolute;
-    right: 216px;
-    top: 28px;
+    right: 140px;
+    top: 10px;
     background-color: slategrey
 }
 
@@ -81,8 +89,8 @@
     padding-left: 10px;
     font-size: 13px;
     position: absolute;
-    right: 162px;
-    top: 28px;
+    right: 80px;
+    top: 10px;
     background-color: steelblue;
 }
 
@@ -97,7 +105,7 @@
     font-size: 13px;
     position: absolute;
     right: 147px;
-    top: 28px;
+    top: 10px;
     background-color: violet;
 }
 
@@ -125,32 +133,118 @@
 
 #dog-name {
     color: white;
+    right: 250px;
+    position: absolute;
+    font-size: 32px;
 }
 
 .sub-name-info {
     color: white;
     font-style: italic;
     position: absolute;
-    top: 50px;
-    right: 320px;
+    top: 32px;
+    right: 250px;
+    font-size: 25px;
 }
 
 #location {
     font-size: 18px;
     position: absolute;
-    right: 400px;
-    top: 80px;
+    right: 220px;
+    top: 46px;
     color: rgb(220, 53, 69);
 }
 
 #location-text {
     font-size: 15px;
     position: absolute;
-    right: 255px;
-    top: 78px;
+    right: 70px;
+    top: 42px;
     color: white;
 }
 
-.bg-dark-top {
-    height: 25%;
+.offcanvas-top {
+    height: 24%;
+    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(0,0,0,0.7161458333333333) 58%);
+    border: none;
+}
+
+.trait-pill1 {
+    color: white;
+    margin: 0;
+    border: 1px solid black;
+    border-radius: 45px;
+    padding: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 13px;
+    position: absolute;
+    right: 295px;
+    top: 80px;
+    background-color:yellowgreen;
+}
+
+.trait-pill2 {
+    color: white;
+    margin: 0;
+    border: 1px solid black;
+    border-radius: 45px;
+    padding: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 13px;
+    position: absolute;
+    right: 135px;
+    top: 80px;
+    background-color:blueviolet;
+}
+
+.trait-pill3 {
+    color: white;
+    margin: 0;
+    border: 1px solid black;
+    border-radius: 45px;
+    padding: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 13px;
+    position: absolute;
+    right: 65px;
+    top: 80px;
+    background-color:tomato;
+}
+
+.trait-pill4{
+    color: white;
+    margin: 0;
+    border: 1px solid black;
+    border-radius: 45px;
+    padding: 5px;
+    padding-right: 10px;
+    padding-left: 10px;
+    font-size: 13px;
+    position: absolute;
+    right: 225px;
+    top: 80px;
+    background-color:cadetblue;
+}
+
+.trait-pill1:hover{
+    transform: translateY(-2px);
+    cursor: default;
+}
+
+.trait-pill2:hover{
+    transform: translateY(-2px);
+    cursor: default;
+}
+
+.trait-pill3:hover{
+    transform: translateY(-2px);
+    cursor: default;
+}
+
+.trait-pill4:hover{
+    transform: translateY(-2px);
+    cursor: default;
 }

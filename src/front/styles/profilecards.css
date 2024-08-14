@@ -6,6 +6,13 @@
     width: 27rem;
 }
 
+
+.top-indicators {
+    top: 10px; 
+    bottom: auto;
+  }
+  
+
 .card-img {
     width: 100%;
     height: auto;

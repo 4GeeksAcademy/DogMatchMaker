@@ -12,9 +12,9 @@ class UserAccount(db.Model):
     dog_age = db.Column(db.Integer, nullable=False)
     location = db.Column(db.String(250), nullable=False)
     breed = db.Column(db.String(100), nullable=False)
+    traits = db.Column(db.String(250), nullable=False)
     dog_sex = db.Column(db.String(50), nullable=False)
     bio = db.Column(db.Text, nullable=True)
-    interests = db.Column(db.Text, nullable=True)
     email = db.Column(db.String(250), unique=True, nullable=False)
     password = db.Column(db.String(250), nullable=False)
     account_created = db.Column(db.Date, default=datetime.utcnow)
@@ -31,8 +31,8 @@ class UserAccount(db.Model):
             'location': self.location,
             'breed': self.breed,
             'dog_sex': self.dog_sex,
+            'traits': self.traits,
             'bio': self.bio,
-            'interests': self.interests,
             'email': self.email,
             'account_created': self.account_created
         }

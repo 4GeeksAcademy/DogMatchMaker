@@ -77,8 +77,11 @@
 		"prop-types": "^15.6.1",
 		"react": "^16.8.4",
 		"react-awesome-button": "^7.0.5",
+		"react-chat-engine": "^1.11.28",
 		"react-dom": "^16.8.4",
+		"react-hello-webapp": "file:",
 		"react-polyfills": "0.0.1",
-		"react-router-dom": "^6.3.0"
+		"react-router-dom": "^6.3.0",
+		"upgrade": "^1.1.0"
 	}
 }

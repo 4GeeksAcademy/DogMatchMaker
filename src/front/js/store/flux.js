@@ -2,9 +2,10 @@ import { useNavigate } from "react-router-dom";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
-		store: {
+		store: {			
 			message: null,
-			token: null,
+			user: '',
+			token: '',
 			section: null,
 			demo: [
 				{
@@ -56,20 +57,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 				if (token && token != '' && token != undefined ) setStore({ token : token})
 			},
 			logout: () => {
-				sessionStorage.removeItem('token')
-				setStore({ token : null, section: 'logout', message: null})
+				try{
+					sessionStorage.removeItem('token')
+					setStore({ token : null, section: 'logout', message: null, user: null})
+					const resp = fetch(process.env.BACKEND_URL+"/api/logout", {
+						method: 'POST'
+						//credentials: 'include'
+					}).then(response => response.json())
+					.then(data => setStore({ message: data.message }));
+					
+				}catch(error){
+					console.log("Error log out", error)
+				}
 			},
 			privateArea: async () => {
 				try{
 					const store = getStore();
-					let requestOptions = {
+					const resp = await fetch(process.env.BACKEND_URL + "/api/private", {
+						method: 'GET',
 						headers: { 'Authorization': 'Bearer '+store.token }
-					};
-					const resp = await fetch(process.env.BACKEND_URL + "/api/private", requestOptions)
-					const data = await resp.json()
+						//credentials: 'include'
+					  })					
 					if (resp.status == 401) {
 						getActions().logout()
 					}
+					const data = await resp.json()
 					setStore({ message: data.message, section: data.section })
 					// don't forget to return something, that is how the async resolves
 					return data;
@@ -82,6 +94,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 					let requestOptions = {
 						method: 'POST',
+						//credentials: 'include',
 						headers: { 'Content-Type': 'application/json' },
 						body : JSON.stringify({
 							'email': email,
@@ -97,12 +110,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 
 					const data = await resp.json()
+				
 					sessionStorage.setItem("token", data.access_token)
-					setStore({ token : data.access_token})
+					setStore({ token : data.access_token, user: email})
 					return true
 
 				} catch (error) {
-					console.error('There has been an error log in')
+					console.error('There has been an error log in', error)
 				}
 			}
 		}

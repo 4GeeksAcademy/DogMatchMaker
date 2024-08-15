@@ -65,3 +65,27 @@
         font-weight: 500;
         border: none;
     } 
+
+*/.dog_color{
+
+    background-color: 	#88cafc;
+}
+
+@media (min-width: 576px) {
+    .btn-primary-sm {
+      text-align: center;
+    }
+  }
+
+
+.chat {
+    background-color: blueviolet;
+}
+
+.ce-settings-column, .ce-chat-settings-mobile-option {
+    display: none;
+}
+
+.ce-chat-engine {
+    background-color: unset !important;
+}

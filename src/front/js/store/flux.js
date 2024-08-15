@@ -55,9 +55,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 			syncTokenFromSessionStorage: () => {
 				const token = sessionStorage.getItem('token')
 				if (token && token != '' && token != undefined ) setStore({ token : token})
+				const user = sessionStorage.getItem('user')
+				if (user && user != '' && user != undefined ) setStore({ user : user})
 			},
 			logout: () => {
 				try{
+					console.log('logout')
 					sessionStorage.removeItem('token')
 					setStore({ token : null, section: 'logout', message: null, user: null})
 					const resp = fetch(process.env.BACKEND_URL+"/api/logout", {
@@ -112,6 +115,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					const data = await resp.json()
 				
 					sessionStorage.setItem("token", data.access_token)
+					sessionStorage.setItem("user", email)				
+					
 					setStore({ token : data.access_token, user: email})
 					return true
 

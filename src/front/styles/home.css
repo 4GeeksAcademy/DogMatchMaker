@@ -89,3 +89,23 @@
 .ce-chat-engine {
     background-color: unset !important;
 }
+
+.ce-settings-column {
+    width: 1% !important;
+    flex: 0 0 1% !important;
+    max-width: 1% !important;
+}
+
+.ce-chat-feed-column {
+    width: 75% !important;
+    flex: 0 0 75% !important;
+    max-width: 75% !important;
+}
+
+.ce-chat-list {
+    font-family: var(--bs-body-font-family) !important;
+}
+
+.ce-message-bubble, .ce-active-chat-card{
+    background-color: rgb(79, 155, 197) !important;
+}

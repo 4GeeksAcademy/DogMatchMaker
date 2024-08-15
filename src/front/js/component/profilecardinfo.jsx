@@ -59,22 +59,22 @@ const ProfileInfo = ({data}) => {
               ></i>
             </div>
             <i id="location" className="fa-solid fa-location-dot"></i>
-            <p id="location-text">currently living in {data.location}</p>
+            <p id="location-text">{data.location}, FL</p>
           </div>
         </div>
         <div className="offcanvas-body my-1 mx-1">
           <div className="text-start">
             <h5 className="trait-pill1">
-            {data.traits}
+              Friendly
             </h5>
             <h5 className="trait-pill2">
-              {data.traits}
+              Energetic
             </h5>
             <h5 className="trait-pill3">
-            {data.traits}
+              Gentle
             </h5>
             <h5 className="trait-pill4">
-            {data.traits}
+              Happy
             </h5>
             <textarea
               className="bio form-control p-1 m-0"

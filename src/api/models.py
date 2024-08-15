@@ -81,3 +81,4 @@ class Message(db.Model):
             'message': self.message,
             'message_date': self.message_date
         }
+

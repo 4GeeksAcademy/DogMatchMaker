@@ -4,7 +4,7 @@ import ProfileInfo from "./profilecardinfo.jsx";
 import "../../styles/profilecards.css";
 import { Context } from "../store/appContext.js";
 
-const ProfileCard = ({data}) => {
+const ProfileCard = ({data, setNextCard, nextCard}) => {
   const {store, actions} = useContext(Context)
   return (
     <div id="carouselExampleIndicators" className="profile-card carousel slide" data-bs-ride="carousel">
@@ -32,13 +32,22 @@ const ProfileCard = ({data}) => {
           <h6 className="dog-male-pill">{data.dog_sex}</h6>
           <div className="justify-content-center d-flex">
             <div>
-              <i id="close" className="fa regular fa-circle-xmark"></i>
+              <i id="close" className="fa regular fa-circle-xmark" onClick={()=>{setNextCard({
+                prev: nextCard.prev + 1,
+                next: nextCard.next + 1
+              })}}></i>
             </div>
             <div>
-              <i id="reverse" className="fa regular fa-circle-left"></i>
+              <i id="reverse" className="fa regular fa-circle-left" onClick={()=>{setNextCard({
+                prev: nextCard.prev - 1,
+                next: nextCard.next - 1
+              })}}></i>
             </div>
             <div>
-              <i id="like" className="fa regular fa-circle-check"></i>
+              <i id="like" className="fa regular fa-circle-check" onClick={()=>{setNextCard({
+                prev: nextCard.prev + 1,
+                next: nextCard.next + 1
+              })}}></i>
             </div>
             <ProfileInfo data={data} />
           </div>

@@ -8,6 +8,10 @@ import ProfileCard from "../component/profilecard.jsx";
 export const Private = () => {
 	const { store, actions } = useContext(Context);
 	const [users, setUsers] = useState(null)
+	const [nextCard, setNextCard] = useState({
+		prev: 0,
+		next: 1
+	})
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -30,8 +34,8 @@ export const Private = () => {
 			<div className="row">
 				<div className="col-1 text-start"></div>
 				<div className="col-10 justify-content-center d-flex">
-					{users !== null && users.slice(1,2).map((data, ind)=>{
-						return <ProfileCard data={data} key={ind} />
+					{users !== null && users.slice(nextCard.prev, nextCard.next).map((data, ind)=>{
+						return <ProfileCard data={data} setNextCard={setNextCard} nextCard={nextCard} key={ind} />
 					})}
 				</div>
 				<div className="col-1 text-start"></div>

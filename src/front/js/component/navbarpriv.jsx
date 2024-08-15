@@ -14,7 +14,7 @@ export const NavbarPriv = () => {
 	}, [store.section])
 
 	return (
-		<nav id="navbar" className="navbar navbar-light bg-light p-0 justify-content-start">
+		<nav id="navbarpriv" className="navbar p-0 justify-content-start">
 				<Link to="/">
 					<span className="navbar-brand mb-0 h1"></span>
 				</Link>

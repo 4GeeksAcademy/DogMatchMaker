@@ -4,11 +4,41 @@ const getState = ({ getStore, getActions, setStore }) => {
             token: null,
             section: "",
             message: null,
+            contactSuccess: null,  // To store success message
+            contactError: null,    // To store error message
         },
         actions: {
             // Set the current section in the store
             setSection: (section) => {
                 setStore({ section });
+            },
+            
+            clearContactStatus: () => {
+                setStore({ contactSuccess: null, contactError: null });
+            },
+
+            
+            submitContactForm: async (formData) => {
+                try {
+                    const response = await fetch(process.env.BACKEND_URL + "api/contact", {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(formData),
+                    });
+
+                    const data = await response.json();
+
+                    if (response.ok) {
+                        setStore({ contactSuccess: data.message, contactError: null });
+                    } else {
+                        setStore({ contactSuccess: null, contactError: data.error || "Something went wrong!" });
+                    }
+                } catch (error) {
+                    setStore({ contactSuccess: null, contactError: "Network error or server is down" });
+                    console.error("Error submitting contact form:", error);
+                }
             },
 
             // Handle logout

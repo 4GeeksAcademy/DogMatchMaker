@@ -29,6 +29,10 @@ export const Navbar = () => {
         actions.setSection('logout');
     };
 
+    const handleButtonClick = () => {
+        setIsNavOpen(false); // Collapse the navbar when the button is clicked
+    };
+
     return (
         <nav className="navbar custom-blue navbar-expand-lg navbar-light sticky-top">
             <div className="container-fluid">
@@ -81,12 +85,12 @@ export const Navbar = () => {
                             )}
                         </ul>
                     </div>
-                    <div className="d-flex ms-auto">
+                    <div className="d-flex ms-auto justify-content-center">
                         {store.token ? (
-                            <button onClick={handleLogout} type="button" className="btn btn-primary">Log out</button>
+                            <button onClick={() => { handleLogout(); handleButtonClick(); }} type="button" className="btn btn-primary">Log out</button>
                         ) : (
                             <Link to="/login">
-                                <button type="button" className="btn btn-primary">Log in</button>
+                                <button onClick={handleButtonClick} type="button" className="btn btn-primary mx-auto">Log in</button>
                             </Link>
                         )}
                     </div>

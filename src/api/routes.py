@@ -87,3 +87,12 @@ def private_hello():
     }
 
     return jsonify(response_body), 200
+
+@api.route('/users', methods=['GET'])
+@cross_origin()
+def get_users():
+    users = UserAccount.query.all()
+    response_body = {
+        "users": [user.serialize() for user in users]
+    }
+    return jsonify(response_body), 200

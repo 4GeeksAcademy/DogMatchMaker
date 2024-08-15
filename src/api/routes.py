@@ -60,13 +60,13 @@ def create_user():
     return jsonify(response_body), 200
 
 @api.route("/token", methods=["POST"])
-@cross_origin()  # Allow CORS requests to this endpoint
+@cross_origin()  
 def create_token():
     data = request.json
     email = data.get("email")
     password = data.get("password")
 
-    # Query your database for email and password
+    
     userAccount = UserAccount.query.filter_by(email=email, password=password).first()
 
     if userAccount is None:

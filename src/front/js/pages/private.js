@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { useNavigate } from "react-router-dom";
 import ProfileCard from "../component/profilecard.jsx";
-import { Chat } from "../component/chat";
+import { Chat } from "../component/chat.jsx";
 
 export const Private = () => {
 	const { store, actions } = useContext(Context);

@@ -50,7 +50,7 @@ def setup_commands(app):
 def setup_user_data(app):
     @app.cli.command("insert-user-data")
     @click.argument("count")
-    def insert_user_data(count):
+    def insert_user_data(num):
         print("Creating user data")
         dogNames = [["Max", "Male"], ["Bella", "Female"], ["Charlie", "Male"], ["Luna", "Female"], 
                     ["Rocky", "Male"], ["Molly", "Female"], ["Duke", "Male"], ["Sadie", "Female"],
@@ -68,7 +68,7 @@ def setup_user_data(app):
         cities = ['West Palm Beach', 'Doral', 'Fort Lauderdale', 'Delray Beach', 'Coral Springs', 
                   'Pembroke Pines', 'Boca Raton', 'Miami', 'Hollywood', 'Hialeah']
 
-        for x in range(int(count)):
+        for x in range(1,11):
             owner_name = random.choice(owner_names)
             user = UserAccount()
             user.owner_name = owner_name
@@ -86,7 +86,7 @@ def setup_user_data(app):
             db.session.add(user)
         db.session.commit()
         # Insert data
-        print(f"{count} user data created.")
+        print(f"{num} user data created.")
 
             
             

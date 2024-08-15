@@ -1,14 +1,10 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "../../styles/profilecardinfo.css";
 
 const ProfileInfo = () => {
   const toggleNotifications = () => {
-    const notificationsOffcanvas = document.getElementById(
-      "offcanvasScrolling2"
-    );
-    const bootstrapOffcanvas = bootstrap.Offcanvas.getOrCreateInstance(
-      notificationsOffcanvas
-    );
+    const notificationsOffcanvas = document.getElementById("offcanvasScrolling2");
+    const bootstrapOffcanvas = bootstrap.Offcanvas.getOrCreateInstance(notificationsOffcanvas);
 
     if (notificationsOffcanvas.classList.contains("show")) {
       bootstrapOffcanvas.hide();
@@ -48,23 +44,19 @@ const ProfileInfo = () => {
             <h5 className="dog-pill-info-age">
               12
             </h5>
-            {/*ANOTHER COLOR/TEXT CONDITIONAL*/}
             <h5 className="dog-pill-info-male">
               Male
             </h5>
-            {/* <h5 className="dog-pill-info-female">
-            Female
-          </h5> */}
             <h5 className="sub-name-info">
               & Kelsey
             </h5>
             <div>
-            <i
-              id="view-info-close"
-              className="fa-solid fa-circle-down"
-              data-bs-dismiss="offcanvas"
-              aria-label="Close">
-            </i>
+              <i
+                id="view-info-close"
+                className="fa-solid fa-circle-down"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></i>
             </div>
             <i id="location" className="fa-solid fa-location-dot"></i>
             <p id="location-text">currently living in city</p>
@@ -72,27 +64,26 @@ const ProfileInfo = () => {
         </div>
         <div className="offcanvas-body my-1 mx-1">
           <div className="text-start">
-          <h5 className="trait-pill1">
+            <h5 className="trait-pill1">
               Friendly
-          </h5>
-          <h5 className="trait-pill2">
+            </h5>
+            <h5 className="trait-pill2">
               Energetic
-          </h5>
-          <h5 className="trait-pill3">
+            </h5>
+            <h5 className="trait-pill3">
               Gentle
-          </h5>
-          <h5 className="trait-pill4">
+            </h5>
+            <h5 className="trait-pill4">
               Happy
-          </h5>
+            </h5>
             <textarea
               className="bio form-control p-1 m-0"
               id="exampleFormControlTextarea1"
               placeholder="Your super cool bio!"
               rows="6"
-              readOnly>
+              readOnly
+            >
             </textarea>
-          </div>
-          <div>
           </div>
         </div>
       </div>

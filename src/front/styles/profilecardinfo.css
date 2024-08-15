@@ -1,7 +1,27 @@
-/*Profile info view*/
+
 #offcanvasScrolling2 {
     height: 45%;
 }
+
+
+.offcanvas {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  }
+  
+  .offcanvas.show {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  
+  .offcanvas:not(.show) {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  
+  .offcanvas-backdrop {
+    transition: opacity 0.3s ease-in-out;
+  }
+  
 
 #view-info {
     color: white;

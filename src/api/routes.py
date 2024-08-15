@@ -1,4 +1,3 @@
-
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
@@ -17,21 +16,20 @@ api = Blueprint('api', __name__)
 # Allow CORS requests to this API
 CORS(api, supports_credentials=True)
 
-@api.route('/hello', methods=['POST', 'GET'])
-def handle_hello():
-
-    response_body = {
-        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
-    }
-
-    return jsonify(response_body), 200
 # Define the path where profile pictures will be stored
 UPLOAD_FOLDER = 'uploads'
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
+@api.route('/hello', methods=['POST', 'GET'])
+def handle_hello():
+    response_body = {
+        "message": "Hello! I'm a message that came from the backend, check the network tab on the google inspector and you will see the GET request"
+    }
+    return jsonify(response_body), 200
+
 @api.route('/user', methods=['POST'])
-@cross_origin()  # Allow CORS requests to this endpoint
+@cross_origin()
 def create_user():
     email = request.form.get('email')
     password = request.form.get('password')
@@ -45,7 +43,6 @@ def create_user():
     bio = request.form.get('bio')
     interests = request.form.get('interests')
     
-    # Save profile picture if available
     profile_picture = request.files.get('profile_picture')
     profile_picture_filename = None
     if profile_picture:
@@ -54,7 +51,7 @@ def create_user():
     
     userAccount = UserAccount(
         email=email,
-        password=password,  # Ideally, you should hash this password before saving
+        password=password,  # Note: Password hashing should be handled in the model or service layer
         dog_name=dog_name,
         owner_name=owner_name,
         nick_name=nick_name,
@@ -64,7 +61,7 @@ def create_user():
         dog_sex=dog_sex,
         bio=bio,
         interests=interests,
-        profile_picture=profile_picture_filename  # Save filename to the database
+        profile_picture=profile_picture_filename
     )
 
     db.session.add(userAccount)
@@ -76,7 +73,6 @@ def create_user():
 
     return jsonify(response_body), 200
 
-
 @api.route("/token", methods=["POST"])
 @cross_origin()
 def create_token():
@@ -84,14 +80,13 @@ def create_token():
     email = data.get("email")
     password = data.get("password")
 
-    # Query your database for email and password
-    userAccount = UserAccount.query.filter_by(email=email, password=password).first()
+    userAccount = UserAccount.query.filter_by(email=email).first()
 
-    if userAccount is None:
+    if userAccount is None or not userAccount.check_password(password):  # Ensure you check hashed password
         return jsonify({"msg": "Bad email or password"}), 401
     
     access_token = create_access_token(identity=userAccount.email)
-    response = jsonify({ "access_token": access_token })
+    response = jsonify({"access_token": access_token})
     
     set_access_cookies(response, access_token)
     
@@ -99,7 +94,7 @@ def create_token():
 
 @api.route('/private', methods=['GET'])
 @jwt_required()
-@cross_origin()  # Allow CORS requests to this endpoint
+@cross_origin()
 def private_hello():
     userAccount = get_jwt_identity() 
 
@@ -110,16 +105,23 @@ def private_hello():
 
     return jsonify(response_body), 200
 
+@api.route('/users', methods=['GET'])
+@cross_origin()
+def get_users():
+    users = UserAccount.query.all()
+    response_body = {
+        "users": [user.serialize() for user in users]
+    }
+    return jsonify(response_body), 200
+
 @api.route("/logout", methods=["POST"])
 def logout():
     response = jsonify({"message": "logout successful"})
     unset_jwt_cookies(response)
     return response
 
-
 @api.route("/userChat", methods=['POST'])
-def create_user_chat(name):
-    
+def create_user_chat():
     name = request.json.get("name", None)
     
     resp = requests.post("https://api.chatengine.io/users",
@@ -133,11 +135,8 @@ def create_user_chat(name):
      
     return jsonify(resp.json())
 
-
-
 @api.route("/privateChat", methods=['PUT'])
-def create_private_chat(name, guest):
-    
+def create_private_chat():
     name = request.json.get("name", None)
     guest = request.json.get("guest", None)
     

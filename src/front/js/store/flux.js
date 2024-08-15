@@ -92,7 +92,9 @@ const getState = ({ getStore, getActions, setStore }) => {
                     let requestOptions = {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ email, password })
+                        body: JSON.stringify({ 
+                            "email": email, 
+                            "password": password })
                     };
                     const response = await fetch(process.env.BACKEND_URL + "/api/token", requestOptions);
                     if (response.status !== 200) {
@@ -101,7 +103,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     }
                     const data = await response.json();
                     sessionStorage.setItem("token", data.access_token);
-                    setStore({ token: data.access_token });
+                    setStore({ token: data.access_token, user: email });
                     return true;
                 } catch (error) {
                     console.error('There has been an error logging in:', error);

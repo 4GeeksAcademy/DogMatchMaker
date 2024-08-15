@@ -1,6 +1,6 @@
 @media (min-width: 1025px) {
     .h-custom {
-    height: 115vh !important;
+    height: 125vh !important;
     }
     }
 
@@ -76,3 +76,16 @@
       text-align: center;
     }
   }
+
+
+.chat {
+    background-color: blueviolet;
+}
+
+.ce-settings-column, .ce-chat-settings-mobile-option {
+    display: none;
+}
+
+.ce-chat-engine {
+    background-color: unset !important;
+}

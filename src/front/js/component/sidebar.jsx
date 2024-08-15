@@ -93,7 +93,7 @@ const Sidebar = () => {
                 if (style !== "profile") setStyle("profile");
               }}
             >
-              <strong><i class="fa-solid fa-circle-user"></i>Profile</strong>
+              <strong><i className="fa-solid fa-circle-user"></i>Profile</strong>
             </Link>
           </li>
           <li className="nav-item mt-2 mb-4 ms-2">
@@ -106,7 +106,7 @@ const Sidebar = () => {
                 if (style !== "settings") setStyle("settings");
               }}
             >
-              <strong><i class="fa-solid fa-gear"></i>Settings</strong>
+              <strong><i className="fa-solid fa-gear"></i>Settings</strong>
             </Link>
           </li>
         </ul>

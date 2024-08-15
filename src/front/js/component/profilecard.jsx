@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import girlwithdog from "../../img/girlanddog2.jpg";
 import ProfileInfo from "./profilecardinfo.jsx";
 import "../../styles/profilecards.css";
+import { Context } from "../store/appContext.js";
 
-const ProfileCard = () => {
+const ProfileCard = ({data}) => {
+  const {store, actions} = useContext(Context)
   return (
     <div id="carouselExampleIndicators" className="profile-card carousel slide" data-bs-ride="carousel">
       <div className="carousel-indicators top-indicators">
@@ -23,11 +25,11 @@ const ProfileCard = () => {
         </div>
         <div className="mt-2">
           <img src={girlwithdog} className="card-img" />
-          <h2 className="names"><strong>Shaggy</strong></h2>
-          <h5 className="sub-name">& Kelsey</h5>
-          <h6 className="breed-pill">Breed</h6>
-          <h6 className="dog-age-pill">12</h6>
-          <h6 className="dog-male-pill">Male</h6>
+          <h2 className="names"><strong>{data.dog_name}</strong></h2>
+          <h5 className="sub-name">& {data.owner_name}</h5>
+          <h6 className="breed-pill">{data.breed}</h6>
+          <h6 className="dog-age-pill">{data.dog_age}</h6>
+          <h6 className="dog-male-pill">{data.dog_sex}</h6>
           <div className="justify-content-center d-flex">
             <div>
               <i id="close" className="fa regular fa-circle-xmark"></i>
@@ -38,7 +40,7 @@ const ProfileCard = () => {
             <div>
               <i id="like" className="fa regular fa-circle-check"></i>
             </div>
-            <ProfileInfo />
+            <ProfileInfo data={data} />
           </div>
         </div>
       </div>

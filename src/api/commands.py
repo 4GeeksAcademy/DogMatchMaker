@@ -47,10 +47,9 @@ def setup_commands(app):
         print("Inserting test data...")
         
 
-def setup_user_data(app):
     @app.cli.command("insert-user-data")
     @click.argument("count")
-    def insert_user_data(num):
+    def insert_user_data(count):
         print("Creating user data")
         dogNames = [["Max", "Male"], ["Bella", "Female"], ["Charlie", "Male"], ["Luna", "Female"], 
                     ["Rocky", "Male"], ["Molly", "Female"], ["Duke", "Male"], ["Sadie", "Female"],
@@ -82,11 +81,11 @@ def setup_user_data(app):
             user.traits = random.sample(traits, 4)
             user.location = random.choice(cities)
             user.bio = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
-            
+        
             db.session.add(user)
         db.session.commit()
         # Insert data
-        print(f"{num} user data created.")
+        print(f"{count} user data created.")
 
             
             

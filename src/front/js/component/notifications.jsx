@@ -33,7 +33,7 @@ const Notifications = ({ style, setStyle }) => {
           toggleNotifications();
         }}
       >
-        <strong><i class="fa-solid fa-envelope"></i>Notifications</strong>
+        <strong><i className="fa-solid fa-envelope"></i>Notifications</strong>
       </a>
       <div
         className="offcanvas offcanvas-end"

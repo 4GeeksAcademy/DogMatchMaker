@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 from datetime import timedelta
 from datetime import timezone
-from flask import Flask, request, jsonify, send_from_directory
+from flask import Flask, request, jsonify, send_from_directory, render_template,redirect, url_for
 from flask_migrate import Migrate
 from api.utils import APIException, generate_sitemap
 from api.models import db
@@ -73,6 +73,17 @@ def serve_any_other_file(path):
 @app.route('/uploads/<filename>')
 def serve_uploads(filename):
     return send_from_directory('uploads', filename)
+
+
+
+
+
+
+
+
+
+
+
 
 # This only runs if `$ python app.py` is executed
 if __name__ == '__main__':

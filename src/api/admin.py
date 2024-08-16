@@ -11,6 +11,7 @@ def setup_admin(app):
     # Add your models here
     admin.add_view(ModelView(UserAccount, db.session))
     admin.add_view(ModelView(Contact, db.session))
+    
 
     # You can add other models in a similar way
     # admin.add_view(ModelView(YourModelName, db.session))

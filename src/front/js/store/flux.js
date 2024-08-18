@@ -40,8 +40,40 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.error("Error submitting contact form:", error);
                 }
             },
+            signup: async (formData) => {
+                try {
+                    const response = await fetch(process.env.BACKEND_URL + "/api/signup", {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData)
+                    });
 
-            // Handle logout
+                    const data = await response.json();
+                    
+                    if (response.ok) {
+                        return true; // Indicate success
+                    } else {
+                        alert(data.error || "Signup failed.");
+                        return false; // Indicate failure
+                    }
+                } catch (error) {
+                    console.error('There has been an error:', error);
+                    return false; // Indicate failure
+                }
+            },
+            checkUsernameExists: async (username) => {
+                try {
+                    const response = await fetch(`/api/check-username?username=${username}`);
+                    const data = await response.json();
+                    return data.exists; // Adjust according to your API response
+                } catch (error) {
+                    console.error("Error checking username:", error);
+                    return false;
+                }
+            },
+    
+    
+            // Handle logouta
             logout: () => {
                 sessionStorage.removeItem('token');
                 setStore({ token: null, section: 'logout', message: null });
@@ -66,6 +98,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.error("Error fetching message:", error);
                 }
             },
+            
 
             // Fetch data for a private area and handle unauthorized errors
             privateArea: async () => {

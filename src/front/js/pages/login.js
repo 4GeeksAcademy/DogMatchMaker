@@ -18,32 +18,45 @@ export const Login = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         
-        actions.login(inputs['email'], inputs['pswd']).then(() =>{
+        actions.login(inputs['email'], inputs['pswd']).then(() => {
             navigate("/");
         })
-      }
+    }
 
-      useEffect(() => {
-        if (store.token && store.token != '' && store.token != undefined ) navigate("/")
-      }, [store.token])
+    useEffect(() => {
+        if (store.token && store.token !== '' && store.token !== undefined) navigate("/")
+    }, [store.token])
 
     return (
-        <section className="h-100 h-custom" style={{ backgroundColor: "#72bfed" }}>
+        <section className="h-100 h-custom" style={{
+            position: 'relative',
+            overflow: 'hidden',
+            height: '100%'
+        }}>
+            <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundImage: "url('https://i0.wp.com/www.sciencenews.org/wp-content/uploads/2024/02/020124_eg_dog_breeds_feat.jpg?fit=1030%2C580&ssl=1')",
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                filter: 'blur(5px)',
+                zIndex: -1,
+                height: '100%',
+                width: '100%'
+            }}></div>
             <div className="container py-5 h-100">
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-lg-8 col-xl-6">
-                        <div className="card rounded-3">
-                            <img 
-                                src="https://i0.wp.com/www.sciencenews.org/wp-content/uploads/2024/02/020124_eg_dog_breeds_feat.jpg?fit=1030%2C580&ssl=1"
-                                className="w-100"
-                                style={{ 
-                                    borderTopLeftRadius: ".3rem", 
-                                    borderTopRightRadius: ".3rem", 
-                                    height: '400px', 
-                                    maxHeight: '400px'
-                                }}
-                                alt="Login"
-                            />
+                        <div className="card" style={{
+                            borderRadius: '15px', // Adjust this value to control the roundness
+                            boxShadow: '15px 17px 5px 2px rgba(0,0,0,0.52)',
+                            WebkitBoxShadow: '15px 17px 5px 2px rgba(0,0,0,0.52)',
+                            MozBoxShadow: '15px 17px 5px 2px rgba(0,0,0,0.52)'
+                        }}>
                             <div className="card-body p-4 p-md-5">
                                 <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Log In</h3>
                                 <form className="px-md-2" onSubmit={handleSubmit}>

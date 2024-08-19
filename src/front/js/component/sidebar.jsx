@@ -42,7 +42,6 @@ const Sidebar = () => {
           top: `${navbarHeight}px`,
           height: `calc(100vh - ${navbarHeight}px)`,
           width: "17%", 
-          borderTop: "1px solid lightgray",
         }}
       >
         <Link

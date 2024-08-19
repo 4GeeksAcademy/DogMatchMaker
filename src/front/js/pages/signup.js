@@ -97,10 +97,12 @@ export const Signup = () => {
     }
 
     return (
-        <section className="h-100 h-custom" style={{
+        <section className="h-100" style={{
             position: 'relative',
             overflow: 'hidden',
-            height: '100%'
+            margin: 0, // Ensure no margin
+            padding: 0, // Ensure no padding
+            height: '100vh' // Use viewport height to ensure full height
         }}>
             <div style={{
                 position: 'absolute',
@@ -117,7 +119,7 @@ export const Signup = () => {
                 height: '100%',
                 width: '100%'
             }}></div>
-            <div className="container py-5 h-100">
+            <div className="container py-5 h-100" style={{ position: 'relative', zIndex: 1 }}>
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-lg-8 col-xl-6">
                         <div className="card" style={{
@@ -127,46 +129,44 @@ export const Signup = () => {
                             MozBoxShadow: '15px 17px 5px 2px rgba(0,0,0,0.52)'
                         }}>
                             {step === 1 && (
-                                <>
-                                    <div className="card-body p-4 p-md-5">
-                                        <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Sign Up</h3>
-                                        <form className="px-md-2" onSubmit={(e) => { e.preventDefault(); handleNext(); }}>
-                                            <div className="form-outline mb-4">
-                                                <input 
-                                                    type="email" 
-                                                    id="email" 
-                                                    className="form-control" 
-                                                    name="email" 
-                                                    placeholder="Enter email" 
-                                                    value={inputs.email} 
-                                                    onChange={handleChange} 
-                                                    required 
-                                                />
-                                                <label className="form-label" htmlFor="email">Email <span style={{ color: 'red' }}>*</span></label>
-                                            </div>
-                                            <div className="form-outline mb-4">
-                                                <input 
-                                                    type="password" 
-                                                    id="password" 
-                                                    className="form-control" 
-                                                    name="password" 
-                                                    placeholder="Enter password" 
-                                                    value={inputs.password} 
-                                                    onChange={handleChange} 
-                                                    required 
-                                                />
-                                                <label className="form-label" htmlFor="password">Password <span style={{ color: 'red' }}>*</span></label>
-                                            </div>
-                                            <button 
-                                                type="submit" 
-                                                className="btn btn-success btn-lg mb-1" 
-                                                style={{ backgroundColor: "#f1b873", color: "black" }}
-                                            >
-                                                Next
-                                            </button>
-                                        </form>
-                                    </div>
-                                </>
+                                <div className="card-body p-4 p-md-5">
+                                    <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Sign Up</h3>
+                                    <form className="px-md-2" onSubmit={(e) => { e.preventDefault(); handleNext(); }}>
+                                        <div className="form-outline mb-4">
+                                            <input 
+                                                type="email" 
+                                                id="email" 
+                                                className="form-control" 
+                                                name="email" 
+                                                placeholder="Enter email" 
+                                                value={inputs.email} 
+                                                onChange={handleChange} 
+                                                required 
+                                            />
+                                            <label className="form-label" htmlFor="email">Email <span style={{ color: 'red' }}>*</span></label>
+                                        </div>
+                                        <div className="form-outline mb-4">
+                                            <input 
+                                                type="password" 
+                                                id="password" 
+                                                className="form-control" 
+                                                name="password" 
+                                                placeholder="Enter password" 
+                                                value={inputs.password} 
+                                                onChange={handleChange} 
+                                                required 
+                                            />
+                                            <label className="form-label" htmlFor="password">Password <span style={{ color: 'red' }}>*</span></label>
+                                        </div>
+                                        <button 
+                                            type="submit" 
+                                            className="btn btn-success btn-lg mb-1" 
+                                            style={{ backgroundColor: "#f1b873", color: "black" }}
+                                        >
+                                            Next
+                                        </button>
+                                    </form>
+                                </div>
                             )}
                             
                             {step === 2 && (

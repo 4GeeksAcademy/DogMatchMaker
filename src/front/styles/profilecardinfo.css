@@ -67,120 +67,117 @@
     transform: translateY(-2px);
 }
 
-.dog-pill-info-breed {
-    color: white;
-    margin: 0;
-    border: 1px solid white;
-    border-radius: 45px;
-    padding: 5px;
-    padding-right: 10px;
-    padding-left: 10px;
-    font-size: 13px;
+
+.back-card-names{
     position: absolute;
-    right: 180px;
-    top: 10px;
-    background-color: tan;
+    top: 65px;
+    left: 50px;
+    z-index: 2;
 }
 
-.dog-pill-info-age {
-    color: white;
+.back-dog-name {
+    color: black;
+    position: relative; 
+    z-index: 2;
     margin: 0;
-    border: 1px solid white;
-    border-radius: 45px;
-    padding: 5px;
-    padding-right: 10px;
-    padding-left: 10px;
-    font-size: 13px;
+    font-size: 40px;
+    font-weight: 600;
+}
+
+.back-owner-name{
+    color: black;
+    position: relative; 
+    z-index: 2;
+    margin: 0;
+    font-style: italic;
+    left: 90px;
+    bottom: 29px
+}
+
+.back-pills-line{
     position: absolute;
-    right: 137px;
-    top: 10px;
-    background-color: slategrey
+    bottom: 5px;
+    left: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the pills horizontally */
+    gap: 2px; /* Adjust the gap between the pills as needed */
+}
+
+.back-dog-info-pills{
+    position: relative;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    gap: 10px; 
 }
 
 
-.dog-pill-info-male {
+.back-dog-breed-pill{
     color: white;
-    margin: 0;
-    border: 1px solid white;
+    position: relative;
+    z-index: 2;
+    border: 1px solid;
     border-radius: 45px;
-    padding: 5px;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding: 5px 15px;
     font-size: 13px;
-    position: absolute;
-    right: 80px;
-    top: 10px;
+    background-color:tan;
+}
+
+.back-dog-age-pill {
+    color: white;
+    position: relative;
+    z-index: 2;
+    border: 1px solid;
+    border-radius: 45px;
+    padding: 5px 15px;
+    font-size: 13px;
+    background-color:slategrey;
+}
+
+.back-dog-sex-pill {
+    color: white;
+    position: relative;
+    z-index: 2;
+    border: 1px solid;
+    border-radius: 45px;
+    padding: 5px 15px;
+    font-size: 12px;
     background-color: steelblue;
 }
 
-.dog-pill-info-female {
+.location-info{
+    position: relative;
+    display: flex;
+    background-color: black;
+    border: 1px white solid;
+    border-radius: 50px;
+    padding: 5px 15px;
+    margin-bottom: 6px;
+    margin-left: 5px;
+    overflow: scroll;
+}
+
+.back-dog-breed-pill:hover,.back-dog-age-pill:hover, .back-dog-sex-pill:hover,.location-info:hover{
+    transform: translateY(-2px);
+    cursor: default;
+}
+
+.location-info > i{
+    color: rgb(220, 53, 69);
+    position: relative;
+    top: 1px;
+    right: 5px;
+    justify-content: space-between;
+    width: fit-content;
+}
+
+.location-info > p {
+    position: relative;
+    font-size: 12px;
     color: white;
     margin: 0;
-    border: 1px solid white;
-    border-radius: 45px;
-    padding: 5px;
-    padding-right: 10px;
-    padding-left: 10px;
-    font-size: 13px;
-    position: absolute;
-    right: 147px;
-    top: 10px;
-    background-color: violet;
-}
-
-.dog-pill-info-breed:hover {
-    transform: translateY(-2px);
-    cursor: default;
-}
-
-.dog-pill-info-age:hover {
-    transform: translateY(-2px);
-    cursor: default;
-}
-
-
-.dog-pill-info-male:hover {
-    transform: translateY(-2px);
-    cursor: default;
-}
-
-.dog-pill-info-female:hover {
-    transform: translateY(-2px);
-    cursor: default;
-
-}
-
-#dog-name {
-    color: white;
-    right: 250px;
-    position: absolute;
-    font-size: 32px;
-    padding-top: 8px;
-}
-
-.sub-name-info {
-    color: white;
-    font-style: italic;
-    position: absolute;
-    top: 35px;
-    right: 250px;
-    font-size: 25px;
-}
-
-#location {
-    font-size: 18px;
-    position: absolute;
-    right: 220px;
-    top: 46px;
-    color: rgb(220, 53, 69);
-}
-
-#location-text {
-    font-size: 15px;
-    position: absolute;
-    right: 70px;
-    top: 42px;
-    color: white;
+    width: fit-content;
 }
 
 .offcanvas-top {
@@ -189,18 +186,22 @@
     border: none;
 }
 
+.traits-pills{
+    position: absolute;
+    bottom: 10px;
+    left: 30px;
+    justify-content: space-between;
+    display: flex;
+    left: 83px;
+}
 .trait-pill1 {
     color: white;
     margin: 0;
     border: 1px solid black;
     border-radius: 45px;
-    padding: 5px;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding: 5px 15px 5px 15px;
     font-size: 13px;
-    position: absolute;
-    right: 305px;
-    top: 9px;
+    position: relative;
     background-color:yellowgreen;
 }
 
@@ -209,14 +210,11 @@
     margin: 0;
     border: 1px solid black;
     border-radius: 45px;
-    padding: 5px;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding: 5px 15px 5px 15px;
     font-size: 13px;
-    position: absolute;
-    right: 145px;
-    top: 9px;
+    position: relative;
     background-color:blueviolet;
+    margin: 0px 5px;
 }
 
 .trait-pill3 {
@@ -224,47 +222,24 @@
     margin: 0;
     border: 1px solid black;
     border-radius: 45px;
-    padding: 5px;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding: 5px 15px 5px 15px;
     font-size: 13px;
-    position: absolute;
-    right: 75px;
-    top: 9px;
+    position: relative;
     background-color:tomato;
 }
 
-.trait-pill4{
+/* .trait-pill4{
     color: white;
     margin: 0;
     border: 1px solid black;
     border-radius: 45px;
-    padding: 5px;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding: 5px 15px 5px 15px;
     font-size: 13px;
-    position: absolute;
-    right: 235px;
-    top: 9px;
+    position: relative;
     background-color:cadetblue;
-}
+} */
 
-.trait-pill1:hover{
-    transform: translateY(-2px);
-    cursor: default;
-}
-
-.trait-pill2:hover{
-    transform: translateY(-2px);
-    cursor: default;
-}
-
-.trait-pill3:hover{
-    transform: translateY(-2px);
-    cursor: default;
-}
-
-.trait-pill4:hover{
+.trait-pill1:hover, .trait-pill2:hover, .trait-pill3:hover{
     transform: translateY(-2px);
     cursor: default;
 }

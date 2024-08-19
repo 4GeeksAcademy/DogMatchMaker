@@ -117,107 +117,76 @@
     transform: translateY(-7px);
 }
 
-.names {
+.front-card-names{
+    position: absolute;
+    bottom: 110px;
+    left: 25px;
+}
+.front-dog-name {
     color: white;
-    position: absolute; 
-    bottom: 120px; 
-    left: 15px; 
+    position: relative; 
     z-index: 2;
     margin: 0;
+    font-size: 40px;
 }
 
-.sub-name{
+.front-owner-name{
     color: white;
-    position: absolute; 
-    bottom: 100px; 
-    left: 40px; 
+    position: relative; 
     z-index: 2;
     margin: 0;
     font-style: italic;
+    left: 1px;
 }
 
-.breed-pill{
+.front-dog-info-pills{
+    position: absolute;
+    bottom: 75px;
+    left: 15px;
+    justify-content: space-between;
+    display: flex;
+}
+
+
+.front-dog-breed-pill{
     color: white;
-    position: absolute; 
-    bottom: 70px; 
-    left: 10px; 
-    z-index: 2;
+    position: relative;
     margin: 0;
+    z-index: 2;
     border: 1px solid;
     border-radius: 45px;
-    padding: 5px;
-    padding-right: 15px;
-    padding-left: 15px;
+    padding: 5px 15px 5px 15px;
     font-size: 13px;
     background-color:tan;
 }
 
-.dog-age-pill {
+.front-dog-age-pill {
     color: white;
-    position: absolute; 
-    bottom: 70px; 
-    left: 80px; 
-    z-index: 2;
+    position: relative;
     margin: 0;
+    z-index: 2;
     border: 1px solid;
     border-radius: 45px;
-    padding: 5px;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding: 5px 15px 5px 15px;
     font-size: 13px;
     background-color:slategrey;
+    margin-right: 5px;
+    margin-left: 5px;
 }
 
-.dog-male-pill {
+.front-dog-sex-pill {
     color: white;
+    position: relative;
     margin: 0;
+    z-index: 2;
     border: 1px solid;
     border-radius: 45px;
-    padding: 5px;
-    padding-right: 10px;
-    padding-left: 10px;
+    padding: 5px 15px 5px 15px;
     font-size: 13px;
-    position: absolute;
-    bottom: 70px; 
-    left: 119px; 
-    z-index: 2;
     background-color: steelblue;
 }
 
-.dog-female-pill {
-    color: white;
-    margin: 0;
-    border: 1px solid;
-    border-radius: 45px;
-    padding: 5px;
-    padding-right: 10px;
-    padding-left: 10px;
-    font-size: 13px;
-    position: absolute;
-    bottom: 70px; 
-    left: 119px; 
-    z-index: 2;
-    background-color:violet;
-}
-
-.breed-pill:hover {
+.front-dog-breed-pill:hover, .front-dog-age-pill:hover, .front-dog-sex-pill:hover  {
     transform: translateY(-2px);
     cursor: default;
-}
-
-.dog-age-pill:hover {
-    transform: translateY(-2px);
-    cursor: default;
-}
-
-
-.dog-male-pill:hover {
-    transform: translateY(-2px);
-    cursor: default;
-}
-
-.dog-female-pill:hover {
-    transform: translateY(-2px);
-    cursor: default;
-
 }

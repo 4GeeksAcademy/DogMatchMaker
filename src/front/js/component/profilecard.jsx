@@ -3,9 +3,10 @@ import girlwithdog from "../../img/girlanddog2.jpg";
 import ProfileInfo from "./profilecardinfo.jsx";
 import "../../styles/profilecards.css";
 import { Context } from "../store/appContext.js";
+import FrontDogInfoPills from "./front-dog-info-pills.jsx";
 
-const ProfileCard = ({data, setNextCard, nextCard}) => {
-  const {store, actions} = useContext(Context)
+const ProfileCard = ({ data, setNextCard, nextCard }) => {
+  const { store, actions } = useContext(Context)
   return (
     <div id="carouselExampleIndicators" className="profile-card carousel slide" data-bs-ride="carousel">
       <div className="carousel-indicators top-indicators">
@@ -25,29 +26,35 @@ const ProfileCard = ({data, setNextCard, nextCard}) => {
         </div>
         <div className="mt-2">
           <img src={girlwithdog} className="card-img" />
-          <h2 className="names"><strong>{data.dog_name}</strong></h2>
-          <h5 className="sub-name">& {data.owner_name}</h5>
-          <h6 className="breed-pill">{data.breed}</h6>
-          <h6 className="dog-age-pill">{data.dog_age}</h6>
-          <h6 className="dog-male-pill">{data.dog_sex}</h6>
+          <div className="front-card-names">
+          <h2 className="front-dog-name"><strong>{data.dog_name}</strong></h2>
+          <h5 className="front-owner-name">& {data.owner_name}</h5>
+          </div>
+          <FrontDogInfoPills data={data}/>
           <div className="justify-content-center d-flex">
             <div>
-              <i id="close" className="fa regular fa-circle-xmark" onClick={()=>{setNextCard({
-                prev: nextCard.prev + 1,
-                next: nextCard.next + 1
-              })}}></i>
+              <i id="close" className="fa regular fa-circle-xmark" onClick={() => {
+                setNextCard({
+                  prev: nextCard.prev + 1,
+                  next: nextCard.next + 1
+                })
+              }}></i>
             </div>
             <div>
-              <i id="reverse" className="fa regular fa-circle-left" onClick={()=>{setNextCard({
-                prev: nextCard.prev - 1,
-                next: nextCard.next - 1
-              })}}></i>
+              <i id="reverse" className="fa regular fa-circle-left" onClick={() => {
+                setNextCard({
+                  prev: nextCard.prev - 1,
+                  next: nextCard.next - 1
+                })
+              }}></i>
             </div>
             <div>
-              <i id="like" className="fa regular fa-circle-check" onClick={()=>{setNextCard({
-                prev: nextCard.prev + 1,
-                next: nextCard.next + 1
-              })}}></i>
+              <i id="like" className="fa regular fa-circle-check" onClick={() => {
+                setNextCard({
+                  prev: nextCard.prev + 1,
+                  next: nextCard.next + 1
+                })
+              }}></i>
             </div>
             <ProfileInfo data={data} />
           </div>

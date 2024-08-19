@@ -19,12 +19,13 @@ export const Login = () => {
         event.preventDefault();
         
         actions.login(inputs['email'], inputs['pswd']).then(() =>{
-            navigate("/");
+            navigate("/private");
         })
       }
 
       useEffect(() => {
-        if (store.token && store.token != '' && store.token != undefined ) navigate("/")
+        if (store.token && store.token != '' && store.token != undefined ) navigate("/private")
+            
       }, [store.token])
 
     return (

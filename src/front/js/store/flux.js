@@ -42,7 +42,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             signup: async (formData) => {
                 try {
-                    const response = await fetch(process.env.BACKEND_URL + "/api/signup", {
+                    const response = await fetch(process.env.BACKEND_URL + "api/signup", {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(formData)
@@ -63,7 +63,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             },
             checkUsernameExists: async (username) => {
                 try {
-                    const response = await fetch(`/api/check-username?username=${username}`);
+                    const response = await fetch(process.env.BACKEND_URL + `api/check-username?username=${username}`);
                     const data = await response.json();
                     return data.exists; // Adjust according to your API response
                 } catch (error) {

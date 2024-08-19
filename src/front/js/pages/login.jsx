@@ -24,7 +24,7 @@ export const Login = () => {
 	};
 
 	useEffect(() => {
-		if (store.token && store.token !== '' && store.token !== undefined) navigate("/");
+		if (store.token && store.token !== '' && store.token !== undefined) navigate("/private");
 	}, [store.token]);
 
 	return (

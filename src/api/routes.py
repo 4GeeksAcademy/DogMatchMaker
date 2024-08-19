@@ -14,7 +14,7 @@ UPLOAD_FOLDER = 'uploads'
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
-@api.route('/api/signup', methods=['POST'])
+@api.route('/signup', methods=['POST'])
 @cross_origin()
 def signup():
     data = request.json
@@ -34,7 +34,7 @@ def signup():
     if not re.match(r'^[^@]+@[^@]+\.[^@]+$', email):
         return jsonify({'error': 'Invalid email address.'}), 400
 
-    hashed_password = generate_password_hash(password, method='sha256')
+    hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
 
     # Check if the email or username already exists
     existing_user = SignUp.query.filter_by(email=email).first()
@@ -197,9 +197,9 @@ def create_token():
     email = data.get("email")
     password = data.get("password")
 
-    Profile = Profile.query.filter_by(email=email).first()
-    if Profile and check_password_hash(Profile.password, password):
-        access_token = create_access_token(identity=Profile.email)
+    user = SignUp.query.filter_by(email=email).first()
+    if user and check_password_hash(user.password, password):
+        access_token = create_access_token(identity=user.email)
         response = jsonify({ "access_token": access_token })
         set_access_cookies(response, access_token)
         return response

@@ -4,6 +4,7 @@ import "../../styles/home.css";
 import { useNavigate } from "react-router-dom";
 import ProfileCard from "../component/profilecard.jsx";
 
+
 export const Private = () => {
 	const { store, actions } = useContext(Context);
 	const navigate = useNavigate();

@@ -28,10 +28,12 @@ export const Login = () => {
     }, [store.token])
 
     return (
-        <section className="h-100 h-custom" style={{
+        <section className="h-100" style={{
             position: 'relative',
             overflow: 'hidden',
-            height: '100%'
+            margin: 0, // Ensure no margin
+            padding: 0, // Ensure no padding
+            height: '100vh' // Use viewport height to ensure full height
         }}>
             <div style={{
                 position: 'absolute',
@@ -48,7 +50,7 @@ export const Login = () => {
                 height: '100%',
                 width: '100%'
             }}></div>
-            <div className="container py-5 h-100">
+            <div className="container py-5 h-100" style={{ position: 'relative', zIndex: 1 }}>
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-lg-8 col-xl-6">
                         <div className="card" style={{

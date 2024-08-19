@@ -7,7 +7,7 @@ from api.utils import generate_sitemap, APIException
 from flask_cors import CORS, cross_origin
 import json
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, set_access_cookies, unset_jwt_cookies
-import requests
+#import requests
 from werkzeug.utils import secure_filename
 import os
 

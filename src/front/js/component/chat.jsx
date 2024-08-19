@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ChatEngine, getOrCreateChat } from 'react-chat-engine';
 import { ChatEngineWrapper, Socket, ChatList, ChatFeed, ChatSettings, ChatSocket, NewMessageForm } from 'react-chat-engine'
+import "../../styles/home.css";
 
 export const Chat = (props) => {
 	const [username, setUsername] = useState('')
@@ -44,8 +45,8 @@ export const Chat = (props) => {
 			height='70vh'
  			projectID='229944ba-3c50-4575-9ad6-8715d919d3dc'
  			userName={props.name}
- 			userSecret={props.pass}
-			renderNewChatForm={(creds) => renderChatForm(creds)}
+ 			userSecret='123456'
+			renderNewChatForm={(creds) => {}}
             renderChatSettings={(creds) => {}}
            
  		/>

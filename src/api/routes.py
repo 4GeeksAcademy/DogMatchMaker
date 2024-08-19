@@ -82,7 +82,7 @@ def create_token():
 
     userAccount = UserAccount.query.filter_by(email=email).first()
 
-    if userAccount is None:  # Ensure you check hashed password
+    if userAccount is None:
         return jsonify({"msg": "Bad email or password"}), 401
     
     access_token = create_access_token(identity=userAccount.email)

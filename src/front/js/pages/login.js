@@ -1,58 +1,114 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/home.css";
 import { Link, useNavigate } from "react-router-dom";
 
 export const Login = () => {
-	const { store, actions } = useContext(Context);
+    const { store, actions } = useContext(Context);
     const navigate = useNavigate();
 
     const [inputs, setInputs] = useState({});
+    const [errorMessage, setErrorMessage] = useState(""); // State for error messages
 
     const handleChange = (event) => {
         const name = event.target.name;
         const value = event.target.value;
-        setInputs(values => ({...values, [name]: value}))
+        setInputs(values => ({ ...values, [name]: value }));
     }
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         
-        actions.login(inputs['email'], inputs['pswd'])
-      }
+        actions.login(inputs['email'], inputs['pswd']).then(() => {
+            navigate("/");
+        })
+    }
 
-      useEffect(() => {
-        if(store.token) navigate('/private')
-        }, [store.token])
+    useEffect(() => {
+        if (store.token && store.token !== '' && store.token !== undefined) navigate("/")
+    }, [store.token])
 
-	return (
-        
-		<div className="mt-5 d-flex justify-content-center">
-			<form className="row g-3" onSubmit={handleSubmit} >
-                <div className="mb-3 mt-3 text-end">
-                    Don't have an account? <Link to="/signup">Sign up</Link>
-                </div>
-                <div className="mb-3 mt-3">
-                    <label htmlFor="email" className="form-label">Email:</label>                    
-                    <div className="input-group has-validation">
-                        <span className="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="email" className="form-control" id="email" placeholder="Enter email" name="email" value={inputs.email || ""} onChange={handleChange} required/>
-                        <div className="valid-feedback">
-                            Looks good!
+    return (
+        <section className="h-100 h-custom" style={{
+            position: 'relative',
+            overflow: 'hidden',
+            height: '100%'
+        }}>
+            <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundImage: "url('https://i0.wp.com/www.sciencenews.org/wp-content/uploads/2024/02/020124_eg_dog_breeds_feat.jpg?fit=1030%2C580&ssl=1')",
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                filter: 'blur(5px)',
+                zIndex: -1,
+                height: '100%',
+                width: '100%'
+            }}></div>
+            <div className="container py-5 h-100">
+                <div className="row d-flex justify-content-center align-items-center h-100">
+                    <div className="col-lg-8 col-xl-6">
+                        <div className="card" style={{
+                            borderRadius: '15px', // Adjust this value to control the roundness
+                            boxShadow: '15px 17px 5px 2px rgba(0,0,0,0.52)',
+                            WebkitBoxShadow: '15px 17px 5px 2px rgba(0,0,0,0.52)',
+                            MozBoxShadow: '15px 17px 5px 2px rgba(0,0,0,0.52)'
+                        }}>
+                            <div className="card-body p-4 p-md-5">
+                                <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Log In</h3>
+                                <form className="px-md-2" onSubmit={handleSubmit}>
+                                    {errorMessage && (
+                                        <div className="alert alert-danger mb-4" role="alert" style={{ backgroundColor: "#f8d7da", color: "#721c24", borderColor: "#f5c6cb" }}>
+                                            {errorMessage}
+                                        </div>
+                                    )}
+                                    <div className="form-outline mb-4">
+                                        <input 
+                                            type="email" 
+                                            id="email" 
+                                            className="form-control" 
+                                            name="email" 
+                                            placeholder="Enter email" 
+                                            value={inputs.email || ""} 
+                                            onChange={handleChange} 
+                                            required 
+                                        />
+                                        <label className="form-label" htmlFor="email">Email <span style={{ color: 'red' }}>*</span></label>
+                                    </div>
+                                    <div className="form-outline mb-4">
+                                        <input 
+                                            type="password" 
+                                            id="pwd" 
+                                            className="form-control" 
+                                            name="pswd" 
+                                            placeholder="Enter password" 
+                                            value={inputs.pswd || ""} 
+                                            onChange={handleChange} 
+                                            required 
+                                        />
+                                        <label className="form-label" htmlFor="pwd">Password <span style={{ color: 'red' }}>*</span></label>
+                                    </div>
+                                    <div className="d-flex justify-content-between mb-4">
+                                        <button 
+                                            type="submit" 
+                                            className="btn btn-secondary btn-lg" 
+                                            style={{ backgroundColor: "#e4dcbd", color: "black" }}
+                                        >
+                                            Log In
+                                        </button>
+                                        <div className="text-end">
+                                            Don't have an account? <Link to="/signup" style={{ color: "#30598a" }}>Sign Up</Link>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="pwd" className="form-label">Password:</label>
-                    <input type="password" className="form-control" id="pwd" placeholder="Enter password" name="pswd" value={inputs.pswd || ""} onChange={handleChange} required/>
-                    <div className="valid-feedback">
-                    Looks good!
-                    </div>
-                </div>
-                <div className="col-12 text-center">
-                    <button className="btn btn-primary" type="submit" >Log in</button>
-                </div>
-                </form>
-		</div>
-	);
+            </div>
+        </section>
+    );
 };

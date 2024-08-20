@@ -14,7 +14,7 @@ export const Signup = () => {
         breed: '',
         dog_sex: '',
         bio: '',
-        interests: ''
+        traits: ''
     });
     const [profilePicture, setProfilePicture] = useState(null);
     const [preview, setPreview] = useState(null);

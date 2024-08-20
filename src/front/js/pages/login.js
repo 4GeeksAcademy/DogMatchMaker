@@ -18,14 +18,15 @@ export const Login = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         
-        actions.login(inputs['email'], inputs['pswd']).then(() => {
-            navigate("/");
+        actions.login(inputs['email'], inputs['pswd']).then(() =>{
+            navigate("/private");
         })
     }
 
-    useEffect(() => {
-        if (store.token && store.token !== '' && store.token !== undefined) navigate("/")
-    }, [store.token])
+      useEffect(() => {
+        if (store.token && store.token != '' && store.token != undefined ) navigate("/private")
+            
+      }, [store.token])
 
     return (
         <section className="h-100" style={{

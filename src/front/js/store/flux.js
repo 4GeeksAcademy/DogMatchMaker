@@ -62,7 +62,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				try{
 					console.log('logout')
 					sessionStorage.removeItem('token')
-					setStore({ token : null, section: 'logout', message: null, user: null})
+					setStore({ token : null, section: '/', message: null, user: null})
 					const resp = fetch(process.env.BACKEND_URL+"/api/logout", {
 						method: 'POST'
 						//credentials: 'include'
@@ -105,7 +105,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						})
 					};
 
-					const resp = await fetch(process.env.BACKEND_URL+"/api/token", requestOptions)
+					const resp = await fetch(process.env.BACKEND_URL+"api/token", requestOptions)
 					
 					if (resp.status !== 200) {
 						alert("There has been some error")

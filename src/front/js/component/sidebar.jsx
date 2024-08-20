@@ -3,44 +3,33 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import Notifications from "./notifications.jsx";
 import img from "../../img/m101.jpg";
+import "../../styles/sidebar.css";
+import { useNavigate } from "react-router-dom";
+
 
 const Sidebar = () => {
   const { store, actions } = useContext(Context);
   const [style, setStyle] = useState("discover");
   const [navbarHeight, setNavbarHeight] = useState(0);
+  const navigate = useNavigate()
 
   useEffect(() => {
-    // Get the height of the navbar and set it to state
     const navbarElement = document.querySelector(".navbar");
     if (navbarElement) {
       setNavbarHeight(navbarElement.offsetHeight);
     }
-
-    // Show the offcanvas by default
     const offcanvasElement = document.getElementById("offcanvasScrolling3");
     const bsOffcanvas = new bootstrap.Offcanvas(offcanvasElement);
     bsOffcanvas.show();
   }, []);
 
-  const changeSelected = () => {
-    if (style === "messages") {
-      setStyle("discover");
-    } else if (style === "discover") {
-      setStyle("notifications");
-    } else if (style === "notifications") {
-      setStyle("messages");
-    }
-  };
+  useEffect(() => {
+    navigate('/private')
+  }, []);
+
 
   return (
     <div className="">
-      <a
-        id="pullout-sidebar"
-        onClick={() => {}}
-        data-bs-toggle="offcanvas"
-        data-bs-target="#offcanvasScrolling3"
-        aria-controls="offcanvasScrolling3"
-      ></a>
       <hr className="mt-0" />
       <div
         className="offcanvas offcanvas-start"
@@ -50,10 +39,9 @@ const Sidebar = () => {
         id="offcanvasScrolling3"
         aria-labelledby="offcanvasScrollingLabel"
         style={{
-          top: `${navbarHeight}px`, // Position it below the navbar
-          height: `calc(100vh - ${navbarHeight}px)`, // Full height minus navbar
-          width: "17%", // Adjust width as needed
-          borderTop: "1px solid lightgray", // Add a top border
+          top: `${navbarHeight}px`,
+          height: `calc(100vh - ${navbarHeight}px)`,
+          width: "17%", 
         }}
       >
         <Link
@@ -76,7 +64,7 @@ const Sidebar = () => {
               </strong>
             </Link>
           </li>
-          <li className="rounded mt-4 mb-4 ms-2">
+          <li className="nav-item mt-2 mb-4 ms-2">
             <Link
               id="messages"
               to={"/messages"}
@@ -91,8 +79,34 @@ const Sidebar = () => {
               </strong>
             </Link>
           </li>
-          <li className="">
+          <li className="nav-item mb-2">
             <Notifications style={style} setStyle={setStyle} />
+          </li>
+          <li className="nav-item mt-4 mb-4 ms-2">
+            <Link
+              id="profile-pill"
+              to="/profile"
+              className={style === "profile" ? "selected" : ""}
+              onClick={() => {
+                console.log("clicked on profile");
+                if (style !== "profile") setStyle("profile");
+              }}
+            >
+              <strong><i className="fa-solid fa-circle-user"></i>Profile</strong>
+            </Link>
+          </li>
+          <li className="nav-item mt-2 mb-4 ms-2">
+            <Link
+              id="settings-pill"
+              to="/settings"
+              className={style === "settings" ? "selected" : ""}
+              onClick={() => {
+                console.log("clicked on settings");
+                if (style !== "settings") setStyle("settings");
+              }}
+            >
+              <strong><i className="fa-solid fa-gear"></i>Settings</strong>
+            </Link>
           </li>
         </ul>
         <hr />
@@ -118,15 +132,6 @@ const Sidebar = () => {
             aria-labelledby="dropdownUser2"
           >
             <li>
-              <Link className="dropdown-item" to="/profile">
-                Profile
-              </Link>
-              <Link className="dropdown-item" to="/settings">
-                Settings
-              </Link>
-            </li>
-            <li>
-              <hr className="dropdown-divider" />
             </li>
             <li>
               <Link

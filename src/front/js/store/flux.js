@@ -20,7 +20,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             
             submitContactForm: async (formData) => {
                 try {
-                    const response = await fetch(process.env.BACKEND_URL + "/api/contact", {
+                    const response = await fetch(process.env.BACKEND_URL + "api/contact", {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     let requestOptions = {
                         headers: { 'Authorization': 'Bearer ' + store.token }
                     };
-                    const response = await fetch(process.env.BACKEND_URL + "/api/private", requestOptions);
+                    const response = await fetch(process.env.BACKEND_URL + "api/private", requestOptions);
                     const data = await response.json();
                     if (response.status === 401) {
                         getActions().logout();
@@ -96,7 +96,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                             "email": email, 
                             "password": password })
                     };
-                    const response = await fetch(process.env.BACKEND_URL + "/api/token", requestOptions);
+                    const response = await fetch(process.env.BACKEND_URL + "api/token", requestOptions);
                     if (response.status !== 200) {
                         alert("There has been an error");
                         return false;

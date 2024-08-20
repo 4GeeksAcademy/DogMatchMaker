@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { BackendURL } from "./component/backendURL";
 import injectContext, { Context } from "./store/appContext";
-
+import { UserProfile } from "./pages/Profile.jsx";
 import { Home } from "./pages/home.jsx";
 import { Login } from "./pages/login";
 import { Signup } from "./pages/signup";
@@ -17,7 +17,7 @@ import { Footer } from "./component/footer.jsx";
 import ScrollToTop from "./component/scrollToTop.jsx";
 import Messages from "./pages/messages.jsx";
 import Sidebar from "./component/sidebar.jsx";
-import Profile from "./pages/profile.jsx";
+import Profile from "./pages/Profile.jsx";
 import Notifications from "./component/notifications.jsx";
 import Settings from "./pages/settings.jsx";
 
@@ -43,7 +43,7 @@ const Layout = () => {
                         <Route element={<Login />} path="/login" />
                         <Route element={<Private />} path="/private" />
                         <Route element={< Messages/>} path="/messages" />
-                        <Route element={< Profile/>} path="/profile" />
+                        <Route element={< UserProfile/>} path="/Profile" />
                         <Route element={< Settings/>} path="/settings" />
                         <Route element={< Notifications/>} path="/notifications" />
                         <Route element={<Signup />} path="/signup" />

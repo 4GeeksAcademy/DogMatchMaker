@@ -128,7 +128,7 @@ const Sidebar = () => {
             <strong style={{ fontSize: "15px" }}>UserName</strong>
           </Link>
           <ul
-            className="dropdown-menu text-small shadow"
+            className="dropdown-menu text-small shadow text-center"
             aria-labelledby="dropdownUser2"
           >
             <li>
@@ -138,6 +138,7 @@ const Sidebar = () => {
                 onClick={() => actions.logout()}
                 className="dropdown-item"
                 to="#"
+                style={{fontSize: '17px'}}
               >
                 Sign out
               </Link>

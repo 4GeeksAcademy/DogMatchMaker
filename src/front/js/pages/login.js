@@ -61,7 +61,7 @@ export const Login = () => {
                             MozBoxShadow: '15px 17px 5px 2px rgba(0,0,0,0.52)'
                         }}>
                             <div className="card-body p-4 p-md-5">
-                                <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Log In</h3>
+                                <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2 text-center" style={{fontWeight: 'bold',}}>Log In</h3>
                                 <form className="px-md-2" onSubmit={handleSubmit}>
                                     {errorMessage && (
                                         <div className="alert alert-danger mb-4" role="alert" style={{ backgroundColor: "#f8d7da", color: "#721c24", borderColor: "#f5c6cb" }}>
@@ -97,13 +97,13 @@ export const Login = () => {
                                     <div className="d-flex justify-content-between mb-4">
                                         <button 
                                             type="submit" 
-                                            className="btn btn-secondary btn-lg" 
-                                            style={{ backgroundColor: "#e4dcbd", color: "black" }}
+                                            className="login-page-btn btn-secondary btn-lg" 
+                                            style={{ background: 'radial-gradient(circle, #344964 0%, #2b2c41 100%)', color: "white"}}
                                         >
                                             Log In
                                         </button>
                                         <div className="text-end">
-                                            Don't have an account? <Link to="/signup" style={{ color: "#30598a" }}>Sign Up</Link>
+                                            Don't have an account? <Link to="/signup" className="login-page-signup" style={{ color: 'radial-gradient(circle, #344964 0%, #2b2c41 100%)', boxShadow: '', fontWeight: 'bold'}}>Sign Up</Link>
                                         </div>
                                     </div>
                                 </form>

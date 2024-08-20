@@ -18,13 +18,18 @@ export const Home = () => {
     <div className="container-fluid mt-5">
       <div className="row align-items-center">
         <div className="col-md-6">
-          <img src={Paw_Friends} alt="Description" className="img-fluid rounded-circle "width="500" height="500" />
+          <img src={Paw_Friends} alt="Description" className="img-fluid rounded-circle " width="500" height="500" />
         </div>
         <div className="col-md-6 text-center btn-primary-sm">
-          <h1 className="fw-bold fs-1 mb-4 mt-3">Paw Friends where nearby paws find their perfect match</h1>
+          <p className="fw-bold fs-1 mb-4 mt-3" >Paw Friends where nearby paws find their perfect match</p>
+        <div className="d-flex justify-content-center" style={{ gap: '5px'}}>
           <Link to="/signup">
-            <button className="btn-primary-sm btn btn-primary btn-lg col-6" >Sign Up</button>
-            </Link>
+            <button className="btn-signup btn btn-lg" style={{padding: '5px 15px', color: 'white',background: 'radial-gradient(circle, #344964 0%, #2b2c41 100%)', borderColor: 'black',  borderRadius: '45px'}}>Sign Up</button>
+          </Link>
+          <Link to="/login">
+            <button type="button" className="register-login-button btn btn-lg" style={{padding: '5px 15px', background: 'radial-gradient(circle, #4580a5 0%, #3e6889 100%)', borderColor: 'black', color: 'white', borderRadius: '45px'}}>Log in</button>
+          </Link>
+        </div>
         </div>
       </div>
     </div>

@@ -31,8 +31,8 @@
 #notifications:hover,
 #settings-pill:hover,
 #profile-pill:hover {
-    background: radial-gradient(circle, rgba(79, 155, 197, 1) 0%, rgba(76, 140, 172, 1) 100%);
-    box-shadow: 3px 5px 8px rgb(79, 155, 197);
+    background: radial-gradient(circle, #344964 0%, #2b2c41 100%);
+    box-shadow: 3px 5px 8px #2b2c41;
     color: #fff;
     transform: translateY(-7px);
     padding: 5px 15px 5px 15px;
@@ -53,8 +53,8 @@ a:hover {
 #messages.selected,
 #profile-pill.selected,
 #settings-pill.selected {
-    background: radial-gradient(circle, rgba(79, 155, 197, 1) 0%, rgba(76, 140, 172, 1) 100%);
-    box-shadow: 3px 8px 13px rgb(79, 155, 197);
+    background: radial-gradient(circle, #344964 0%, #2b2c41 100%);
+    box-shadow: 3px 8px 13px #3d6484;
     color: #fff;
     transform: translateY(-7px);
     padding: 5px 15px 5px 15px;
@@ -71,3 +71,4 @@ a:hover {
 }
 
 /*SIDEBAR BUTTONS*/
+

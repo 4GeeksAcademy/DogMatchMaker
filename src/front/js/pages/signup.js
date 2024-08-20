@@ -19,6 +19,7 @@ export const Signup = () => {
     const [profilePicture, setProfilePicture] = useState(null);
     const [preview, setPreview] = useState(null);
     const [breeds, setBreeds] = useState([]);
+    const [alertVisible, setAlertVisible] = useState(false); // State for alert visibility
     const navigate = useNavigate();
 
     // Fetch breeds from API
@@ -90,7 +91,12 @@ export const Signup = () => {
 
             const result = await response.json();
             console.log(result);
-            navigate('/login');
+
+            // Show alert and redirect after 5 seconds
+            setAlertVisible(true);
+            setTimeout(() => {
+                navigate('/login');
+            }, 5000);
         } catch (error) {
             console.error('There was a problem with the fetch operation:', error);
         }
@@ -128,6 +134,11 @@ export const Signup = () => {
                             WebkitBoxShadow: '15px 17px 5px 2px rgba(0,0,0,0.52)',
                             MozBoxShadow: '15px 17px 5px 2px rgba(0,0,0,0.52)'
                         }}>
+                            {alertVisible && (
+                                <div className="alert alert-success" role="alert">
+                                    Signup complete Successfully
+                                </div>
+                            )}
                             {step === 1 && (
                                 <div className="card-body p-4 p-md-5">
                                     <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Sign Up</h3>

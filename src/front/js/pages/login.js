@@ -17,15 +17,36 @@ export const Login = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        
-        actions.login(inputs['email'], inputs['pswd']).then(() =>{
-            navigate("/");
-        })
-      }
 
-      useEffect(() => {
-        if (store.token && store.token != '' && store.token != undefined ) navigate("/")
-      }, [store.token])
+        const { email, pswd } = inputs;
+
+        // Ensure email and password are provided
+        if (!email || !pswd) {
+            setErrorMessage("Please fill in all required fields.");
+            return;
+        }
+
+        try {
+            const result = await actions.login(email, pswd);
+
+            // Handle successful login
+            if (result.success) {
+                localStorage.setItem('access_token', result.token); // Store token in local storage
+                navigate("/");
+            } else {
+                setErrorMessage(result.message || "Login failed. Please try again.");
+            }
+        } catch (error) {
+            setErrorMessage("An error occurred. Please try again.");
+            console.error('Login error:', error);
+        }
+    }
+
+    useEffect(() => {
+        if (store.token) {
+            navigate("/");
+        }
+    }, [store.token, navigate]);
 
     return (
         <section className="h-100 h-custom" style={{ backgroundColor: "#72bfed" }}>

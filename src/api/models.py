@@ -1,5 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+from werkzeug.security import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
 
@@ -40,6 +41,12 @@ class UserAccount(db.Model):
             'email': self.email,
             'account_created': self.account_created
         }
+
+    def set_password(self, password):
+        self.password = generate_password_hash(password)
+    
+    def check_password(self, password):
+        return check_password_hash(self.password, password)
 
 class Like(db.Model):
     __tablename__ = 'likes'

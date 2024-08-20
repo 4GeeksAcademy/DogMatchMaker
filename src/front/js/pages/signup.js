@@ -105,7 +105,6 @@ export const Signup = () => {
             console.error('There was a problem with the fetch operation:', error);
         }
     }
-  };
 
     return (
         <section className="h-100" style={{

@@ -1,71 +1,33 @@
-import React, { useState, useEffect } from "react";
-import "../../styles/index.css";
-import { Link } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import "../../styles/notifications.css";
+import { Context } from "../store/appContext";
 
-const Notifications = ({ style, setStyle }) => {
-  const [navbarHeight, setNavbarHeight] = useState(0);
+const Notifications = () => {
+  const { store, actions } = useContext(Context);
+  const [isVisible, setIsVisible] = useState('true')
 
   useEffect(() => {
-    // Get the height of the navbar and set it to state
-    const navbarElement = document.querySelector(".navbar");
-    if (navbarElement) {
-      setNavbarHeight(navbarElement.offsetHeight);
-    }
-  }, []);
+    setIsVisible(store.var)
+  },[store.var])
 
-  const toggleNotifications = () => {
-    const notificationsOffcanvas = document.getElementById("offcanvasScrolling1");
-    const bootstrapOffcanvas = bootstrap.Offcanvas.getOrCreateInstance(notificationsOffcanvas);
 
-    if (notificationsOffcanvas.classList.contains("show")) {
-      bootstrapOffcanvas.hide();
-    } else {
-      bootstrapOffcanvas.show();
+  const handleVisibility = () => {
+    if (isVisible === true) {
+      setIsVisible(false)
     }
-  };
+    else if (isVisible !== true) {
+      setIsVisible(true)
+    }
+  }
 
   return (
-    <div className="mt-2 ms-2">
-      <a
-        id="notifications"
-        onClick={() => {
-          console.log("clicked on notifications");
-          toggleNotifications();
-        }}
-      >
-        <strong><i className="fa-solid fa-envelope"></i>Notifications</strong>
-      </a>
-      <div
-        className="offcanvas offcanvas-end"
-        data-bs-scroll="true"
-        data-bs-backdrop="false"
-        tabIndex="-1"
-        id="offcanvasScrolling1"
-        aria-labelledby="offcanvasScrollingLabel"
-        style={{
-          top: `${navbarHeight}px`, // Position it below the navbar
-          height: `calc(100vh - ${navbarHeight}px)`, // Full height minus navbar
-          width: '100%', // Full width of the right side
-        }}
-      >
-        <div className="offcanvas-header">
-          <h5 className="offcanvas-title" id="offcanvasScrollingLabel">
-            Notifications
-          </h5>
-          <button
-            type="button"
-            className="btn-close"
-            data-bs-dismiss="offcanvas"
-            aria-label="Close"
-          ></button>
-        </div>
-        <div className="offcanvas-body">
-          <p>
-            Try scrolling the rest of the page to see this option in action.
-          </p>
-        </div>
+    <>
+
+      
+      <div className="my-pullout" style={{ display: isVisible ? 'block' : 'none' }}>
+        <h1>hello fucers</h1>
       </div>
-    </div>
+    </>
   );
 };
 

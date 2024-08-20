@@ -1,0 +1,8 @@
+.my-pullout{
+    height: 50rem;
+    width: 20rem;
+    position: absolute;
+    left: 1200px;
+    top: 0px;
+    border-left: 1px solid black;
+}

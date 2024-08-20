@@ -27,6 +27,19 @@ const Sidebar = () => {
     navigate('/private')
   }, []);
 
+  const [isVisible, setIsVisible] = useState(true)
+
+  const handleVisibility = () => {
+    if (isVisible === true) {
+      actions.changeVisible(false)
+      setIsVisible(false)
+    }
+    else if (isVisible !== true) {
+      setIsVisible(true)
+      actions.changeVisible(true)
+      
+    }
+  }
 
   return (
     <div className="">
@@ -80,7 +93,9 @@ const Sidebar = () => {
             </Link>
           </li>
           <li className="nav-item mb-2">
-            <Notifications style={style} setStyle={setStyle} />
+          <a id="notifications" onClick={handleVisibility} className="mt-2 ms-2">
+        <strong><i className="fa-solid fa-envelope"></i>Notifications</strong>
+      </a>
           </li>
           <li className="nav-item mt-4 mb-4 ms-2">
             <Link

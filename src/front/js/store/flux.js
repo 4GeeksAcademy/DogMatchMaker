@@ -7,6 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			user: '',
 			token: '',
 			section: null,
+			var: false,
 			demo: [
 				{
 					title: "FIRST",
@@ -25,7 +26,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-
+			changeVisible: (value) => {
+				setStore({var : value})
+			},
 			getMessage: async () => {
 				try{
 					// fetching data from the backend

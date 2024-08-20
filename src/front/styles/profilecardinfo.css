@@ -4,23 +4,23 @@
 }
 
 
-.offcanvas {
+#offcanvasScrolling2{
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
   }
   
-  .offcanvas.show {
+  #offcanvasScrolling2.show {
     transform: translateY(0);
     opacity: 1;
   }
   
-  .offcanvas:not(.show) {
+  #offcanvasScrolling2:not(.show) {
     transform: translateY(100%);
     opacity: 0;
   }
   
-  .offcanvas-backdrop {
+ /*  .offcanvas-backdrop {
     transition: opacity 0.3s ease-in-out;
-  }
+  } */
   
 
 #view-info {

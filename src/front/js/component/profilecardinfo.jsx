@@ -38,11 +38,8 @@ const ProfileInfo = ({ data }) => {
         <div className="offcanvas-top">
           <div className="offcanvas-header">
             <div className="back-card-names">
-              <h3 className="back-dog-name">
-                {data.dog_name}
-              </h3>
-              <h5 className="back-owner-name">
-                & {data.owner_name}
+              <h5 className="back-dog-and-owner-name">
+                About {data.dog_name} & {data.owner_name}
               </h5>
             </div>
             <div className="back-pills-line">
@@ -69,7 +66,7 @@ const ProfileInfo = ({ data }) => {
               className="bio form-control p-1 m-0"
               id="exampleFormControlTextarea1"
               placeholder="Your super cool bio!"
-              rows="6"
+              rows="5"
               readOnly
             >
               {data.bio}

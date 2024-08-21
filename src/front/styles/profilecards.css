@@ -122,6 +122,8 @@
     position: absolute;
     bottom: 110px;
     left: 25px;
+    display: flex;
+    gap: 6px;
 }
 .front-dog-name {
     color: white;
@@ -137,7 +139,8 @@
     z-index: 2;
     margin: 0;
     font-style: italic;
-    left: 1px;
+    top: 20px;
+    font-size: 20px;
 }
 
 .front-dog-info-pills{

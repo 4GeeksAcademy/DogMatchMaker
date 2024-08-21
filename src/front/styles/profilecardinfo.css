@@ -6,6 +6,7 @@
 
 #offcanvasScrolling2{
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    background-color: #1b1b1c;
   }
   
   #offcanvasScrolling2.show {
@@ -75,23 +76,15 @@
     z-index: 2;
 }
 
-.back-dog-name {
-    color: black;
+.back-dog-and-owner-name {
+    color: white;
     position: relative; 
     z-index: 2;
     margin: 0;
-    font-size: 40px;
+    font-size: 25px;
     font-weight: 600;
-}
-
-.back-owner-name{
-    color: black;
-    position: relative; 
-    z-index: 2;
-    margin: 0;
-    font-style: italic;
-    left: 90px;
-    bottom: 29px
+    top: 13px;
+    left: 40px;
 }
 
 .back-pills-line{
@@ -173,15 +166,13 @@
     top: 1px;
     right: 5px;
     justify-content: space-between;
-    width: fit-content;
 }
 
 .location-info > p {
     position: relative;
-    font-size: 12px;
+    font-size: 10px;
     color: white;
     margin: 0;
-    width: fit-content;
 }
 
 .offcanvas-top {
@@ -201,7 +192,7 @@
 .trait-pill1 {
     color: white;
     margin: 0;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 45px;
     padding: 5px 15px 5px 15px;
     font-size: 13px;
@@ -212,7 +203,7 @@
 .trait-pill2 {
     color: white;
     margin: 0;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 45px;
     padding: 5px 15px 5px 15px;
     font-size: 13px;
@@ -224,7 +215,7 @@
 .trait-pill3 {
     color: white;
     margin: 0;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 45px;
     padding: 5px 15px 5px 15px;
     font-size: 13px;
@@ -239,6 +230,6 @@
 
 .bio {
     position: absolute;
-    bottom: 45px;
+    bottom: 60px;
     width: 90%;
 }

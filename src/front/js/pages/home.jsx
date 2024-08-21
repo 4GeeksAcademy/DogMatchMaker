@@ -21,7 +21,7 @@ export const Home = () => {
           <img src={Paw_Friends} alt="Description" className="img-fluid rounded-circle " width="500" height="500" />
         </div>
         <div className="col-md-6 text-center btn-primary-sm">
-          <p className="fw-bold fs-1 mb-4 mt-3" >Paw Friends where nearby paws find their perfect match</p>
+          <h1 className="fw-bold fs-1 mb-4 mt-3 ">Paw Friends where nearby paws find their perfect match</h1>
         <div className="d-flex justify-content-center" style={{ gap: '5px'}}>
           <Link to="/signup">
             <button className="btn-signup btn btn-lg" style={{padding: '5px 15px', color: 'white',background: 'radial-gradient(circle, #344964 0%, #2b2c41 100%)', borderColor: 'black',  borderRadius: '45px'}}>Sign Up</button>

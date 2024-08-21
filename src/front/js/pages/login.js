@@ -7,7 +7,7 @@ export const Login = () => {
     const navigate = useNavigate();
 
     const [inputs, setInputs] = useState({});
-    const [errorMessage, setErrorMessage] = useState(""); // State for error messages
+    const [errorMessage, setErrorMessage] = useState(""); 
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -17,24 +17,44 @@ export const Login = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        const { email, pswd } = inputs;
+
         
-        actions.login(inputs['email'], inputs['pswd']).then(() =>{
-            navigate("/private");
-        })
+        if (!email || !pswd) {
+            setErrorMessage("Please fill in all required fields.");
+            return;
+        }
+
+        try {
+            const result = await actions.login(email, pswd);
+
+            
+            if (result.success) {
+                localStorage.setItem('access_token', result.token); 
+                navigate("/");
+            } else {
+                setErrorMessage(result.message || "Login failed. Please try again.");
+            }
+        } catch (error) {
+            setErrorMessage("An error occurred. Please try again.");
+            console.error('Login error:', error);
+        }
     }
 
-      useEffect(() => {
-        if (store.token && store.token != '' && store.token != undefined ) navigate("/private")
-            
-      }, [store.token])
+    useEffect(() => {
+        if (store.token) {
+            navigate("/");
+        }
+    }, [store.token, navigate]);
 
     return (
         <section className="h-100" style={{
             position: 'relative',
             overflow: 'hidden',
-            margin: 0, // Ensure no margin
-            padding: 0, // Ensure no padding
-            height: '100vh' // Use viewport height to ensure full height
+            margin: 0, 
+            padding: 0, 
+            height: '100vh' 
         }}>
             <div style={{
                 position: 'absolute',
@@ -55,7 +75,7 @@ export const Login = () => {
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-lg-8 col-xl-6">
                         <div className="card" style={{
-                            borderRadius: '15px', // Adjust this value to control the roundness
+                            borderRadius: '15px', 
                             boxShadow: '15px 17px 5px 2px rgba(0,0,0,0.52)',
                             WebkitBoxShadow: '15px 17px 5px 2px rgba(0,0,0,0.52)',
                             MozBoxShadow: '15px 17px 5px 2px rgba(0,0,0,0.52)'

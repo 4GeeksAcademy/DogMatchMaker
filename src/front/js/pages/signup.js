@@ -105,7 +105,7 @@ export const Signup = () => {
             console.error('There was a problem with the fetch operation:', error);
         }
     }
-  };
+  
 
     return (
         <section className="h-100" style={{
@@ -342,15 +342,15 @@ export const Signup = () => {
                                                 </div>
                                                 <div className="form-outline mb-4">
                                                     <textarea 
-                                                        id="interests" 
+                                                        id="traits" 
                                                         className="form-control" 
-                                                        name="interests" 
-                                                        placeholder="Interests" 
-                                                        value={inputs.interests} 
+                                                        name="traits" 
+                                                        placeholder="traits" 
+                                                        value={inputs.traits} 
                                                         onChange={handleChange} 
                                                         rows="3"
                                                     />
-                                                    <label className="form-label" htmlFor="interests">Interests</label>
+                                                    <label className="form-label" htmlFor="traits">Traits</label>
                                                 </div>
                                             </div>
                                         </div>

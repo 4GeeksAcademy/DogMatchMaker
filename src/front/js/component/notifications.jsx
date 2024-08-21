@@ -22,8 +22,6 @@ const Notifications = () => {
 
   return (
     <>
-
-      
       <div className="my-pullout" style={{ display: isVisible ? 'block' : 'none' }}>
         <h1>hello fucers</h1>
       </div>

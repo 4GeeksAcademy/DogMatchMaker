@@ -21,11 +21,9 @@ const Notifications = () => {
   }
 
   return (
-    <>
-      <div className="my-pullout" style={{ display: isVisible ? 'block' : 'none' }}>
-        <h1>hello fucers</h1>
+      <div className="my-pullout text-center" style={{ display: isVisible ? 'block' : 'none' }}>
+        <i className="fa-solid fa-envelope"></i><p className="noti-title">Notifications</p>
       </div>
-    </>
   );
 };
 

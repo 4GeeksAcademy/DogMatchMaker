@@ -51,12 +51,22 @@ def setup_commands(app):
     @click.argument("count")
     def insert_user_data(count):
         print("Creating user data")
-        dogNames = [["Max", "Male"], ["Bella", "Female"], ["Charlie", "Male"], ["Luna", "Female"], 
-                    ["Rocky", "Male"], ["Molly", "Female"], ["Duke", "Male"], ["Sadie", "Female"],
-                    ["Cooper", "Male"], ["Lucy", "Female"]]
+        dogNames = [
+    ["Max", "Male"], ["Bella", "Female"], ["Charlie", "Male"], ["Luna", "Female"], 
+    ["Rocky", "Male"], ["Molly", "Female"], ["Duke", "Male"], ["Sadie", "Female"],
+    ["Cooper", "Male"], ["Lucy", "Female"],
+    ["Buddy", "Male"], ["Daisy", "Female"], ["Jack", "Male"], ["Sophie", "Female"],
+    ["Toby", "Male"], ["Chloe", "Female"], ["Zeus", "Male"], ["Lola", "Female"],
+    ["Buster", "Male"], ["Zoey", "Female"]
+]
        
-        owner_names = ['Emily', 'Sarah', 'James', 'Jessica', 'John', 'Michael', 'David', 'Sophia', 
-                       'Olivia', 'Daniel']
+        owner_names = [
+    'Emily', 'Sarah', 'James', 'Jessica', 'John', 'Michael', 'David', 'Sophia', 
+    'Olivia', 'Daniel',
+    'Emma', 'Liam', 'Isabella', 'Noah', 'Mia', 'Ethan', 'Ava', 'Lucas', 
+    'Charlotte', 'Alexander'
+]
+
        
         traits = ['Independent', 'Stubborn', 'Protective', 'Patient', 'Playful', 'Adaptable', 
                   'Sensitive', 'Loving', 'Shy', 'Confident', 'Clingy', 'Friendly', 'Courageous', 
@@ -64,10 +74,10 @@ def setup_commands(app):
                   'Intelligent', 'Sociable', 'Calm', 'Resourceful', 'Watchful', 'Curious', 'Active', 
                   'Obedient', 'Gentle', 'Brave']
         
-        cities = ['West Palm Beach', 'Doral', 'Fort Lauderdale', 'Delray Beach', 'Coral Springs', 
-                  'Pembroke Pines', 'Boca Raton', 'Miami', 'Hollywood', 'Hialeah']
+        cities = ['West Palm Beach, FL', 'Doral, FL', 'Fort Lauderdale, FL', 'Delray Beach, FL', 'Coral Springs, FL', 
+                  'Pembroke Pines, FL', 'Boca Raton, FL', 'Miami, FL', 'Hollywood, FL', 'Hialeah, FL']
 
-        for x in range(1,11):
+        for x in range(1,21):
             owner_name = random.choice(owner_names)
             user = UserAccount()
             user.owner_name = owner_name
@@ -78,7 +88,7 @@ def setup_commands(app):
             user.dog_age = random.randint(1, 12)
             user.dog_sex = randog[1]
             user.breed = random.choice(breed_list)
-            user.traits = random.sample(traits, 4)
+            user.traits = random.sample(traits, 3)
             user.location = random.choice(cities)
             user.bio = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
         

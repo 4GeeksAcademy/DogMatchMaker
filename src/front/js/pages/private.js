@@ -34,7 +34,7 @@ export const Private = () => {
 
   return (
     <div className="text-center">
-      <div className="row">
+      <div className="container-fluid row">
 	  
         <div className="col-8 justify-content-end mt-4 d-flex">
           {users !== null &&

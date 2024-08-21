@@ -2,7 +2,13 @@
     height: 50rem;
     width: 20rem;
     position: absolute;
-    left: 1200px;
-    top: 0px;
+    left: 1160px;
+    top: 110px;
     border-left: 1px solid black;
 }
+
+.noti-title{
+    font-size: 25px;
+    top: 20px;
+}
+

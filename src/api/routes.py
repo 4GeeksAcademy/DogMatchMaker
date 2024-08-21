@@ -60,7 +60,6 @@ def create_user():
         breed=breed,
         dog_sex=dog_sex,
         bio=bio,
-        interests=interests,
         profile_picture=profile_picture_filename
     )
 

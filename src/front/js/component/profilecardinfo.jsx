@@ -1,6 +1,7 @@
 import React from "react";
 import "../../styles/profilecardinfo.css";
 import BackDogInfoPills from "./back-dog-info-pills.jsx";
+import TraitPills from "./back-trait-pills.jsx";
 
 const ProfileInfo = ({ data }) => {
   const toggleNotifications = () => {
@@ -48,7 +49,7 @@ const ProfileInfo = ({ data }) => {
             <BackDogInfoPills data={data} />
             <div className="location-info">
               <i className="fa-solid fa-location-dot"></i>
-              <p>{data.location}, FL</p>
+              <p>{data.location}</p>
             </div>
             </div>
           </div>
@@ -63,17 +64,7 @@ const ProfileInfo = ({ data }) => {
         </div>
         <div className="offcanvas-body my-1 mx-1">
           <div className="text-start">
-            <div className="traits-pills">
-            <h5 className="trait-pill1">
-              Friendly
-            </h5>
-            <h5 className="trait-pill2">
-              Energetic
-            </h5>
-            <h5 className="trait-pill3">
-              Gentle
-            </h5>
-            </div>
+            <TraitPills />
             <textarea
               className="bio form-control p-1 m-0"
               id="exampleFormControlTextarea1"
@@ -81,6 +72,7 @@ const ProfileInfo = ({ data }) => {
               rows="6"
               readOnly
             >
+              {data.bio}
             </textarea>
           </div>
         </div>

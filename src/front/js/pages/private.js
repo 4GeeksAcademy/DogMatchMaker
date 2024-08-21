@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { useNavigate } from "react-router-dom";
@@ -7,6 +7,11 @@ import ProfileCard from "../component/profilecard.jsx";
 
 export const Private = () => {
 	const { store, actions } = useContext(Context);
+	const [users, setUsers] = useState(null)
+	const [nextCard, setNextCard] = useState({
+		prev: 0,
+		next: 1
+	})
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -14,11 +19,25 @@ export const Private = () => {
 			navigate("/login");
 	}, [store.token])
 
+	useEffect(() => {
+		getUsers()
+	}, [])
+
+	const getUsers = async () => {
+		const resp = await fetch('https://effective-space-garbanzo-jj4jq997457w3jq5j-3001.app.github.dev/api/users')
+		const data = await resp.json()
+		setUsers(data.users)
+	}
+
 	return (
 		<div className="text-center">
 			<div className="row">
 				<div className="col-1 text-start"></div>
-				<div className="col-10 justify-content-center d-flex"><ProfileCard/></div>
+				<div className="col-10 justify-content-center d-flex">
+					{users !== null && users.slice(nextCard.prev, nextCard.next).map((data, ind)=>{
+						return <ProfileCard data={data} setNextCard={setNextCard} nextCard={nextCard} key={ind} />
+					})}
+				</div>
 				<div className="col-1 text-start"></div>
 			</div>
 		</div>

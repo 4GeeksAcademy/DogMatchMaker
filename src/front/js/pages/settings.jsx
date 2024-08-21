@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
-import { Context } from '../store/appContext'; // Adjust the path as necessary
+import { Context } from '../store/appContext'; 
 
 const Settings = () => {
-    const { store } = useContext(Context); // Use context to get the store
+    const { store } = useContext(Context); 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [newEmail, setNewEmail] = useState('');
     const [newPassword, setNewPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    const backendUrl = process.env.BACKEND_URL; // Ensure to use the correct environment variable
+    const backendUrl = process.env.BACKEND_URL; 
 
     if (!backendUrl) {
         console.error('Backend URL is not defined in the environment variables');
@@ -34,7 +34,7 @@ const Settings = () => {
                     throw new Error(`Failed to delete account. Status: ${response.status}. Error: ${errorText}`);
                 }
 
-                sessionStorage.removeItem('token'); // Clear token from session storage
+                sessionStorage.removeItem('token'); 
                 navigate('/');
             } catch (error) {
                 setError(`Error deleting account: ${error.message}`);
@@ -107,7 +107,7 @@ const Settings = () => {
         WebkitBoxShadow: '10px 10px 15px rgba(202,202,202,0.75)',
         MozBoxShadow: '10px 10px 15px rgba(202,202,202,0.75)',
         padding: '2rem',
-        backgroundColor: '#ffffff', // Ensure form background is white or another contrasting color
+        backgroundColor: '#ffffff', 
         margin: '0 auto'
     };
 
@@ -117,8 +117,6 @@ const Settings = () => {
                 <div className="col-lg-8 col-xl-6">
                     <div className="card p-4" style={formStyle}>
                         <h2 className="mb-4">Account Settings</h2>
-
-                        {/* Delete Account Button */}
                         <button
                             className="btn btn-danger mb-4"
                             style={{ borderRadius: '1.5rem' }}
@@ -126,11 +124,7 @@ const Settings = () => {
                         >
                             Delete Account
                         </button>
-
-                        {/* Display error messages */}
                         {error && <div className="alert alert-danger mb-4" role="alert">{error}</div>}
-
-                        {/* Update Email Form */}
                         <form onSubmit={handleEmailChange} className="mb-4">
                             <div className="form-group">
                                 <label htmlFor="newEmail">New Email:</label>
@@ -146,8 +140,6 @@ const Settings = () => {
                             </div>
                             <button type="submit" className="btn btn-primary mt-2" style={{ borderRadius: '1.5rem' }}>Update Email</button>
                         </form>
-
-                        {/* Update Password Form */}
                         <form onSubmit={handlePasswordChange} className="mb-4">
                             <div className="form-group">
                                 <label htmlFor="currentPassword">Current Password:</label>

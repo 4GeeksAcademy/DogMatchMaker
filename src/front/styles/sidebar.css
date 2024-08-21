@@ -1,0 +1,74 @@
+/*Notifications pullout*/
+#offcanvasScrolling1 {
+    width: 320px;
+}
+
+/*SIDEBAR BUTTONS*/
+#discover,
+#messages,
+#notifications,
+#profile-pill,
+#settings-pill {
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    font-weight: 500;
+    color: #000;
+    background-color: #fff;
+    border: none;
+    border-radius: 45px;
+    box-shadow: 10px 8px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease 0s;
+    cursor: pointer;
+    border: 1px black solid;
+    padding: 5px 15px 5px 15px;
+}
+
+#discover:hover,
+#messages:hover,
+#notifications:hover,
+#settings-pill:hover,
+#profile-pill:hover {
+    background: radial-gradient(circle, #344964 0%, #2b2c41 100%);
+    box-shadow: 3px 5px 8px #2b2c41;
+    color: #fff;
+    transform: translateY(-7px);
+    padding: 5px 15px 5px 15px;
+    font-size: 18px;
+}
+
+/*Remove blue link and make text black by defaut*/
+a {
+    color: black;
+}
+
+a:hover {
+    color: black;
+}
+
+/*Change button style color logic*/
+#discover.selected,
+#messages.selected,
+#profile-pill.selected,
+#settings-pill.selected {
+    background: radial-gradient(circle, #344964 0%, #2b2c41 100%);
+    box-shadow: 3px 8px 13px #3d6484;
+    color: #fff;
+    transform: translateY(-7px);
+    padding: 5px 15px 5px 15px;
+    font-size: 20px;
+}
+
+/*Active blue glow when selected*/
+.selected {
+    cursor: pointer;
+    border: 1px slateblue solid;
+    border-radius: 5px;
+    padding: 5px;
+    text-decoration: none;
+}
+
+/*SIDEBAR BUTTONS*/
+

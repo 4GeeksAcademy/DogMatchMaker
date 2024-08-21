@@ -58,7 +58,7 @@ export const Navbar = () => {
                             </li>
                         </ul>
                     </div>
-                    <div className="d-flex ms-auto">
+                    {/* <div className="d-flex ms-auto">
                         {store.token ? (
                             <button onClick={() => actions.logout()} type="button" className="btn btn-primary">Log out</button>
                         ) : (
@@ -66,7 +66,7 @@ export const Navbar = () => {
                                 <button type="button" className="btn btn-primary">Log in</button>
                             </Link>
                         )}
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </nav>

@@ -1,9 +1,15 @@
+"""
+This module takes care of starting the API Server, Loading the DB and Adding the endpoints
+"""
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, unset_jwt_cookies
 from api.models import db, UserAccount, Like, Message
+from api.utils import generate_sitemap, APIException
+from flask_cors import CORS, cross_origin
+import json
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, set_access_cookies, unset_jwt_cookies
 from werkzeug.utils import secure_filename
 import os
-import requests
+#import requests
 
 api = Blueprint('api', __name__)
 
@@ -29,7 +35,7 @@ def create_user():
     breed = request.form.get('breed')
     dog_sex = request.form.get('dog_sex')
     bio = request.form.get('bio')
-    interests = request.form.get('interests')
+    traits = request.form.get('traits')
     profile_picture = request.files.get('profile_picture')
     
     profile_picture_filename = None
@@ -47,7 +53,7 @@ def create_user():
         breed=breed,
         dog_sex=dog_sex,
         bio=bio,
-        interests=interests,
+        traits=traits,
         profile_picture=profile_picture_filename
     )
     userAccount.set_password(password)

@@ -7,7 +7,7 @@ export const Login = () => {
     const navigate = useNavigate();
 
     const [inputs, setInputs] = useState({});
-    const [errorMessage, setErrorMessage] = useState(""); // State for error messages
+    const [errorMessage, setErrorMessage] = useState(""); 
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -20,7 +20,7 @@ export const Login = () => {
 
         const { email, pswd } = inputs;
 
-        // Ensure email and password are provided
+        
         if (!email || !pswd) {
             setErrorMessage("Please fill in all required fields.");
             return;
@@ -29,9 +29,9 @@ export const Login = () => {
         try {
             const result = await actions.login(email, pswd);
 
-            // Handle successful login
+            
             if (result.success) {
-                localStorage.setItem('access_token', result.token); // Store token in local storage
+                localStorage.setItem('access_token', result.token); 
                 navigate("/");
             } else {
                 setErrorMessage(result.message || "Login failed. Please try again.");
@@ -49,24 +49,39 @@ export const Login = () => {
     }, [store.token, navigate]);
 
     return (
-        <section className="h-100 h-custom" style={{ backgroundColor: "#72bfed" }}>
-            <div className="container py-5 h-100">
+        <section className="h-100" style={{
+            position: 'relative',
+            overflow: 'hidden',
+            margin: 0, 
+            padding: 0, 
+            height: '100vh' 
+        }}>
+            <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                backgroundImage: "url('https://i0.wp.com/www.sciencenews.org/wp-content/uploads/2024/02/020124_eg_dog_breeds_feat.jpg?fit=1030%2C580&ssl=1')",
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                filter: 'blur(5px)',
+                zIndex: -1,
+                height: '100%',
+                width: '100%'
+            }}></div>
+            <div className="container py-5 h-100" style={{ position: 'relative', zIndex: 1 }}>
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-lg-8 col-xl-6">
-                        <div className="card rounded-3">
-                            <img 
-                                src="https://i0.wp.com/www.sciencenews.org/wp-content/uploads/2024/02/020124_eg_dog_breeds_feat.jpg?fit=1030%2C580&ssl=1"
-                                className="w-100"
-                                style={{ 
-                                    borderTopLeftRadius: ".3rem", 
-                                    borderTopRightRadius: ".3rem", 
-                                    height: '400px', 
-                                    maxHeight: '400px'
-                                }}
-                                alt="Login"
-                            />
+                        <div className="card" style={{
+                            borderRadius: '15px', 
+                            boxShadow: '15px 17px 5px 2px rgba(0,0,0,0.52)',
+                            WebkitBoxShadow: '15px 17px 5px 2px rgba(0,0,0,0.52)',
+                            MozBoxShadow: '15px 17px 5px 2px rgba(0,0,0,0.52)'
+                        }}>
                             <div className="card-body p-4 p-md-5">
-                                <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Log In</h3>
+                                <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2 text-center" style={{fontWeight: 'bold',}}>Log In</h3>
                                 <form className="px-md-2" onSubmit={handleSubmit}>
                                     {errorMessage && (
                                         <div className="alert alert-danger mb-4" role="alert" style={{ backgroundColor: "#f8d7da", color: "#721c24", borderColor: "#f5c6cb" }}>
@@ -102,13 +117,13 @@ export const Login = () => {
                                     <div className="d-flex justify-content-between mb-4">
                                         <button 
                                             type="submit" 
-                                            className="btn btn-secondary btn-lg" 
-                                            style={{ backgroundColor: "#e4dcbd", color: "black" }}
+                                            className="login-page-btn btn-secondary btn-lg" 
+                                            style={{ background: 'radial-gradient(circle, #344964 0%, #2b2c41 100%)', color: "white"}}
                                         >
                                             Log In
                                         </button>
                                         <div className="text-end">
-                                            Don't have an account? <Link to="/signup" style={{ color: "#30598a" }}>Sign Up</Link>
+                                            Don't have an account? <Link to="/signup" className="login-page-signup" style={{ color: 'radial-gradient(circle, #344964 0%, #2b2c41 100%)', boxShadow: '', fontWeight: 'bold'}}>Sign Up</Link>
                                         </div>
                                     </div>
                                 </form>

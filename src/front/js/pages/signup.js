@@ -21,7 +21,7 @@ export const Signup = () => {
   const [breeds, setBreeds] = useState([]);
   const navigate = useNavigate();
 
-  // Fetch breeds from API
+ 
   useEffect(() => {
     const fetchBreeds = async () => {
       try {
@@ -98,7 +98,7 @@ export const Signup = () => {
     } catch (error) {
       console.error("There was a problem with the fetch operation:", error);
     }
-  
+  }
 
   return (
     <section
@@ -106,9 +106,9 @@ export const Signup = () => {
       style={{
         position: "relative",
         overflow: "hidden",
-        margin: 0, // Ensure no margin
-        padding: 0, // Ensure no padding
-        height: "100vh", // Use viewport height to ensure full height
+        margin: 0, 
+        padding: 0, 
+        height: "100vh", 
       }}
     >
       <div

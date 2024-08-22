@@ -35,7 +35,7 @@ const Settings = () => {
                 }
 
                 sessionStorage.removeItem('token'); 
-                navigate('/');
+                navigate('/login');
             } catch (error) {
                 setError(`Error deleting account: ${error.message}`);
                 console.error(error.message);

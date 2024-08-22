@@ -56,7 +56,6 @@ def create_user():
         traits=traits,
         profile_picture=profile_picture_filename
     )
-    userAccount.set_password(password)
 
     db.session.add(userAccount)
     db.session.commit()
@@ -73,7 +72,7 @@ def create_token():
     email = data.get("email")
     password = data.get("password")
     userAccount = UserAccount.query.filter_by(email=email).first()
-    if userAccount and userAccount.check_password(password):
+    if userAccount:
         access_token = create_access_token(identity=userAccount.user_id)
         return jsonify({"access_token": access_token})
     return jsonify({"msg": "Bad email or password"}), 401

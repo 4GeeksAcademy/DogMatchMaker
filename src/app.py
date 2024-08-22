@@ -17,7 +17,7 @@ app = Flask(__name__)
 app.url_map.strict_slashes = False
 
 # Configurations
-app.config["JWT_SECRET_KEY"] = "your_jwt_secret_key"  # Update to a secure key
+app.config["JWT_SECRET_KEY"] = "vcdrftgybhnjm09876543wsdcvbnmk"  # Update to a secure key
 app.config["JWT_COOKIE_SECURE"] = False
 app.config["JWT_TOKEN_LOCATION"] = ["headers"]
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=10)

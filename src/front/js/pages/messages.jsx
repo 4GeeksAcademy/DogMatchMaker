@@ -10,7 +10,8 @@ const Messages = () => {
            
             <div className="row">
                 <div className="col-3"></div>
-                <div className="col-7">                   
+                <div className="col-7">       
+                         
                     <Chat name={store.user}/>
                 </div>
                 <div className="col-2"></div>

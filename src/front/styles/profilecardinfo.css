@@ -6,7 +6,7 @@
 
 #offcanvasScrolling2{
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-    background-color: #1b1b1c;
+    background-color: #1b1b1cf9;
   }
   
   #offcanvasScrolling2.show {

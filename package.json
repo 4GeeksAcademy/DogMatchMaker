@@ -82,6 +82,7 @@
 		"react-hello-webapp": "file:",
 		"react-polyfills": "0.0.1",
 		"react-router-dom": "^6.3.0",
+		"update": "^0.7.4",
 		"upgrade": "^1.1.0"
 	}
 }

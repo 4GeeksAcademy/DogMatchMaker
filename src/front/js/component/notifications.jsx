@@ -25,7 +25,7 @@ const Notifications = ({ style, setStyle }) => {
   };
 
   return (
-    <div className="mt-4 ms-2">
+    <div className="mt-2 ms-2">
       <a
         id="notifications"
         onClick={() => {
@@ -33,7 +33,7 @@ const Notifications = ({ style, setStyle }) => {
           toggleNotifications();
         }}
       >
-        <strong><i class="fa-solid fa-envelope"></i>Notifications</strong>
+        <strong><i className="fa-solid fa-envelope"></i>Notifications</strong>
       </a>
       <div
         className="offcanvas offcanvas-end"
@@ -45,8 +45,7 @@ const Notifications = ({ style, setStyle }) => {
         style={{
           top: `${navbarHeight}px`, // Position it below the navbar
           height: `calc(100vh - ${navbarHeight}px)`, // Full height minus navbar
-          width: '25%', // Full width of the right side
-          borderTop: '1px solid lightgray',
+          width: '100%', // Full width of the right side
         }}
       >
         <div className="offcanvas-header">

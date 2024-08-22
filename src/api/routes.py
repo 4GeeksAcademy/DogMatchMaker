@@ -3,11 +3,12 @@ This module takes care of starting the API Server, Loading the DB and Adding the
 """
 from flask import Flask, request, jsonify, Blueprint, url_for, redirect, render_template,send_from_directory
 import logging
-from api.models import db, UserAccount, Contact
+from api.models import db, UserAccount, Contact, Photo,Profile
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS, cross_origin
 import json
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, set_access_cookies, unset_jwt_cookies
+#import requests
 from werkzeug.utils import secure_filename
 import os
 import re
@@ -26,6 +27,11 @@ CORS(api, resources={r"api/*": {"origins": "http://localhost:3001"}})
 UPLOAD_FOLDER = 'uploads'
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
+
+def allowed_file(filename):
+    allowed_extensions = {'jpg', 'jpeg', 'png', 'gif'}
+    return '.' in filename and \
+           filename.rsplit('.', 1)[1].lower() in allowed_extensions
 
 @api.route('/user', methods=['POST'])
 @cross_origin()  
@@ -207,6 +213,81 @@ def search_user():
     logging.debug(f"Response: {response}")
     
     return jsonify(response)
+
+@api.route('/profile/<int:profile_id>', methods=['GET'])
+@cross_origin()
+def get_profile(profile_id):
+    profile = Profile.query.get(profile_id)
+    
+    if not profile:
+        return jsonify({"error": "Profile not found"}), 404
+    
+    return jsonify(profile.serialize()), 200
+
+@api.route('/profile', methods=['POST'])
+@cross_origin()
+def create_profile():
+    data = request.json
+    user_id = data.get('user_id')
+    full_name = data.get('full_name')
+    location = data.get('location')
+    bio = data.get('bio')
+    profile_picture = data.get('profile_picture', None)
+    
+    profile = Profile(
+        user_id=user_id,
+        full_name=full_name,
+        location=location,
+        bio=bio,
+        profile_picture=profile_picture
+    )
+
+    db.session.add(profile)
+    db.session.commit()
+
+    return jsonify(profile.serialize()), 201
+
+@api.route('/profile/<int:profile_id>', methods=['PUT'])
+@cross_origin()
+def update_profile(profile_id):
+    data = request.json
+    profile = Profile.query.get(profile_id)
+    
+    if not profile:
+        return jsonify({"error": "Profile not found"}), 404
+    
+    profile.full_name = data.get('full_name', profile.full_name)
+    profile.location = data.get('location', profile.location)
+    profile.bio = data.get('bio', profile.bio)
+    profile.profile_picture = data.get('profile_picture', profile.profile_picture)
+
+    db.session.commit()
+
+    return jsonify(profile.serialize()), 200
+
+@api.route('/profile/<int:profile_id>', methods=['DELETE'])
+@cross_origin()
+def delete_profile(profile_id):
+    profile = Profile.query.get(profile_id)
+    
+    if not profile:
+        return jsonify({"error": "Profile not found"}), 404
+    
+    try:
+        # Remove the profile picture file if it exists
+        if profile.profile_picture:
+            photo_path = os.path.join(UPLOAD_FOLDER, profile.profile_picture)
+            if os.path.exists(photo_path):
+                os.remove(photo_path)
+        
+        db.session.delete(profile)
+        db.session.commit()
+
+        return jsonify({"message": "Profile deleted successfully"}), 200
+    except Exception as e:
+        logging.error(f"Error deleting profile: {e}")
+        return jsonify({"error": "Failed to delete the profile"}), 500
+
 
 # Route to serve uploaded profile pictures
 @api.route('/uploads/<filename>')

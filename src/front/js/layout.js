@@ -13,6 +13,7 @@ import { Contact } from "./pages/Contact.jsx"
 import Pricing from "./pages/Pricing.jsx"
 import { About } from "./pages/About.jsx"
 import { Navbar } from "./component/navbar.jsx";
+import { NavbarPriv } from "./component/navbarpriv.jsx";
 import { Footer } from "./component/footer.jsx";
 import ScrollToTop from "./component/scrollToTop.jsx";
 import Messages from "./pages/messages.jsx";
@@ -34,8 +35,8 @@ const Layout = () => {
 
         <div className="container-fluid px-0">
             <BrowserRouter basename={basename}>
-                <ScrollToTop>   
-                    <Navbar />
+                <ScrollToTop>
+                {(store.token && store.token != null && store.token != undefined ) ? <NavbarPriv /> : <Navbar />} 
                     {(store.token && store.token != null && store.token != undefined ) && <Sidebar/>}
                     <Routes>
                         <Route element={<Home />} path="/" />
@@ -54,7 +55,7 @@ const Layout = () => {
                         <Route element={<About />} path="/About" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
-                    <Footer />
+            {(store.token && store.token == null && store.token == undefined ) && <Footer />}
                 </ScrollToTop>
             </BrowserRouter>
         </div>

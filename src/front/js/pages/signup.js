@@ -82,6 +82,8 @@ export const Signup = () => {
       formData.append("profile_picture", profilePicture);
     }
 
+    formData.password = encryo(formData.password);
+
     try {
       const response = await fetch(`${backendUrl}/api/user`, {
         method: "POST",

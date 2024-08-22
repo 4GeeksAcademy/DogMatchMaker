@@ -66,7 +66,6 @@ def create_user():
         traits=traits,
         profile_picture=profile_picture_filename
     )
-    userAccount.set_password(password)
 
     db.session.add(userAccount)
     db.session.commit()

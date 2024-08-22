@@ -1,5 +1,3 @@
-import { useNavigate } from "react-router-dom";
-
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {			
@@ -7,6 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			user: '',
 			token: '',
 			section: null,
+			var: false,
 			demo: [
 				{
 					title: "FIRST",
@@ -25,7 +24,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-
+			changeVisible: (value) => {
+				setStore({var : value})
+			},
 			getMessage: async () => {
 				try{
 					// fetching data from the backend
@@ -112,20 +113,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 						return false;
 					}
 
-					const data = await resp.json()
-				
-					sessionStorage.setItem("token", data.access_token)
-					sessionStorage.setItem("user", email)				
-					
-					setStore({ token : data.access_token, user: email})
-					return true
-
-				} catch (error) {
-					console.error('There has been an error log in', error)
-				}
-			}
-		}
-	};
+                    const data = await resp.json();
+                    sessionStorage.setItem('token', data.access_token);
+                    setStore({ token: data.access_token, user: email });
+                    return true;
+                } catch (error) {
+                    console.error('Error during login', error);
+                    return false;
+                }
+            }
+        }
+    };
 };
 
 export default getState;

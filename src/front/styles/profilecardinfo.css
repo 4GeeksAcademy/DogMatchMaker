@@ -1,26 +1,27 @@
-
+@import url(https://db.onlinewebfonts.com/c/dfdce831a4653f2f7285115e418cde5b?family=AmberlySans-Bold);
 #offcanvasScrolling2 {
     height: 45%;
 }
 
 
-.offcanvas {
+#offcanvasScrolling2{
     transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    background-color: #1b1b1c;
   }
   
-  .offcanvas.show {
+  #offcanvasScrolling2.show {
     transform: translateY(0);
     opacity: 1;
   }
   
-  .offcanvas:not(.show) {
+  #offcanvasScrolling2:not(.show) {
     transform: translateY(100%);
     opacity: 0;
   }
   
-  .offcanvas-backdrop {
+ /*  .offcanvas-backdrop {
     transition: opacity 0.3s ease-in-out;
-  }
+  } */
   
 
 #view-info {
@@ -54,7 +55,7 @@
     color: rgb(220, 53, 69);
     position: absolute;
     font-size: 30px;
-    top: 280px;
+    top: 260px;
     right: 20px;
     bottom: 10px;
     z-index: 3;
@@ -75,28 +76,21 @@
     z-index: 2;
 }
 
-.back-dog-name {
-    color: black;
+.back-dog-and-owner-name {
+    color: white;
     position: relative; 
     z-index: 2;
     margin: 0;
-    font-size: 40px;
+    font-size: 25px;
     font-weight: 600;
-}
-
-.back-owner-name{
-    color: black;
-    position: relative; 
-    z-index: 2;
-    margin: 0;
-    font-style: italic;
-    left: 90px;
-    bottom: 29px
+    top: 13px;
+    left: 40px;
 }
 
 .back-pills-line{
     position: absolute;
-    bottom: 5px;
+    top: 35px;
+    bottom: 1px;
     left: 30px;
     display: flex;
     align-items: center;
@@ -146,6 +140,11 @@
     background-color: steelblue;
 }
 
+.back-dog-breed-pill:hover,.back-dog-age-pill:hover, .back-dog-sex-pill:hover,.location-info:hover{
+    transform: translateY(-2px);
+    cursor: default;
+}
+
 .location-info{
     position: relative;
     display: flex;
@@ -156,12 +155,10 @@
     margin-bottom: 6px;
     margin-left: 5px;
     overflow: scroll;
+    top: 3px;
 }
 
-.back-dog-breed-pill:hover,.back-dog-age-pill:hover, .back-dog-sex-pill:hover,.location-info:hover{
-    transform: translateY(-2px);
-    cursor: default;
-}
+
 
 .location-info > i{
     color: rgb(220, 53, 69);
@@ -169,15 +166,13 @@
     top: 1px;
     right: 5px;
     justify-content: space-between;
-    width: fit-content;
 }
 
 .location-info > p {
     position: relative;
-    font-size: 12px;
+    font-size: 10px;
     color: white;
     margin: 0;
-    width: fit-content;
 }
 
 .offcanvas-top {
@@ -197,7 +192,7 @@
 .trait-pill1 {
     color: white;
     margin: 0;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 45px;
     padding: 5px 15px 5px 15px;
     font-size: 13px;
@@ -208,7 +203,7 @@
 .trait-pill2 {
     color: white;
     margin: 0;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 45px;
     padding: 5px 15px 5px 15px;
     font-size: 13px;
@@ -220,24 +215,13 @@
 .trait-pill3 {
     color: white;
     margin: 0;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 45px;
     padding: 5px 15px 5px 15px;
     font-size: 13px;
     position: relative;
     background-color:tomato;
 }
-
-/* .trait-pill4{
-    color: white;
-    margin: 0;
-    border: 1px solid black;
-    border-radius: 45px;
-    padding: 5px 15px 5px 15px;
-    font-size: 13px;
-    position: relative;
-    background-color:cadetblue;
-} */
 
 .trait-pill1:hover, .trait-pill2:hover, .trait-pill3:hover{
     transform: translateY(-2px);
@@ -246,6 +230,6 @@
 
 .bio {
     position: absolute;
-    bottom: 45px;
+    bottom: 60px;
     width: 90%;
 }

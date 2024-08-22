@@ -1,7 +1,3 @@
-/*Notifications pullout*/
-#offcanvasScrolling1 {
-    width: 320px;
-}
 
 /*SIDEBAR BUTTONS*/
 #discover,
@@ -11,7 +7,7 @@
 #settings-pill {
     cursor: pointer;
     text-decoration: none;
-    font-size: 15px;
+    font-size: 18px;
     text-transform: uppercase;
     letter-spacing: 2.5px;
     font-weight: 500;
@@ -31,12 +27,12 @@
 #notifications:hover,
 #settings-pill:hover,
 #profile-pill:hover {
-    background: radial-gradient(circle, rgba(79, 155, 197, 1) 0%, rgba(76, 140, 172, 1) 100%);
-    box-shadow: 3px 5px 8px rgb(79, 155, 197);
+    background: radial-gradient(circle, #344964 0%, #2b2c41 100%);
+    box-shadow: 3px 5px 8px #2b2c41;
     color: #fff;
     transform: translateY(-7px);
     padding: 5px 15px 5px 15px;
-    font-size: 18px;
+    font-size: 20px;
 }
 
 /*Remove blue link and make text black by defaut*/
@@ -53,8 +49,8 @@ a:hover {
 #messages.selected,
 #profile-pill.selected,
 #settings-pill.selected {
-    background: radial-gradient(circle, rgba(79, 155, 197, 1) 0%, rgba(76, 140, 172, 1) 100%);
-    box-shadow: 3px 8px 13px rgb(79, 155, 197);
+    background: radial-gradient(circle, #344964 0%, #2b2c41 100%);
+    box-shadow: 3px 8px 13px #3d6484;
     color: #fff;
     transform: translateY(-7px);
     padding: 5px 15px 5px 15px;
@@ -70,4 +66,3 @@ a:hover {
     text-decoration: none;
 }
 
-/*SIDEBAR BUTTONS*/

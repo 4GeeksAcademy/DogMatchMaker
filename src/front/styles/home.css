@@ -109,3 +109,36 @@
 .ce-message-bubble, .ce-active-chat-card{
     background-color: rgb(79, 155, 197) !important;
 }
+
+.btn-signup, .register-login-button{
+    box-shadow: 1px 1px 8px #2b2c41;
+}
+
+.btn-signup:hover{
+    transform: translateY(-2px);
+    cursor: pointer;
+    box-shadow: 3px 5px 8px #2b2c41;
+}
+
+.register-login-button:hover{
+    transform: translateY(-2px);
+    cursor: pointer;
+    box-shadow: 3px 5px 8px #2b2c41;
+}
+
+.login-page-btn:hover{
+    cursor: pointer;
+    transform: translateY(-2px);
+}
+
+.signup-next:hover, .signup-prev:hover, .signup-finished:hover{
+    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 1px 1px 8px #2b2c41;
+}
+
+.register-upload-btn:hover{
+    cursor: pointer;
+    transform: translateY(-2px);
+    box-shadow: 1px 1px 8px #2b2c41;
+}

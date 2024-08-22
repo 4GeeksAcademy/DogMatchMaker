@@ -1,5 +1,6 @@
 import React from "react";
 
+
 const BackDogInfoPills = ({data}) => {
     return(
         <div className="back-dog-info-pills">

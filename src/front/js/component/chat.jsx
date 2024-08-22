@@ -43,7 +43,7 @@ export const Chat = (props) => {
 
         <ChatEngine
 			height='70vh'
- 			projectID='229944ba-3c50-4575-9ad6-8715d919d3dc'
+ 			projectID='bfbbfc3d-6972-42a7-84d3-b55e82c4891f'
  			userName={props.name}
  			userSecret='123456'
 			renderNewChatForm={(creds) => {}}

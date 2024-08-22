@@ -7,7 +7,7 @@ export const Login = () => {
     const navigate = useNavigate();
 
     const [inputs, setInputs] = useState({});
-    const [errorMessage, setErrorMessage] = useState(""); // State for error messages
+    const [errorMessage, setErrorMessage] = useState(""); 
 
     const handleChange = (event) => {
         const name = event.target.name;
@@ -17,24 +17,44 @@ export const Login = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+
+        const { email, pswd } = inputs;
+
         
-        actions.login(inputs['email'], inputs['pswd']).then(() =>{
-            navigate("/private");
-        })
+        if (!email || !pswd) {
+            setErrorMessage("Please fill in all required fields.");
+            return;
+        }
+
+        try {
+            const result = await actions.login(email, pswd);
+
+            
+            if (result.success) {
+                localStorage.setItem('access_token', result.token); 
+                navigate("/");
+            } else {
+                setErrorMessage(result.message || "Login failed. Please try again.");
+            }
+        } catch (error) {
+            setErrorMessage("An error occurred. Please try again.");
+            console.error('Login error:', error);
+        }
     }
 
-      useEffect(() => {
-        if (store.token && store.token != '' && store.token != undefined ) navigate("/private")
-            
-      }, [store.token])
+    useEffect(() => {
+        if (store.token) {
+            navigate("/");
+        }
+    }, [store.token, navigate]);
 
     return (
         <section className="h-100" style={{
             position: 'relative',
             overflow: 'hidden',
-            margin: 0, // Ensure no margin
-            padding: 0, // Ensure no padding
-            height: '100vh' // Use viewport height to ensure full height
+            margin: 0, 
+            padding: 0, 
+            height: '100vh' 
         }}>
             <div style={{
                 position: 'absolute',
@@ -55,13 +75,13 @@ export const Login = () => {
                 <div className="row d-flex justify-content-center align-items-center h-100">
                     <div className="col-lg-8 col-xl-6">
                         <div className="card" style={{
-                            borderRadius: '15px', // Adjust this value to control the roundness
+                            borderRadius: '15px', 
                             boxShadow: '15px 17px 5px 2px rgba(0,0,0,0.52)',
                             WebkitBoxShadow: '15px 17px 5px 2px rgba(0,0,0,0.52)',
                             MozBoxShadow: '15px 17px 5px 2px rgba(0,0,0,0.52)'
                         }}>
                             <div className="card-body p-4 p-md-5">
-                                <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2">Log In</h3>
+                                <h3 className="mb-4 pb-2 pb-md-0 mb-md-5 px-md-2 text-center" style={{fontWeight: 'bold',}}>Log In</h3>
                                 <form className="px-md-2" onSubmit={handleSubmit}>
                                     {errorMessage && (
                                         <div className="alert alert-danger mb-4" role="alert" style={{ backgroundColor: "#f8d7da", color: "#721c24", borderColor: "#f5c6cb" }}>
@@ -97,13 +117,13 @@ export const Login = () => {
                                     <div className="d-flex justify-content-between mb-4">
                                         <button 
                                             type="submit" 
-                                            className="btn btn-secondary btn-lg" 
-                                            style={{ backgroundColor: "#e4dcbd", color: "black" }}
+                                            className="login-page-btn btn-secondary btn-lg" 
+                                            style={{ background: 'radial-gradient(circle, #344964 0%, #2b2c41 100%)', color: "white"}}
                                         >
                                             Log In
                                         </button>
                                         <div className="text-end">
-                                            Don't have an account? <Link to="/signup" style={{ color: "#30598a" }}>Sign Up</Link>
+                                            Don't have an account? <Link to="/signup" className="login-page-signup" style={{ color: 'radial-gradient(circle, #344964 0%, #2b2c41 100%)', boxShadow: '', fontWeight: 'bold'}}>Sign Up</Link>
                                         </div>
                                     </div>
                                 </form>

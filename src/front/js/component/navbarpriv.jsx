@@ -14,7 +14,7 @@ export const NavbarPriv = () => {
 	}, [store.section])
 
 	return (
-		<nav id="navbarpriv" className="navbar p-0 justify-content-start">
+		<nav id="navbarpriv" className="navbar justify-content-start navbar-expand-lg">
 				<Link to="/">
 					<span className="navbar-brand mb-0 h1"></span>
 				</Link>
@@ -23,6 +23,7 @@ export const NavbarPriv = () => {
 					<div>
 						<Link to ="/private">	
 						<img
+						className="logo-priv"
 						style={{ width: "95px", height: "95px", padding: "0" }}
 						src={logo}/>
 						</Link>

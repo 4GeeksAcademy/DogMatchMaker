@@ -93,7 +93,7 @@ export const Navbar = () => {
                                 <button onClick={handleButtonClick} type="button" className="btn btn-primary mx-auto">Log in</button>
                             </Link>
                         )}
-                    </div>
+                    </div> */}
                 </div>
             </div>
         </nav>

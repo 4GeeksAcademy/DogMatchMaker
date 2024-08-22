@@ -215,6 +215,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			user: '',
 			token: '',
 			section: null,
+			var: false,
 			demo: [
 				{
 					title: "FIRST",
@@ -233,7 +234,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-
+			changeVisible: (value) => {
+				setStore({var : value})
+			},
 			getMessage: async () => {
 				try {
 					// fetching data from the backend
@@ -313,27 +316,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 						})
 					};
 
-					const resp = await fetch(process.env.BACKEND_URL + "api/token", requestOptions)
-
+					const resp = await fetch(process.env.BACKEND_URL+"/api/token", requestOptions)
+					
 					if (resp.status !== 200) {
 						alert("There has been some error")
 						return false;
 					}
 
-					const data = await resp.json()
-
-					sessionStorage.setItem("token", data.access_token)
-					sessionStorage.setItem("user", email)
-
-					setStore({ token: data.access_token, user: email })
-					return true
-
-				} catch (error) {
-					console.error('There has been an error log in', error)
-				}
-			}
-		}
-	};
+                    const data = await resp.json();
+                    sessionStorage.setItem('token', data.access_token);
+                    setStore({ token: data.access_token, user: email });
+                    return true;
+                } catch (error) {
+                    console.error('Error during login', error);
+                    return false;
+                }
+            }
+        }
+    };
 };
 
 export default getState;
+

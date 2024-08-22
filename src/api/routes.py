@@ -73,6 +73,7 @@ def create_token():
     email = data.get("email")
     password = data.get("password")
     userAccount = UserAccount.query.filter_by(email=email).first()
+    userAccount.set_password(password)
     if userAccount and userAccount.check_password(password):
         access_token = create_access_token(identity=userAccount.user_id)
         return jsonify({"access_token": access_token})

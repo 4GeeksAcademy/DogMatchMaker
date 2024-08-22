@@ -1,5 +1,6 @@
 import React from "react";
 import "../../styles/profilecardinfo.css";
+import "../../styles/back-dog-pills.css";
 import BackDogInfoPills from "./back-dog-info-pills.jsx";
 import TraitPills from "./back-trait-pills.jsx";
 

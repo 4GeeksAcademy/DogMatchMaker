@@ -4,26 +4,19 @@ import { Context } from "../store/appContext";
 
 const Notifications = () => {
   const { store, actions } = useContext(Context);
-  const [isVisible, setIsVisible] = useState('true')
+  const [isVisible, setIsVisible] = useState(true);
 
   useEffect(() => {
-    setIsVisible(store.var)
-  },[store.var])
-
-
-  const handleVisibility = () => {
-    if (isVisible === true) {
-      setIsVisible(false)
-    }
-    else if (isVisible !== true) {
-      setIsVisible(true)
-    }
-  }
+    setIsVisible(store.var);
+  }, [store.var]);
 
   return (
-      <div className="my-pullout text-center" style={{ display: isVisible ? 'block' : 'none' }}>
-        <i className="fa-solid fa-envelope"></i><p className="noti-title">Notifications</p>
+    <div className={`my-pullout text-center ${isVisible ? 'visible' : ''}`}>
+      <div className="notifications-head col-12 justify-content-center mt-4">
+      <i className="noti-icon fa-solid fa-envelope my-auto pe-1 pb-1"></i>
+      <p className="noti-title">Notifications</p>
       </div>
+    </div>
   );
 };
 

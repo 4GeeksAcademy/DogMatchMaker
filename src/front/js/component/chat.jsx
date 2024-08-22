@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-//import { ChatEngine, getOrCreateChat } from 'react-chat-engine';
-//import { ChatEngineWrapper, Socket, ChatList, ChatFeed, ChatSettings, ChatSocket, NewMessageForm } from 'react-chat-engine'
+import { ChatEngine, getOrCreateChat } from 'react-chat-engine';
+import { ChatEngineWrapper, Socket, ChatList, ChatFeed, ChatSettings, ChatSocket, NewMessageForm } from 'react-chat-engine'
 import "../../styles/home.css";
 
 export const Chat = (props) => {

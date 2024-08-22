@@ -44,7 +44,7 @@ export const Login = () => {
 
     useEffect(() => {
         if (store.token) {
-            navigate("/");
+            navigate("/private");
         }
     }, [store.token, navigate]);
 

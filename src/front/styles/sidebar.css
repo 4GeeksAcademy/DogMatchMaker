@@ -5,17 +5,18 @@
 #notifications,
 #profile-pill,
 #settings-pill {
+    background: radial-gradient(circle, #344964 0%, #2b2c41 100%);
     cursor: pointer;
     text-decoration: none;
     font-size: 18px;
     text-transform: uppercase;
     letter-spacing: 2.5px;
     font-weight: 500;
-    color: #000;
+    color: white;
     background-color: #fff;
     border: none;
     border-radius: 45px;
-    box-shadow: 10px 8px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 10px 8px 10px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease 0s;
     cursor: pointer;
     border: 1px black solid;

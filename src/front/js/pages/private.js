@@ -3,7 +3,6 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { useNavigate } from "react-router-dom";
 import ProfileCard from "../component/profilecard.jsx";
-// import { Chat } from "../component/chat.jsx";
 import Notifications from "../component/notifications.jsx";
 
 export const Private = () => {
@@ -33,9 +32,8 @@ export const Private = () => {
   };
 
   return (
-    <div className="text-center">
+    <div className="private-page text-center">
       <div className="container-fluid row">
-	  
         <div className="col-8 justify-content-end mt-4 d-flex">
           {users !== null &&
             users.slice(nextCard.prev, nextCard.next).map((data, ind) => {

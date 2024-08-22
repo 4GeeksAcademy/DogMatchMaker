@@ -43,7 +43,6 @@ const Sidebar = () => {
 
   return (
     <div className="">
-      <hr className="mt-0" />
       <div
         className="offcanvas offcanvas-start"
         data-bs-scroll="true"

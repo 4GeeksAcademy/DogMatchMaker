@@ -5,7 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			user: '',
 			token: '',
 			section: null,
-			var: false,
+			var: true,
 			demo: [
 				{
 					title: "FIRST",

@@ -14,8 +14,8 @@
     font-weight: 500;
     color: white;
     background-color: #fff;
-    border: none;
-    border-radius: 45px;
+    border: 1px solid black;
+    border-radius: 5px;
     box-shadow: 10px 8px 10px rgba(0, 0, 0, 0.15);
     transition: all 0.3s ease 0s;
     cursor: pointer;

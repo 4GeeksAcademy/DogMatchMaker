@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../../styles/notifications.css";
 import { Context } from "../store/appContext";
+import NewNotification from "./newnotification.jsx";
 
 const Notifications = () => {
   const { store, actions } = useContext(Context);
@@ -16,6 +17,7 @@ const Notifications = () => {
       <i className="noti-icon fa-solid fa-envelope my-auto pe-1 pb-1"></i>
       <p className="noti-title">Notifications</p>
       </div>
+      <NewNotification />
     </div>
   );
 };

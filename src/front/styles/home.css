@@ -3,7 +3,17 @@
     height: 125vh !important;
     }
     }
+    
+    
+    .img{
+        box-shadow: 3px 5px 8px #2b2c41;
+        margin-left: 80px;
+    }
 
+    #title-head{
+        font-size: 55px !important;
+        color: white;
+    }
     .image-preview {
         display: flex;
         align-items: center;

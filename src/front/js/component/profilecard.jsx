@@ -7,6 +7,34 @@ import FrontDogInfoPills from "./front-dog-info-pills.jsx";
 
 const ProfileCard = ({ data, setNextCard, nextCard }) => {
   const { store, actions } = useContext(Context)
+
+  function fetchLike() {
+    const backend = process.env.BACKEND_URL
+    const url = '/api/like'
+    const opts = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${store.token}`
+      },
+      body: JSON.stringify({
+        current_user_id: store.user,
+        liked_user: data.user_id,
+      })
+    }
+    fetch(backend + url, opts)
+      .then((resp) => {
+        if (resp.ok) {
+          return resp.json()
+        }
+        else {
+          throw new Error('Error')
+        }
+      })
+      .then(data => { if (data.like.match_likes === true) { console.log('match')} })
+      .catch(err => console.error(err))
+
+  }
   return (
     <div id="carouselExampleIndicators" className="profile-card carousel slide" data-bs-ride="carousel">
       <div className="carousel-indicators top-indicators">
@@ -27,10 +55,10 @@ const ProfileCard = ({ data, setNextCard, nextCard }) => {
         <div className="mt-2">
           <img src={girlwithdog} className="card-img" />
           <div className="front-card-names">
-          <h2 className="front-dog-name"><strong>{data.dog_name}</strong></h2>
-          <h5 className="front-owner-name">& {data.owner_name}</h5>
+            <h2 className="front-dog-name"><strong>{data.dog_name}</strong></h2>
+            <h5 className="front-owner-name">& {data.owner_name}</h5>
           </div>
-          <FrontDogInfoPills data={data}/>
+          <FrontDogInfoPills data={data} />
           <div className="justify-content-center d-flex">
             <div>
               <i id="close" className="fa regular fa-circle-xmark" onClick={() => {
@@ -50,6 +78,7 @@ const ProfileCard = ({ data, setNextCard, nextCard }) => {
             </div>
             <div>
               <i id="like" className="fa regular fa-circle-check" onClick={() => {
+                fetchLike();
                 setNextCard({
                   prev: nextCard.prev + 1,
                   next: nextCard.next + 1

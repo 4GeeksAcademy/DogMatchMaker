@@ -173,7 +173,7 @@ def create_user_chat():
 def create_private_chat():
     name = request.json.get("name", None)
     guest = request.json.get("guest", None)
-    resp = requests.put("https://api.chatengine.io/chats",
+    resp = request.put("https://api.chatengine.io/chats",
                         headers={"Project-ID": "your_project_id",
                                  "User-Name" : name,
                                  "User-Secret" : "123456"},
@@ -182,3 +182,36 @@ def create_private_chat():
                             "is_direct_chat": True
                         })
     return jsonify(resp.json())
+
+@api.route('/like', methods=['POST'])
+@jwt_required()
+def send_like():
+    current_user = get_jwt_identity()
+    data = request.json
+    likes = Like.query.all()
+    
+    check_match = False
+    for item in likes:
+        if item.user_id == data['liked_user']:
+            if item.liked_user_id == current_user:
+                check_match = True
+
+    new_like = Like(user_id=current_user, liked_user_id=data['liked_user'], match_likes=check_match)    
+    db.session.add(new_like)
+    db.session.commit()
+    return_like = new_like.serialize()
+
+    return jsonify({'success': True, 'message': 'Like was successful.', 'like': return_like})
+    
+@api.route('/getuserlikes', methods=['GET'])
+@jwt_required()
+def handle_get_user_likes():
+    current_user = get_jwt_identity()
+    user_likes = Like.query.filter_by(user_id=current_user).all()
+    matches = []
+    for item in user_likes:
+        if item.match_likes == True:
+            single = item.serialize()
+            matches.append(single)
+
+    return jsonify({"success": True, "matches": matches}), 200

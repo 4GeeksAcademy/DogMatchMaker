@@ -3,7 +3,7 @@ import { Context } from "../store/appContext";
 import "../../styles/home.css";
 import { useNavigate } from "react-router-dom";
 import ProfileCard from "../component/profilecard.jsx";
-import Notifications from "../component/notifications.jsx";
+import Matches from "../component/matches.jsx";
 
 export const Private = () => {
   const { store, actions } = useContext(Context);
@@ -48,7 +48,7 @@ export const Private = () => {
             })}
         </div>
         <div className="col-3 text-start"></div>
-		<Notifications />
+		<Matches />
       </div>
     </div>
   );

@@ -19,7 +19,7 @@ import ScrollToTop from "./component/scrollToTop.jsx";
 import Messages from "./pages/messages.jsx";
 import Sidebar from "./component/sidebar.jsx";
 import Profile from "./pages/profile.jsx";
-import Notifications from "./component/notifications.jsx";
+import Matches from "./component/matches.jsx";
 import Settings from "./pages/settings.jsx";
 
 //create your first component
@@ -46,7 +46,7 @@ const Layout = () => {
                         <Route element={< Messages/>} path="/messages" />
                         <Route element={< Profile/>} path="/profile" />
                         <Route element={< Settings/>} path="/settings" />
-                        <Route element={< Notifications/>} path="/notifications" />
+                        <Route element={<Matches/>} path="/matches" />
                         <Route element={<Signup />} path="/signup" />
                         <Route element={<Single />} path="/single/:theid" />
                         <Route element={<Pricing />} path="/Pricing" />

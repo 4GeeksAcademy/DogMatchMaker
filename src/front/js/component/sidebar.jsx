@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
-import Notifications from "./notifications.jsx";
+import Matches from "./matches.jsx";
 import img from "../../img/m101.jpg";
 import "../../styles/sidebar.css";
 import { useNavigate } from "react-router-dom";
@@ -93,7 +93,7 @@ const Sidebar = () => {
           </li>
           <li className="nav-item mb-2">
           <a id="notifications" onClick={handleVisibility} className="mt-2 ms-2">
-        <strong><i className="fa-solid fa-envelope"></i>Notifications</strong>
+        <strong><i className="fa-solid fa-envelope"></i>Matches</strong>
       </a>
           </li>
           <li className="nav-item mt-4 mb-4 ms-2">

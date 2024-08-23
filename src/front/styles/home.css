@@ -11,8 +11,22 @@
     }
 
     #title-head{
-        font-size: 55px !important;
-        color: white;
+        font-size: 110px !important;
+        color: black;
+        margin-right: 55px;
+        margin-bottom: 0px;
+        color: #2b2c41;
+        margin-bottom: 25px;
+
+    }
+
+    #title-sub{
+        font-size: 35px !important;
+        color: black;
+        margin-left: 20px;
+        margin-bottom: 0px;
+        top: 445px;
+        position: absolute;
     }
     .image-preview {
         display: flex;

@@ -44,21 +44,21 @@ const ProfileInfo = ({ data }) => {
               </h5>
             </div>
             <div className="back-pills-line">
-            <BackDogInfoPills data={data} />
-            <div className="location-info">
-              <i className="fa-solid fa-location-dot"></i>
-              <p>{data.location}</p>
-            </div>
+              <BackDogInfoPills data={data} />
+              <div className="location-info">
+                <i className="fa-solid fa-location-dot"></i>
+                <p>{data.location}</p>
+              </div>
             </div>
           </div>
           <div>
-              <i
-                id="view-info-close"
-                className="fa-solid fa-circle-down"
-                data-bs-dismiss="offcanvas"
-                aria-label="Close"
-              ></i>
-            </div>
+            <i
+              id="view-info-close"
+              className="fa-solid fa-circle-down"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></i>
+          </div>
         </div>
         <div className="offcanvas-body my-1 mx-1">
           <div className="text-start">
@@ -69,9 +69,8 @@ const ProfileInfo = ({ data }) => {
               placeholder="Your super cool bio!"
               rows="5"
               readOnly
-            >
-              {data.bio}
-            </textarea>
+              defaultValue={data.bio}
+            />
           </div>
         </div>
       </div>

@@ -25,6 +25,7 @@ const ProfileCard = ({ data, setNextCard, nextCard }) => {
     fetch(backend + url, opts)
       .then((resp) => {
         if (resp.ok) {
+          console.log("sent like to user")
           return resp.json()
         }
         else {

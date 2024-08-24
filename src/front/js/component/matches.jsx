@@ -43,12 +43,12 @@ const Matches = () => {
   return (
     <div className={`my-pullout text-center ${isVisible ? 'visible' : ''}`}>
       <div className="notifications-head col-12 justify-content-center mt-4">
-        <i class="noti-icon fa-solid fa-heart-circle-exclamation my-auto pe-1 pb-1"></i>
+        <i className="noti-icon fa-solid fa-heart-circle-exclamation my-auto pe-1 pb-1"></i>
         <p className="noti-title">Matches</p>
       </div>
-      {newMatch.map((data)=>{
+      {newMatch.map((data, ind)=>{
         return (
-          <NewNotification data={data}/>
+          <NewNotification data={data} key={ind}/>
         )
       })}
     </div>

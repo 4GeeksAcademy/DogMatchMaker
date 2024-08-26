@@ -190,7 +190,7 @@ def send_like():
     data = request.json
     likes = Like.query.all()
     
-    check_match = False
+    check_match = True
     for item in likes:
         if item.user_id == data['liked_user']:
             if item.liked_user_id == current_user:
@@ -209,9 +209,20 @@ def handle_get_user_likes():
     current_user = get_jwt_identity()
     user_likes = Like.query.filter_by(user_id=current_user).all()
     matches = []
+    
+    
+   ## liked_user = UserAccount.query.filter_by(user_id = data["liked_user"]).first()
+   ## serialized = liked_user.serialize()
+    
     for item in user_likes:
         if item.match_likes == True:
-            single = item.serialize()
-            matches.append(single)
+           user = UserAccount.query.filter_by(user_id=item.liked_user_id).first()
+           user_s = user.serialize()
+           single = item.serialize()
+           put_together = {
+                'like': single,
+                'user': user_s
+            }
+           matches.append(put_together)
 
     return jsonify({"success": True, "matches": matches}), 200

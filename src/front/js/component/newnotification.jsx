@@ -6,7 +6,7 @@ const NewNotification = ({ data }) => {
 const { store, actions } = useContext(Context)
 
     return (
-        <div className="notis-container container col-10">
+        <div className="notis-container container col-10 row">
            <h6>Matched with {data.dog_name}</h6>
         </div>
     );

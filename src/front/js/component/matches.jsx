@@ -29,7 +29,7 @@ const Matches = () => {
       },
     }
     fetch(backend + url, opts)
-    .then(resp => {
+    .then((resp) => {
       if(resp.ok){
         return resp.json()
       }
@@ -48,7 +48,7 @@ const Matches = () => {
       </div>
       {newMatch.map((data, ind)=>{
         return (
-          <NewNotification data={data} key={ind}/>
+          <NewNotification data={data.user} key={ind}/>
         )
       })}
     </div>

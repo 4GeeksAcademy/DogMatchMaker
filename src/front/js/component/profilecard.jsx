@@ -1,16 +1,22 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import girlwithdog from "../../img/girlanddog2.jpg";
 import ProfileInfo from "./profilecardinfo.jsx";
 import "../../styles/profilecards.css";
 import { Context } from "../store/appContext.js";
 import FrontDogInfoPills from "./front-dog-info-pills.jsx";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
 
 const ProfileCard = ({ data, setNextCard, nextCard }) => {
   const { store, actions } = useContext(Context)
+  const [matchStyle, setMatchStyle] = useState(false)
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   function fetchLike() {
     const backend = process.env.BACKEND_URL
-    const url = '/api/like'
+    const url = 'api/like'
     const opts = {
       method: 'POST',
       headers: {
@@ -32,12 +38,11 @@ const ProfileCard = ({ data, setNextCard, nextCard }) => {
           throw new Error('Error')
         }
       })
-      .then(data => { if (data.like.match_likes === true) { console.log('match')} })
+      .then(data => { if (data.like.match_likes === true) { setMatchStyle(true), console.log("Match"), handleShow()}})
       .catch(err => console.error(err))
-
   }
   return (
-    <div id="carouselExampleIndicators" className="profile-card carousel slide" data-bs-ride="carousel">
+    <div id="carouselExampleIndicators" className={matchStyle ? "profile-card-match carousel slide" : "profile-card carousel slide"} data-bs-ride="carousel">
       <div className="carousel-indicators top-indicators">
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className="active" aria-current="true" aria-label="Slide 1"></button>
         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -98,6 +103,20 @@ const ProfileCard = ({ data, setNextCard, nextCard }) => {
         <span className="carousel-control-next-icon" aria-hidden="true"></span>
         <span className="visually-hidden">Next</span>
       </button>
+      <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, you are reading this text in a modal!</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

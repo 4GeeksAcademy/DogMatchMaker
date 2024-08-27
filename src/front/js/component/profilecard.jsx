@@ -1,17 +1,27 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import girlwithdog from "../../img/girlanddog2.jpg";
 import ProfileInfo from "./profilecardinfo.jsx";
 import "../../styles/profilecards.css";
 import { Context } from "../store/appContext.js";
 import FrontDogInfoPills from "./front-dog-info-pills.jsx";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from "react-router-dom";
 
-const ProfileCard = ({ data, setNextCard, nextCard }) => {
+const ProfileCard = ({ data, setNextCard, nextCard, getMatches }) => {
   const { store, actions } = useContext(Context)
   const [show, setShow] = useState(false);
- 
+  const [matchInfo, setMatchInfo] = useState(null)
+  
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    getMatches();
+  }, [matchInfo])
+
   function fetchLike() {
     const backend = process.env.BACKEND_URL
     const url = 'api/like'
@@ -36,7 +46,7 @@ const ProfileCard = ({ data, setNextCard, nextCard }) => {
           throw new Error('Error')
         }
       })
-      .then(data => { if (data.like.match_likes === true) {console.log("Match")}})
+      .then(data => { if (data.like.match_likes === true) {handleShow(), setMatchInfo(data.user), console.log("Match")}})
       .catch(err => console.error(err))
   }
   return (
@@ -101,24 +111,28 @@ const ProfileCard = ({ data, setNextCard, nextCard }) => {
         <span className="carousel-control-next-icon" aria-hidden="true"></span>
         <span className="visually-hidden">Next</span>
       </button>
-
-      <div className="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="staticBackdropLabel">Modal title</h5>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div className="modal-body">
-              ...
-            </div>
-            <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" className="btn btn-primary">Understood</button>
-            </div>
-          </div>
-        </div>
-      </div>
+      
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        centered
+      >
+        <Modal.Header>
+          <Modal.Title>It's A Match!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h6>{matchInfo?.dog_name} & {matchInfo?.owner_name}</h6>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Keep Swiping
+          </Button>
+          <Button variant="primary" onClick={() => navigate("/messages")}>Message</Button>
+        </Modal.Footer>
+      </Modal>
+    
 
     </div>
   );

@@ -201,8 +201,10 @@ def send_like():
     db.session.add(new_like)
     db.session.commit()
     return_like = new_like.serialize()
+    liked_user = UserAccount.query.filter_by(user_id = data['liked_user']).first()
+    liked_s = liked_user.serialize()
 
-    return jsonify({'success': True, 'message': 'Like was successful.', 'like': return_like})
+    return jsonify({'success': True, 'message': 'Like was successful.', 'like': return_like, 'user': liked_s})
     
 @api.route('/getuserlikes', methods=['GET'])
 @jwt_required()

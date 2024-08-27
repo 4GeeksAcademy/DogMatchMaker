@@ -194,3 +194,19 @@ async def make_match():
     username2 = request.json.get("username2", None)
     print(username1, username2)
     return await makeMatch(username1, username2)
+
+async def deleteMatch(username1,chatId) :
+
+    response = requests.delete("https://api.chatengine.io/chats/"+chatId,
+                        headers={"Project-ID": PROJECT_ID,
+                                 "User-Name" : username1,
+                                 "User-Secret" : "123456"}
+                        )
+    
+    return response.json()
+
+@api.route("/unmatch", methods=['POST'])
+async def make_unmatch():
+    username1 = request.json.get("username1", None)
+    chatId = request.json.get("chatId", None)
+    return await deleteMatch(username1, chatId)

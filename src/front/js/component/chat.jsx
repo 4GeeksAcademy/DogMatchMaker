@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { ChatEngine, getOrCreateChat } from 'react-chat-engine';
-import { ChatEngineWrapper, Socket, ChatList, ChatFeed, ChatSettings, ChatSocket, NewMessageForm } from 'react-chat-engine'
+import { ChatEngine } from 'react-chat-engine';
+import { getOrCreateChat, ChatList } from 'react-chat-engine';
 import "../../styles/home.css";
 
 export const Chat = (props) => {
@@ -39,17 +39,14 @@ export const Chat = (props) => {
 	return (
         <>
 		<div className="chats">
-        
-
-        <ChatEngine
-			height='70vh'
- 			projectID='bfbbfc3d-6972-42a7-84d3-b55e82c4891f'
- 			userName={props.name}
- 			userSecret='123456'
-			renderNewChatForm={(creds) => {}}
-            renderChatSettings={(creds) => {}}
-           
- 		/>
+			<ChatEngine
+				height='70vh'
+				projectID='bfbbfc3d-6972-42a7-84d3-b55e82c4891f'
+				userName={props.name}
+				userSecret='123456'
+				renderNewChatForm={(creds) => {}}
+				renderChatSettings={(creds) => {}}
+			/>
 		</div>
         </>
     );

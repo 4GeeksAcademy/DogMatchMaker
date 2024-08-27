@@ -26,7 +26,7 @@ export const Private = () => {
 
   const getUsers = async () => {
     const resp = await fetch(
-      "https://effective-space-garbanzo-jj4jq997457w3jq5j-3001.app.github.dev/api/users"
+        process.env.BACKEND_URL+"/api/users"
     );
     const data = await resp.json();
     setUsers(data.users);

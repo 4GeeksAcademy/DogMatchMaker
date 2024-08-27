@@ -13,6 +13,9 @@ import requests
 
 api = Blueprint('api', __name__)
 
+PRIVATE_KEY = 'ff29d706-4125-4092-9562-8d7ec0a76522'
+PROJECT_ID='bfbbfc3d-6972-42a7-84d3-b55e82c4891f'
+
 UPLOAD_FOLDER = 'uploads'
 if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
@@ -154,32 +157,40 @@ def logout():
     unset_jwt_cookies(response)
     return response
 
-@api.route("/userChat", methods=['POST'])
-def create_user_chat():
-    name = request.json.get("name", None)
-    resp = requests.post("https://api.chatengine.io/users",
-                        headers={"PRIVATE-KEY": "your_private_key"},
+async def createAnotherUser(username) :
+    response = requests.post("https://api.chatengine.io/users", headers={"PRIVATE-KEY": PRIVATE_KEY},
                         data={
-                            "username": name,
-                            "first_name": name,
+                            "username": username,
+                            "first_name": username,
                             "last_name": ' ',
                             "secret": "123456"
                         })
-    return jsonify(resp.json())
+    return response.json
 
-@api.route("/privateChat", methods=['PUT'])
-def create_private_chat():
-    name = request.json.get("name", None)
-    guest = request.json.get("guest", None)
-    resp = requests.put("https://api.chatengine.io/chats",
-                        headers={"Project-ID": "your_project_id",
-                                 "User-Name" : name,
+async def createAnotherChat(username1, username2):
+
+    response3 = requests.put("https://api.chatengine.io/chats",
+                        headers={"Project-ID": PROJECT_ID,
+                                 "User-Name" : username1,
                                  "User-Secret" : "123456"},
                         data={
-                            "usernames": [guest],
+                            "usernames": [username2],
                             "is_direct_chat": True
                         })
-    return jsonify(resp.json())
+    
+    return response3.json()
 
-def makeMatch() :
-    pass
+async def makeMatch(username1, username2) :
+
+    await createAnotherUser(username1)
+    await createAnotherUser(username2)
+    json3 = await createAnotherChat(username1, username2)
+
+    return jsonify(json3)
+
+@api.route("/match", methods=['POST'])
+async def make_match():
+    username1 = request.json.get("username1", None)
+    username2 = request.json.get("username2", None)
+    print(username1, username2)
+    return await makeMatch(username1, username2)

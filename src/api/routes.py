@@ -9,7 +9,7 @@ import json
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, set_access_cookies, unset_jwt_cookies
 from werkzeug.utils import secure_filename
 import os
-#import requests
+import requests
 
 api = Blueprint('api', __name__)
 
@@ -71,7 +71,7 @@ def create_token():
     data = request.json
     email = data.get("email")
     password = data.get("password")
-    userAccount = UserAccount.query.filter_by(email=email).first()
+    userAccount = UserAccount.query.filter_by(email=email).filter_by(password=password).first()
     if userAccount:
         access_token = create_access_token(identity=userAccount.user_id)
         return jsonify({"access_token": access_token})
@@ -180,3 +180,6 @@ def create_private_chat():
                             "is_direct_chat": True
                         })
     return jsonify(resp.json())
+
+def makeMatch() :
+    pass

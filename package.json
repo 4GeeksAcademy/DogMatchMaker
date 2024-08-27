@@ -48,6 +48,7 @@
 		"gh-pages": "^6.1.1",
 		"html-loader": "^3.0.1",
 		"html-webpack-plugin": "^5.5.0",
+		"lodash": ">=4.17.21",
 		"parse-github-url": "^1.0.2",
 		"prettier": "^2.5.1",
 		"remote-origin-url": "^2.0.0",
@@ -74,16 +75,17 @@
 	},
 	"dependencies": {
 		"braces": "^3.0.3",
+		"lodash": ">=4.17.21",
 		"npm": "^10.8.2",
 		"prop-types": "^15.6.1",
 		"react": "^16.8.4",
 		"react-awesome-button": "^7.0.5",
-		"react-chat-engine": "^0.1.0",
+		"react-chat-engine": "1.11.28",
 		"react-dom": "^16.8.4",
 		"react-hello-webapp": "file:",
 		"react-polyfills": "0.0.1",
 		"react-router-dom": "^6.3.0",
-		"update": "^0.4.2",
+		"update": "^0.7.4",
 		"upgrade": "^1.1.0"
 	}
 }

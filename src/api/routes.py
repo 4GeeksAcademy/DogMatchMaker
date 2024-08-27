@@ -191,6 +191,7 @@ def send_like():
     likes = Like.query.all()
     
     check_match = True
+    
     for item in likes:
         if item.user_id == data['liked_user']:
             if item.liked_user_id == current_user:

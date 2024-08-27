@@ -18,6 +18,12 @@ const Matches = () => {
     setIsVisible(store.var);
   }, [store.var]);
 
+  useEffect(() => {
+    getMatches()
+  }, [setNewMatch]);
+
+
+
   function getMatches(){
     const backend = process.env.BACKEND_URL
     const url = 'api/getuserlikes'

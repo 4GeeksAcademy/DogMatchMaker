@@ -204,23 +204,24 @@ async def make_unmatch():
 
 @api.route('/like', methods=['POST'])
 @jwt_required()
-def send_like():
+async def send_like():
     current_user = get_jwt_identity()
     data = request.json
-    likes = Like.query.all()
-    
-    check_match = True
-    
-    for item in likes:
-        if item.user_id == data['liked_user']:
-            if item.liked_user_id == current_user:
-                check_match = True
+    match = Like.query.filter_by(user_id = data['liked_user']).filter_by(liked_user_id = current_user).first()
+    check_match = False
+    liked_user = UserAccount.query.filter_by(user_id = data['liked_user']).first()
+    current_usera = UserAccount.query.filter_by(user_id = current_user).first()
 
+    if match:
+        check_match = True
+        match.match_likes = True
+        db.session.commit() 
+        a = await makeMatch(current_usera.email, liked_user.email) 
+        print(a)      
     new_like = Like(user_id=current_user, liked_user_id=data['liked_user'], match_likes=check_match)    
     db.session.add(new_like)
     db.session.commit()
     return_like = new_like.serialize()
-    liked_user = UserAccount.query.filter_by(user_id = data['liked_user']).first()
     liked_s = liked_user.serialize()
 
     return jsonify({'success': True, 'message': 'Like was successful.', 'like': return_like, 'user': liked_s})

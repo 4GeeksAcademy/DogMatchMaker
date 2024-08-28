@@ -205,6 +205,30 @@ def send_like():
     liked_s = liked_user.serialize()
 
     return jsonify({'success': True, 'message': 'Like was successful.', 'like': return_like, 'user': liked_s})
+
+
+@api.route('/like', methods=['DELETE'])
+@jwt_required()
+def remove_like():
+    current_user = get_jwt_identity()
+    data = request.json
+    
+    # Check if 'liked_user' is in the request data
+    if 'liked_user' not in data:
+        return jsonify({'success': False, 'message': 'Liked user ID is required.'}), 400
+
+    # Find the like entry that matches current_user and liked_user
+    like_to_delete = Like.query.filter_by(user_id=current_user, liked_user_id=data['liked_user']).first()
+
+    if like_to_delete:
+        db.session.delete(like_to_delete)
+        db.session.commit()
+        return jsonify({'success': True, 'message': 'Like was successfully removed.'})
+    else:
+        return jsonify({'success': False, 'message': 'Like not found.'}), 404
+
+    
+
     
 @api.route('/getuserlikes', methods=['GET'])
 @jwt_required()

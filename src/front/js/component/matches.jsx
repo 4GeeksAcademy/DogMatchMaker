@@ -12,7 +12,7 @@ const Matches = ({ getMatches, matches }) => {
   useEffect(() => {
     setIsVisible(store.var);
   }, [store.var]);
-
+  
 
   return (
     <div className={`my-pullout text-center ${isVisible ? 'visible' : ''}`}>

@@ -21,6 +21,7 @@ class SignUp(db.Model):
         return {
             'user_id': self.user_id,
             'email': self.email,
+            'username': self.username,
             'account_created': self.account_created
         }
 

@@ -120,10 +120,11 @@ const ProfileCard = ({ data, setNextCard, nextCard, getMatches }) => {
         centered
       >
         <Modal.Header>
-          <Modal.Title>It's A Match!</Modal.Title>
+          <Modal.Title>It's A Match! <i className="fa-solid fa-heart" style={{ color: 'red' }}></i></Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <h6>{matchInfo?.dog_name} & {matchInfo?.owner_name}</h6>
+          <h4> You matched with {matchInfo?.dog_name} & {matchInfo?.owner_name}!</h4>
+          <h5>Don't be shy... Start a message!</h5>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

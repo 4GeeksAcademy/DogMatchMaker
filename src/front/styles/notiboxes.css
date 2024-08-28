@@ -9,10 +9,27 @@
     margin-left: 25px;
 }
 
+.notis-container:hover{
+    transform: translateY(-2px);
+    cursor: default;
+}
+
 .notis-container > h3 {
     font-size: 15px;
 }
 
 .noti-box-icon{
-    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.noti-icon{
+    font-size: 24px;
+}
+
+.noti-icon:hover{
+    transform: translateY(-2px);
+    color: red;
+    cursor: pointer;
 }

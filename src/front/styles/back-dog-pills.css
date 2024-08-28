@@ -1,0 +1,57 @@
+.back-pills-line{
+    position: absolute;
+    top: 45px;
+    bottom: 1px;
+    left: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the pills horizontally */
+    gap: 2px; /* Adjust the gap between the pills as needed */
+}
+
+.back-dog-info-pills{
+    position: relative;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    gap: 10px; 
+}
+
+
+.back-dog-breed-pill{
+    color: white;
+    position: relative;
+    z-index: 2;
+    border: 1px solid;
+    border-radius: 45px;
+    padding: 5px 15px;
+    font-size: 13px;
+    background-color:tan;
+}
+
+.back-dog-age-pill {
+    color: white;
+    position: relative;
+    z-index: 2;
+    border: 1px solid;
+    border-radius: 45px;
+    padding: 5px 15px;
+    font-size: 13px;
+    background-color:slategrey;
+}
+
+.back-dog-sex-pill {
+    color: white;
+    position: relative;
+    z-index: 2;
+    border: 1px solid;
+    border-radius: 45px;
+    padding: 5px 15px;
+    font-size: 12px;
+    background-color: steelblue;
+}
+
+.back-dog-breed-pill:hover,.back-dog-age-pill:hover, .back-dog-sex-pill:hover,.location-info:hover{
+    transform: translateY(-2px);
+    cursor: default;
+}

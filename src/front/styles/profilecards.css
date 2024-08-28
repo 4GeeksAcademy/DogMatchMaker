@@ -40,6 +40,21 @@
     );
     z-index: 1; /* Gradient layer */
 }
+.profile-card-match::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.80) 25%,
+        rgba(0, 0, 0, 0.1) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    z-index: 1; /* Gradient layer */
+}
 
 .profile-card .justify-content-center {
     position: absolute;

@@ -448,3 +448,4 @@ export const Signup = () => {
     </section>
   );
 };
+};

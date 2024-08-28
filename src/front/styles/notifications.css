@@ -1,14 +1,40 @@
-.my-pullout{
-    height: 50rem;
+/* notifications.css */
+.my-pullout {
+    height: 55rem;
     width: 20rem;
     position: absolute;
-    left: 1160px;
-    top: 110px;
-    border-left: 1px solid black;
-}
+    right: 0;
+    transform: translateX(100%);
+    transition: transform 0.5s ease-in-out;
+    background-color: white; /* Adjust this as needed */
+    border: 1px solid #ccc;
+    border-top: none;
+    z-index: 1000; /* Ensure it appears on top */
+    margin-top: 0px;
+  }
+  
+  .my-pullout.visible {
+    transform: translateX(0);
+  }
 
-.noti-title{
+   .notifications-head{
+    display: flex;
+    border: 1px solid black;
+    background: radial-gradient(circle, #344964 0%, #2b2c41 100%);
+    color: white;
+    border-radius: 10px;
+    box-shadow: 10px 8px 10px rgba(0, 0, 0, 0.20);
+    z-index: 1000;
+   }
+
+   .notifications-head:hover{
+    cursor: default;
+    transform: translateY(-1px);
+   }
+  
+  .noti-title {
+    margin: 0;
     font-size: 25px;
-    top: 20px;
-}
+  }
+
 

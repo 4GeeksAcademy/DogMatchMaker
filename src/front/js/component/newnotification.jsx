@@ -38,11 +38,11 @@ function deleteLike(data) {
 
     return (
         <div className="notis-container container col-10 row">
-            <div>
-                <h5 className="mb-0">Matched with</h5>
-                <h6>{data.dog_name} & {data.owner_name}</h6>
+            <div className="col-10">
+                <h5 className="m-1">Matched with</h5>
+                <h6 className="m-1">{data.dog_name} & {data.owner_name}</h6>
             </div>
-            <div className="break-match-icon">
+            <div className="col-2 noti-box-icon">
                 <i className="fa-solid fa-heart-crack"></i>
             </div>
         </div>
@@ -50,3 +50,11 @@ function deleteLike(data) {
 }
 
 export default NewNotification; 
+/* 
+<div className="noti-box-text">
+                <h5 className="mb-0 col-8">Matched with</h5>
+                <h6>{data.dog_name} & {data.owner_name}</h6>
+            </div>
+            <div className="break-match-icon col-2">
+                <i className="fa-solid fa-heart-crack"></i>
+            </div> */

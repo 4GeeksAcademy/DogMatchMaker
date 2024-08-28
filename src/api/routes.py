@@ -76,12 +76,10 @@ def create_token():
     password = data.get("password")
     userAccount = UserAccount.query.filter_by(email=email).filter_by(password=password).first()
     if userAccount:
-    userAccount = UserAccount.query.filter_by(email=email).first()
-    userAccount.set_password(password)
-    if userAccount and userAccount.check_password(password):
         access_token = create_access_token(identity=userAccount.user_id)
         return jsonify({"access_token": access_token})
     return jsonify({"msg": "Bad email or password"}), 401
+
 
 @api.route('/private', methods=['GET'])
 @jwt_required()
@@ -169,27 +167,40 @@ async def createAnotherUser(username) :
                             "secret": "123456"
                         })
     return response.json
-
 async def createAnotherChat(username1, username2):
-
     response3 = requests.put("https://api.chatengine.io/chats",
                         headers={"Project-ID": PROJECT_ID,
                                  "User-Name" : username1,
-    return jsonify(resp.json())
-
-@api.route("/privateChat", methods=['PUT'])
-def create_private_chat():
-    name = request.json.get("name", None)
-    guest = request.json.get("guest", None)
-    resp = request.put("https://api.chatengine.io/chats",
-                        headers={"Project-ID": "your_project_id",
-                                 "User-Name" : name,
                                  "User-Secret" : "123456"},
                         data={
                             "usernames": [username2],
                             "is_direct_chat": True
                         })
-    return jsonify(resp.json())
+    return response3.json()
+async def makeMatch(username1, username2) :
+    await createAnotherUser(username1)
+    await createAnotherUser(username2)
+    json3 = await createAnotherChat(username1, username2)
+    return jsonify(json3)
+@api.route("/match", methods=['POST'])
+async def make_match():
+    username1 = request.json.get("username1", None)
+    username2 = request.json.get("username2", None)
+    print(username1, username2)
+    return await makeMatch(username1, username2)
+async def deleteMatch(username1,chatId) :
+    response = requests.delete("https://api.chatengine.io/chats/"+chatId,
+                        headers={"Project-ID": PROJECT_ID,
+                                 "User-Name" : username1,
+                                 "User-Secret" : "123456"}
+                        )
+    return response.json()
+@api.route("/unmatch", methods=['POST'])
+async def make_unmatch():
+    username1 = request.json.get("username1", None)
+    chatId = request.json.get("chatId", None)
+    return await deleteMatch(username1, chatId)
+
 
 @api.route('/like', methods=['POST'])
 @jwt_required()

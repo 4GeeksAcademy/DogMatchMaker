@@ -22,6 +22,7 @@ const injectContext = PassedComponent => {
         useEffect(() => {
             state.actions.getMessage();
             state.actions.syncTokenFromSessionStorage();
+            state.actions.getPublicKey();
         }, []);
 
         return (

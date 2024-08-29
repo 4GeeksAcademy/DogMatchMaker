@@ -1,7 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, render_template
 from api.models import db, UserAccount, Like, Message
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS, cross_origin
@@ -10,6 +10,40 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 from werkzeug.utils import secure_filename
 import os
 import requests
+from Crypto.PublicKey import RSA
+from Crypto.Cipher import PKCS1_OAEP
+from Crypto.PublicKey import RSA
+from Crypto.Hash import SHA256
+from base64 import b64decode
+
+key = RSA.generate(2048)
+private_key = key.export_key()
+with open("./src/private.pem", "wb") as f:
+    f.write(private_key)
+
+public_key = key.publickey().export_key()
+with open("./src/public.pem", "wb") as f:
+    f.write(public_key)
+
+def get_public_key():
+    """Retrieve public key securely using pycryptodome methods."""
+    key_binary = open("./src/public.pem", 'rb')
+    key = RSA.import_key(key_binary.read())
+    key_binary.close()
+    return key.public_key().export_key()
+
+def get_private_key():
+    """Retrieve private key securely using pycryptodome methods."""
+    key_binary = open("./src/private.pem", 'rb')
+    key = RSA.import_key(key_binary.read())
+    key_binary.close()
+    return key
+
+def decrypt_data(encrypted_value):
+    """Decrypt data using private key obtained securely."""
+    cipher = PKCS1_OAEP.new(get_private_key(), hashAlgo=SHA256)
+    decrypted_message = cipher.decrypt(b64decode(encrypted_value))
+    return decrypted_message.decode()
 
 api = Blueprint('api', __name__)
 
@@ -69,12 +103,16 @@ def create_user():
 
     return jsonify(response_body), 200
 
+@api.route('/public_key', methods=['GET'])
+def public_key():
+    return get_public_key(), 200
+
 @api.route("/token", methods=["POST"])
 def create_token():
     data = request.json
     email = data.get("email")
     password = data.get("password")
-    userAccount = UserAccount.query.filter_by(email=email).filter_by(password=password).first()
+    userAccount = UserAccount.query.filter_by(email=email).filter_by(password=decrypt_data(password)).first()
     if userAccount:
         access_token = create_access_token(identity=userAccount.user_id)
         return jsonify({"access_token": access_token})

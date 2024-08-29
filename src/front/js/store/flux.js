@@ -6,6 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			token: '',
 			section: null,
 			var: false,
+			key: '',
 			demo: [
 				{
 					title: "FIRST",
@@ -29,7 +30,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			getMessage: async () => {
 				try{
-					// fetching data from the backend
 					const resp = await fetch(process.env.BACKEND_URL + "/api/hello")
 					const data = await resp.json()
 					setStore({ message: data.message })
@@ -93,16 +93,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error loading message from backend", error)
 				}
 			},
+			getPublicKey: async () => {
+				try{
+					const store = getStore();
+					const resp = await fetch(process.env.BACKEND_URL + "/api/public_key", {
+						method: 'GET'
+					  })		
+					const data = await resp.text()
+					setStore({ key: data })
+					return data;
+				}catch(error){
+					console.log("Error loading key from backend", error)
+				}
+			},
 			login: async (email, password) => {
 				try{
-
+					const store = getStore();
+					// Beginning of encryption using Forge package
+					var publicKey = forge.pki.publicKeyFromPem(store.key);
+					var encrypted = publicKey.encrypt(password, "RSA-OAEP", {
+						md: forge.md.sha256.create(),
+						mgf1: forge.mgf1.create(),
+					});
+					const encryptedPassword = forge.util.encode64(encrypted);
+					// ending of encryption using Forge package.
 					let requestOptions = {
 						method: 'POST',
 						//credentials: 'include',
 						headers: { 'Content-Type': 'application/json' },
 						body : JSON.stringify({
 							'email': email,
-							'password': password
+							'password': encryptedPassword
 						})
 					};
 

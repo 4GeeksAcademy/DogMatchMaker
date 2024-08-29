@@ -21,6 +21,10 @@ typing-extensions = "*"
 mysqlclient = "*"
 flask-jwt-extended = "*"
 requests = "*"
+rsa = "*"
+pycryptodome = "*"
+pybase64 = "*"
+b64decode = "*"
 
 [requires]
 python_version = "3.10"

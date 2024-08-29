@@ -80,3 +80,5 @@ database.database
 database.db
 diagram.png
 __pycache__/
+src/private.pem
+src/public.pem

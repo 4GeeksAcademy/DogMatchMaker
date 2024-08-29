@@ -1,0 +1,46 @@
+.traits-pills{
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    justify-content: space-between;
+    display: flex;
+    left: 83px;
+}
+.trait-pill1 {
+    color: white;
+    margin: 0;
+    border: 1px solid white;
+    border-radius: 45px;
+    padding: 5px 15px 5px 15px;
+    font-size: 13px;
+    position: relative;
+    background-color:yellowgreen;
+}
+
+.trait-pill2 {
+    color: white;
+    margin: 0;
+    border: 1px solid white;
+    border-radius: 45px;
+    padding: 5px 15px 5px 15px;
+    font-size: 13px;
+    position: relative;
+    background-color:blueviolet;
+    margin: 0px 5px;
+}
+
+.trait-pill3 {
+    color: white;
+    margin: 0;
+    border: 1px solid white;
+    border-radius: 45px;
+    padding: 5px 15px 5px 15px;
+    font-size: 13px;
+    position: relative;
+    background-color:tomato;
+}
+
+.trait-pill1:hover, .trait-pill2:hover, .trait-pill3:hover{
+    transform: translateY(-2px);
+    cursor: default;
+}

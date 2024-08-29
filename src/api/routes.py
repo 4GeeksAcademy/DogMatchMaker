@@ -118,6 +118,7 @@ def create_token():
         return jsonify({"access_token": access_token})
     return jsonify({"msg": "Bad email or password"}), 401
 
+
 @api.route('/private', methods=['GET'])
 @jwt_required()
 def private_hello():
@@ -204,9 +205,7 @@ async def createAnotherUser(username) :
                             "secret": "123456"
                         })
     return response.json
-
 async def createAnotherChat(username1, username2):
-
     response3 = requests.put("https://api.chatengine.io/chats",
                         headers={"Project-ID": PROJECT_ID,
                                  "User-Name" : username1,
@@ -215,36 +214,100 @@ async def createAnotherChat(username1, username2):
                             "usernames": [username2],
                             "is_direct_chat": True
                         })
-    
     return response3.json()
-
 async def makeMatch(username1, username2) :
-
     await createAnotherUser(username1)
     await createAnotherUser(username2)
     json3 = await createAnotherChat(username1, username2)
-
     return jsonify(json3)
-
 @api.route("/match", methods=['POST'])
 async def make_match():
     username1 = request.json.get("username1", None)
     username2 = request.json.get("username2", None)
     print(username1, username2)
     return await makeMatch(username1, username2)
-
 async def deleteMatch(username1,chatId) :
-
     response = requests.delete("https://api.chatengine.io/chats/"+chatId,
                         headers={"Project-ID": PROJECT_ID,
                                  "User-Name" : username1,
                                  "User-Secret" : "123456"}
                         )
-    
     return response.json()
-
 @api.route("/unmatch", methods=['POST'])
 async def make_unmatch():
     username1 = request.json.get("username1", None)
     chatId = request.json.get("chatId", None)
     return await deleteMatch(username1, chatId)
+
+
+@api.route('/like', methods=['POST'])
+@jwt_required()
+async def send_like():
+    current_user = get_jwt_identity()
+    data = request.json
+    match = Like.query.filter_by(user_id = data['liked_user']).filter_by(liked_user_id = current_user).first()
+    check_match = False
+    liked_user = UserAccount.query.filter_by(user_id = data['liked_user']).first()
+    current_usera = UserAccount.query.filter_by(user_id = current_user).first()
+
+    if match:
+        check_match = True
+        match.match_likes = True
+        db.session.commit() 
+        a = await makeMatch(current_usera.email, liked_user.email) 
+        print(a)      
+    new_like = Like(user_id=current_user, liked_user_id=data['liked_user'], match_likes=check_match)    
+    db.session.add(new_like)
+    db.session.commit()
+    return_like = new_like.serialize()
+    liked_s = liked_user.serialize()
+
+    return jsonify({'success': True, 'message': 'Like was successful.', 'like': return_like, 'user': liked_s})
+
+
+@api.route('/like', methods=['DELETE'])
+@jwt_required()
+def remove_like():
+    current_user = get_jwt_identity()
+    data = request.json
+    
+    # Check if 'liked_user' is in the request data
+    if 'liked_user' not in data:
+        return jsonify({'success': False, 'message': 'Liked user ID is required.'}), 400
+
+    # Find the like entry that matches current_user and liked_user
+    like_to_delete = Like.query.filter_by(user_id=current_user, liked_user_id=data['liked_user']).first()
+
+    if like_to_delete:
+        db.session.delete(like_to_delete)
+        db.session.commit()
+        return jsonify({'success': True, 'message': 'Like was successfully removed.'})
+    else:
+        return jsonify({'success': False, 'message': 'Like not found.'}), 404
+
+    
+
+    
+@api.route('/getuserlikes', methods=['GET'])
+@jwt_required()
+def handle_get_user_likes():
+    current_user = get_jwt_identity()
+    user_likes = Like.query.filter_by(user_id=current_user).all()
+    matches = []
+    
+    
+   ## liked_user = UserAccount.query.filter_by(user_id = data["liked_user"]).first()
+   ## serialized = liked_user.serialize()
+    
+    for item in user_likes:
+        if item.match_likes == True:
+           user = UserAccount.query.filter_by(user_id=item.liked_user_id).first()
+           user_s = user.serialize()
+           single = item.serialize()
+           put_together = {
+                'like': single,
+                'user': user_s
+            }
+           matches.append(put_together)
+
+    return jsonify({"success": True, "matches": matches}), 200

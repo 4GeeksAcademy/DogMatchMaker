@@ -1,5 +1,7 @@
 import React, {useContext} from "react";
 import { Context } from "../store/appContext.js";
+import "../../styles/traitpills.css";
+
 
 const TraitPills = ({data}) => {
     const { store, actions } = useContext(Context)

@@ -1,12 +1,54 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import girlwithdog from "../../img/girlanddog2.jpg";
 import ProfileInfo from "./profilecardinfo.jsx";
 import "../../styles/profilecards.css";
 import { Context } from "../store/appContext.js";
 import FrontDogInfoPills from "./front-dog-info-pills.jsx";
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import { useNavigate } from "react-router-dom";
 
-const ProfileCard = ({ data, setNextCard, nextCard }) => {
+const ProfileCard = ({ data, setNextCard, nextCard, getMatches }) => {
   const { store, actions } = useContext(Context)
+  const [show, setShow] = useState(false);
+  const [matchInfo, setMatchInfo] = useState(null)
+  
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  
+  const navigate = useNavigate()
+
+  useEffect(() => {
+    getMatches();
+  }, [matchInfo])
+
+  function fetchLike() {
+    const backend = process.env.BACKEND_URL
+    const url = 'api/like'
+    const opts = {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${store.token}`
+      },
+      body: JSON.stringify({
+        current_user_id: store.user,
+        liked_user: data.user_id,
+      })
+    }
+    fetch(backend + url, opts)
+      .then((resp) => {
+        if (resp.ok) {
+          console.log("You liked this user")
+          return resp.json()
+        }
+        else {
+          throw new Error('Error')
+        }
+      })
+      .then(data => { if (data.like.match_likes === true) {handleShow(), setMatchInfo(data.user), console.log("Match")}})
+      .catch(err => console.error(err))
+  }
   return (
     <div id="carouselExampleIndicators" className="profile-card carousel slide" data-bs-ride="carousel">
       <div className="carousel-indicators top-indicators">
@@ -27,10 +69,10 @@ const ProfileCard = ({ data, setNextCard, nextCard }) => {
         <div className="mt-2">
           <img src={girlwithdog} className="card-img" />
           <div className="front-card-names">
-          <h2 className="front-dog-name"><strong>{data.dog_name}</strong></h2>
-          <h5 className="front-owner-name">& {data.owner_name}</h5>
+            <h2 className="front-dog-name"><strong>{data.dog_name}</strong></h2>
+            <h5 className="front-owner-name">& {data.owner_name}</h5>
           </div>
-          <FrontDogInfoPills data={data}/>
+          <FrontDogInfoPills data={data} />
           <div className="justify-content-center d-flex">
             <div>
               <i id="close" className="fa regular fa-circle-xmark" onClick={() => {
@@ -50,6 +92,7 @@ const ProfileCard = ({ data, setNextCard, nextCard }) => {
             </div>
             <div>
               <i id="like" className="fa regular fa-circle-check" onClick={() => {
+                fetchLike();
                 setNextCard({
                   prev: nextCard.prev + 1,
                   next: nextCard.next + 1
@@ -68,6 +111,30 @@ const ProfileCard = ({ data, setNextCard, nextCard }) => {
         <span className="carousel-control-next-icon" aria-hidden="true"></span>
         <span className="visually-hidden">Next</span>
       </button>
+      
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
+        centered
+      >
+        <Modal.Header>
+          <Modal.Title>It's A Match! <i className="fa-solid fa-heart" style={{ color: 'red' }}></i></Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h4> You matched with {matchInfo?.dog_name} & {matchInfo?.owner_name}!</h4>
+          <h5>Don't be shy... Start a message!</h5>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Keep Swiping
+          </Button>
+          <Button variant="primary" onClick={() => navigate("/messages")}>Message</Button>
+        </Modal.Footer>
+      </Modal>
+    
+
     </div>
   );
 };

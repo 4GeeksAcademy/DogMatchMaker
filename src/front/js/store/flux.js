@@ -7,6 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			section: null,
 			var: false,
 			key: '',
+			/* matches: [], */
 			demo: [
 				{
 					title: "FIRST",
@@ -21,6 +22,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 			]
 		},
 		actions: {
+			/* getMatches: () => {
+				const store = getStore();
+				const backend = process.env.BACKEND_URL;
+				const url = "api/getuserlikes";
+				const opts = {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${store.token}`,
+				},
+				};
+				fetch(backend + url, opts)
+				.then((resp) => {
+					if (resp.ok) {
+					return resp.json();
+					} else {
+					throw new Error("problem getting matches");
+					}
+				})
+				.then((data) => setStore({matches: data.matches}))
+				.catch((err) => console.error(err));
+			}, */
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
@@ -143,9 +166,9 @@ const getState = ({ getStore, getActions, setStore }) => {
                     console.error('Error during login', error);
                     return false;
                 }
-            }
-        }
-    };
+    		},
+  		}
+	};
 };
 
 export default getState;

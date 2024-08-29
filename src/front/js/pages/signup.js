@@ -21,7 +21,6 @@ export const Signup = () => {
   const [breeds, setBreeds] = useState([]);
   const navigate = useNavigate();
 
- 
   useEffect(() => {
     const fetchBreeds = async () => {
       try {
@@ -98,7 +97,7 @@ export const Signup = () => {
     } catch (error) {
       console.error("There was a problem with the fetch operation:", error);
     }
-  }
+  };
 
   return (
     <section
@@ -106,9 +105,9 @@ export const Signup = () => {
       style={{
         position: "relative",
         overflow: "hidden",
-        margin: 0, 
-        padding: 0, 
-        height: "100vh", 
+        margin: 0,
+        padding: 0,
+        height: "100vh",
       }}
     >
       <div

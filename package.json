@@ -74,6 +74,7 @@
 		]
 	},
 	"dependencies": {
+		"bootstrap": "^5.3.3",
 		"braces": "^3.0.3",
 		"jsencrypt": "^3.3.2",
 		"lodash": ">=4.17.21",
@@ -82,6 +83,7 @@
 		"prop-types": "^15.6.1",
 		"react": "^16.8.4",
 		"react-awesome-button": "^7.0.5",
+		"react-bootstrap": "^2.10.4",
 		"react-chat-engine": "1.11.28",
 		"react-dom": "^16.8.4",
 		"react-hello-webapp": "file:",

@@ -29,35 +29,33 @@ export const Private = () => {
   }, [matches]);
 
   const getUsers = async () => {
-    const resp = await fetch(
-        process.env.BACKEND_URL+"/api/users"
-    );
+    const resp = await fetch(process.env.BACKEND_URL + "/api/users");
     const data = await resp.json();
     setUsers(data.users);
   };
 
-    const getMatches = useCallback(async () => {
-      const backend = process.env.BACKEND_URL;
-      const url = "api/getuserlikes";
-      const opts = {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${store.token}`,
-        },
-      };
-      try {
-        const response = await fetch(`${backend}${url}`, opts);
-        if (response.ok) {
-          const data = await response.json();
-          setMatches(data.matches);
-        } else {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-      } catch (error) {
-        console.error("Error fetching matches:", error);
+  const getMatches = useCallback(async () => {
+    const backend = process.env.BACKEND_URL;
+    const url = "api/getuserlikes";
+    const opts = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${store.token}`,
+      },
+    };
+    try {
+      const response = await fetch(`${backend}${url}`, opts);
+      if (response.ok) {
+        const data = await response.json();
+        setMatches(data.matches);
+      } else {
+        throw new Error(`HTTP error! Status: ${response.status}`);
       }
-    }, [store.token]);
+    } catch (error) {
+      console.error("Error fetching matches:", error);
+    }
+  }, [store.token]);
 
   return (
     <div className="private-page text-center container">

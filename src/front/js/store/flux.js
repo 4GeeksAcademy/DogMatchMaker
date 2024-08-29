@@ -6,7 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       token: "",
       section: null,
       var: true,
-	  /* matches: [], */
+      matches: [],
       demo: [
         {
           title: "FIRST",
@@ -21,29 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       ],
     },
     actions: {
-      /* getMatches: () => {
-		const store = getStore();
-        const backend = process.env.BACKEND_URL;
-        const url = "api/getuserlikes";
-        const opts = {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${store.token}`,
-          },
-        };
-        fetch(backend + url, opts)
-          .then((resp) => {
-            if (resp.ok) {
-              return resp.json();
-            } else {
-              throw new Error("problem getting matches");
-            }
-          })
-          .then((data) => setStore({matches: data.matches}))
-          .catch((err) => console.error(err));
-      }, */
-      // Use getActions to call a function within a fuction
+  
       exampleFunction: () => {
         getActions().changeColor(0, "green");
       },
@@ -62,6 +40,35 @@ const getState = ({ getStore, getActions, setStore }) => {
           console.log("Error loading message from backend", error);
         }
       },
+
+      getMatches: () => {
+        return async (dispatch, getState) => {
+          const backend = process.env.BACKEND_URL;
+          const url = "api/getuserlikes";
+          const opts = {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${getState().store.token}`,
+            },
+          };
+          try {
+            const response = await fetch(`${backend}${url}`, opts);
+            if (response.ok) {
+              const data = await response.json();
+              dispatch({
+                type: "SET_MATCHES",
+                payload: data.matches,
+              });
+            } else {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+          } catch (error) {
+            console.error("Error fetching matches:", error);
+          }
+        };
+      },
+
       changeColor: (index, color) => {
         //get the store
         const store = getStore();
@@ -141,7 +148,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
           const data = await resp.json();
           sessionStorage.setItem("token", data.access_token);
-					sessionStorage.setItem('user', email);
+          sessionStorage.setItem("user", email);
           sessionStorage.setItem("user", email);
           setStore({ token: data.access_token, user: email });
           return true;

@@ -7,13 +7,13 @@ import Modal from 'react-bootstrap/Modal';
 const NewNotification = ({ data }) => {
     const { store, actions } = useContext(Context)
     const [show, setShow] = useState(false);
-    
+
 
     const handleClose = () => {
         setShow(false);
         deleteLike(data);
     };
-    
+
     const handleShow = () => setShow(true);
 
     function deleteLike(data) {
@@ -76,11 +76,3 @@ const NewNotification = ({ data }) => {
 }
 
 export default NewNotification;
-/* 
-<div className="noti-box-text">
-                <h5 className="mb-0 col-8">Matched with</h5>
-                <h6>{data.dog_name} & {data.owner_name}</h6>
-            </div>
-            <div className="break-match-icon col-2">
-                <i className="fa-solid fa-heart-crack"></i>
-            </div> */

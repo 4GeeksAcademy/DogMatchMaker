@@ -12,10 +12,10 @@ const ProfileCard = ({ data, setNextCard, nextCard, getMatches }) => {
   const { store, actions } = useContext(Context)
   const [show, setShow] = useState(false);
   const [matchInfo, setMatchInfo] = useState(null)
-  
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-  
+
   const navigate = useNavigate()
 
   useEffect(() => {
@@ -46,7 +46,7 @@ const ProfileCard = ({ data, setNextCard, nextCard, getMatches }) => {
           throw new Error('Error')
         }
       })
-      .then(data => { if (data.like.match_likes === true) {handleShow(), setMatchInfo(data.user), console.log("Match")}})
+      .then(data => { if (data.like.match_likes === true) { handleShow(), setMatchInfo(data.user), console.log("Match") } })
       .catch(err => console.error(err))
   }
   return (
@@ -111,7 +111,7 @@ const ProfileCard = ({ data, setNextCard, nextCard, getMatches }) => {
         <span className="carousel-control-next-icon" aria-hidden="true"></span>
         <span className="visually-hidden">Next</span>
       </button>
-      
+
       <Modal
         show={show}
         onHide={handleClose}
@@ -133,7 +133,7 @@ const ProfileCard = ({ data, setNextCard, nextCard, getMatches }) => {
           <Button variant="primary" onClick={() => navigate("/messages")}>Message</Button>
         </Modal.Footer>
       </Modal>
-    
+
 
     </div>
   );

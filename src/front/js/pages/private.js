@@ -60,7 +60,7 @@ export const Private = () => {
     }, [store.token]);
 
   return (
-    <div className="private-page text-center">
+    <div className="private-page text-center container">
       <div className="container-fluid row">
         <div className="col-8 justify-content-end mt-4 d-flex">
           {users !== null &&

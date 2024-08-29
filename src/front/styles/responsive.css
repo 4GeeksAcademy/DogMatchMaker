@@ -1,0 +1,96 @@
+/* Default styles for desktop (large desktops) */
+body {
+    /* Default desktop styles here */
+}
+
+.container {
+    /* Default container styles here */
+}
+
+.header {
+    /* Default header styles here */
+}
+
+.main-content {
+    /* Default main content styles here */
+}
+
+.footer {
+    /* Default footer styles here */
+}
+
+/* Styles for screens between 992px and 1199px (desktops and large tablets) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .container {
+        /* Styles for desktops and large tablets here */
+    }
+
+    .header {
+        /* Styles for desktops and large tablets here */
+    }
+
+    .main-content {
+        /* Styles for desktops and large tablets here */
+    }
+
+    .footer {
+        /* Styles for desktops and large tablets here */
+    }
+}
+
+/* Styles for screens between 768px and 991px (tablets and small desktops) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .container {
+        /* Styles for tablets and small desktops here */
+    }
+
+    .header {
+        /* Styles for tablets and small desktops here */
+    }
+
+    .main-content {
+        /* Styles for tablets and small desktops here */
+    }
+
+    .footer {
+        /* Styles for tablets and small desktops here */
+    }
+}
+
+/* Styles for screens between 576px and 767px (mobile devices) */
+@media (min-width: 576px) and (max-width: 767px) {
+    .container {
+        /* Styles for mobile devices here */
+    }
+
+    .header {
+        /* Styles for mobile devices here */
+    }
+
+    .main-content {
+        /* Styles for mobile devices here */
+    }
+
+    .footer {
+        /* Styles for mobile devices here */
+    }
+}
+
+/* Styles for screens smaller than 576px (extra small devices) */
+@media (max-width: 575px) {
+    .container {
+        /* Styles for extra small devices here */
+    }
+
+    .header {
+        /* Styles for extra small devices here */
+    }
+
+    .main-content {
+        /* Styles for extra small devices here */
+    }
+
+    .footer {
+        /* Styles for extra small devices here */
+    }
+}

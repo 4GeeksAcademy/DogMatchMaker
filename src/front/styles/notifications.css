@@ -1,40 +1,52 @@
-/* notifications.css */
+/* Apply to .my-pullout as previously defined */
 .my-pullout {
-    height: 55rem;
-    width: 20rem;
-    position: absolute;
-    right: 0;
-    transform: translateX(100%);
-    transition: transform 0.5s ease-in-out;
-    background-color: white; /* Adjust this as needed */
-    border: 1px solid #ccc;
-    border-top: none;
-    z-index: 1000; /* Ensure it appears on top */
-    margin-top: 0px;
-  }
-  
-  .my-pullout.visible {
-    transform: translateX(0);
-  }
+  height: 100vh;
+  /* Full viewport height */
+  width: 20rem;
+  position: fixed;
+  /* Fixed position to ensure it covers the viewport */
+  right: 0;
+  top: 110px;
+  /* Align to the top of the viewport */
+  transform: translateX(90%);
+  transition: transform 0.5s ease-in-out;
+  background-color: white;
+  /* Adjust as needed */
+  border: 1px solid #ccc;
+  border-top: none;
+  z-index: 1000;
+  /* Ensure it appears on top */
+  margin-top: 0px;
+}
 
-   .notifications-head{
-    display: flex;
-    border: 1px solid black;
-    background: radial-gradient(circle, #344964 0%, #2b2c41 100%);
-    color: white;
-    border-radius: 10px;
-    box-shadow: 10px 8px 10px rgba(0, 0, 0, 0.20);
-    z-index: 1000;
-   }
+/* Ensure visibility transition is smooth */
+.my-pullout.visible {
+  transform: translateX(0);
+}
 
-   .notifications-head:hover{
-    cursor: default;
-    transform: translateY(-1px);
-   }
-  
-  .noti-title {
-    margin: 0;
-    font-size: 25px;
-  }
+/* Adjusting the visibility and interaction */
+body.no-scroll {
+  overflow: hidden;
+  /* Prevent scrolling when pullout is visible */
+}
 
+.notifications-head {
+  display: flex;
+  border: 1px solid black;
+  background: radial-gradient(circle, #344964 0%, #2b2c41 100%);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 10px 8px 10px rgba(0, 0, 0, 0.20);
+  z-index: 1001;
+  /* Ensure it stays on top of .my-pullout if needed */
+}
 
+.notifications-head:hover {
+  cursor: default;
+  transform: translateY(-1px);
+}
+
+.noti-title {
+  margin: 0;
+  font-size: 25px;
+}

@@ -40,7 +40,7 @@ def create_user():
     bio = request.form.get('bio')
     traits = request.form.get('traits')
     profile_picture = request.files.get('profile_picture')
-    
+     
     profile_picture_filename = None
     if profile_picture:
         profile_picture_filename = secure_filename(profile_picture.filename)
@@ -208,7 +208,7 @@ async def send_like():
     current_user = get_jwt_identity()
     data = request.json
     match = Like.query.filter_by(user_id = data['liked_user']).filter_by(liked_user_id = current_user).first()
-    check_match = False
+    check_match = True
     liked_user = UserAccount.query.filter_by(user_id = data['liked_user']).first()
     current_usera = UserAccount.query.filter_by(user_id = current_user).first()
 

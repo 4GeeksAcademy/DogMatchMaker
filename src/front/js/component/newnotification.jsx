@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../styles/notiboxes.css"
 import { Context } from "../store/appContext";
 import Button from 'react-bootstrap/Button';
@@ -7,8 +7,13 @@ import Modal from 'react-bootstrap/Modal';
 const NewNotification = ({ data }) => {
     const { store, actions } = useContext(Context)
     const [show, setShow] = useState(false);
+    
 
-    const handleClose = () => setShow(false);
+    const handleClose = () => {
+        setShow(false);
+        deleteLike(data);
+    };
+    
     const handleShow = () => setShow(true);
 
     function deleteLike(data) {
@@ -21,7 +26,8 @@ const NewNotification = ({ data }) => {
                 'Authorization': `Bearer ${store.token}`
             },
             body: JSON.stringify({
-                liked_user: data.user_id
+                current_user_id: store.user,
+                liked_user: data.user_id,
             })
         };
 

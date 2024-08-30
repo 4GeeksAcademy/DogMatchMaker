@@ -1,7 +1,7 @@
 """
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, render_template
 from api.models import db, UserAccount, Like, Message
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS, cross_origin
@@ -10,11 +10,50 @@ from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identi
 from werkzeug.utils import secure_filename
 import os
 import requests
+from Crypto.PublicKey import RSA
+from Crypto.Cipher import PKCS1_OAEP
+from Crypto.PublicKey import RSA
+from Crypto.Hash import SHA256
+from base64 import b64decode
+
+key = RSA.generate(2048)
+private_key = key.export_key()
+
+dir = os.path.join(os.path.dirname(
+    os.path.realpath(__file__)), '../')
+
+with open(dir+"/private.pem", "wb") as f:
+    f.write(private_key)
+
+public_key = key.publickey().export_key()
+with open(dir+"/public.pem", "wb") as f:
+    f.write(public_key)
+
+def get_public_key():
+    """Retrieve public key securely using pycryptodome methods."""
+    key_binary = open(dir+"/public.pem", 'rb')
+    key = RSA.import_key(key_binary.read())
+    key_binary.close()
+    return key.public_key().export_key()
+
+def get_private_key():
+    """Retrieve private key securely using pycryptodome methods."""
+    key_binary = open(dir+"/private.pem", 'rb')
+    key = RSA.import_key(key_binary.read())
+    key_binary.close()
+    return key
+
+def decrypt_data(encrypted_value):
+    """Decrypt data using private key obtained securely."""
+    cipher = PKCS1_OAEP.new(get_private_key(), hashAlgo=SHA256)
+    decrypted_message = cipher.decrypt(b64decode(encrypted_value))
+    return decrypted_message.decode()
 
 api = Blueprint('api', __name__)
 
-PRIVATE_KEY = 'ff29d706-4125-4092-9562-8d7ec0a76522'
-PROJECT_ID='bfbbfc3d-6972-42a7-84d3-b55e82c4891f'
+PRIVATE_KEY ="ff29d706-4125-4092-9562-8d7ec0a76522"
+PROJECT_ID="bfbbfc3d-6972-42a7-84d3-b55e82c4891f"
+
 
 UPLOAD_FOLDER = 'uploads'
 if not os.path.exists(UPLOAD_FOLDER):
@@ -69,12 +108,16 @@ def create_user():
 
     return jsonify(response_body), 200
 
+@api.route('/public_key', methods=['GET'])
+def public_key():
+    return get_public_key(), 200
+
 @api.route("/token", methods=["POST"])
 def create_token():
     data = request.json
     email = data.get("email")
     password = data.get("password")
-    userAccount = UserAccount.query.filter_by(email=email).filter_by(password=password).first()
+    userAccount = UserAccount.query.filter_by(email=email).filter_by(password=decrypt_data(password)).first()
     if userAccount:
         access_token = create_access_token(identity=userAccount.user_id)
         return jsonify({"access_token": access_token})
@@ -159,7 +202,8 @@ def logout():
     return response
 
 async def createAnotherUser(username) :
-    response = requests.post("https://api.chatengine.io/users", headers={"PRIVATE-KEY": PRIVATE_KEY},
+    response = requests.post("https://api.chatengine.io/users", 
+                        headers={"PRIVATE-KEY": PRIVATE_KEY},
                         data={
                             "username": username,
                             "first_name": username,
@@ -167,27 +211,57 @@ async def createAnotherUser(username) :
                             "secret": "123456"
                         })
     return response.json
-async def createAnotherChat(username1, username2):
-    response3 = requests.put("https://api.chatengine.io/chats",
+
+async def createAnotherChat(username1, username2, chatName):
+    response = requests.put("https://api.chatengine.io/chats",
                         headers={"Project-ID": PROJECT_ID,
                                  "User-Name" : username1,
                                  "User-Secret" : "123456"},
                         data={
                             "usernames": [username2],
-                            "is_direct_chat": True
+                            "is_direct_chat": False,
+                            "title": chatName,
                         })
-    return response3.json()
-async def makeMatch(username1, username2) :
+    
+    return response.json()
+
+async def addMembers(username1, username2, chat_id):
+    response = requests.put("https://api.chatengine.io/chats/"+str(chat_id)+"/people/",
+                        headers={"Project-ID": PROJECT_ID,
+                                 "User-Name" : username1,
+                                 "User-Secret" : "123456"},
+                        data={
+                            "username": username2
+                        })
+    return response.json()
+
+async def changeNameChat(username1, chat_id, chatName):
+    response = requests.patch("https://api.chatengine.io/chats/"+str(chat_id)+"/",
+                        headers={"Project-ID": PROJECT_ID,
+                                 "User-Name" : username1,
+                                 "User-Secret" : "123456"},
+                        data={
+                            "title": chatName,
+                            "is_direct_chat": False
+                        })
+    return response.json()
+
+async def makeMatch(username1, username2, chatName) :
     await createAnotherUser(username1)
     await createAnotherUser(username2)
-    json3 = await createAnotherChat(username1, username2)
-    return jsonify(json3)
+    resp = await createAnotherChat(username1, username2, chatName)
+    await addMembers(username1, username2, resp['id'])
+    await changeNameChat(username1, resp['id'], chatName)
+    
+    return resp['id']
+
 @api.route("/match", methods=['POST'])
 async def make_match():
     username1 = request.json.get("username1", None)
     username2 = request.json.get("username2", None)
     print(username1, username2)
     return await makeMatch(username1, username2)
+
 async def deleteMatch(username1,chatId) :
     response = requests.delete("https://api.chatengine.io/chats/"+chatId,
                         headers={"Project-ID": PROJECT_ID,
@@ -211,14 +285,14 @@ async def send_like():
     check_match = True
     liked_user = UserAccount.query.filter_by(user_id = data['liked_user']).first()
     current_usera = UserAccount.query.filter_by(user_id = current_user).first()
-
+    chat_id = None
     if match:
         check_match = True
         match.match_likes = True
         db.session.commit() 
-        a = await makeMatch(current_usera.email, liked_user.email) 
-        print(a)      
-    new_like = Like(user_id=current_user, liked_user_id=data['liked_user'], match_likes=check_match)    
+        chat_id = await makeMatch(current_usera.email, liked_user.email, current_usera.dog_name+" and "+liked_user.dog_name) 
+        
+    new_like = Like(user_id=current_user, liked_user_id=data['liked_user'], match_likes=check_match, chat_id=chat_id)    
     db.session.add(new_like)
     db.session.commit()
     return_like = new_like.serialize()

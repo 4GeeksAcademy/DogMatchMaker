@@ -35,24 +35,24 @@ export const Private = () => {
     setUsers(data.users);
   };
 
-  const getMatches = useCallback(async () => {
-    const backend = process.env.BACKEND_URL;
-    const url = "api/getuserlikes";
-    const opts = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${store.token}`,
-      },
-    };
-    try {
-      const response = await fetch(`${backend}${url}`, opts);
-      if (response.ok) {
-        const data = await response.json();
-        setMatches(data.matches);
-      } else {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
+    const getMatches = useCallback(async () => {
+      const backend = process.env.BACKEND_URL;
+      const url = "/api/getuserlikes";
+      const opts = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${store.token}`,
+        },
+      };
+      try {
+        const response = await fetch(`${backend}${url}`, opts);
+        if (response.ok) {
+          const data = await response.json();
+          setMatches(data.matches);
+        } else {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
     } catch (error) {
       console.error("Error fetching matches:", error);
     }

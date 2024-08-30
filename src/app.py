@@ -20,7 +20,7 @@ app.url_map.strict_slashes = False
 app.config["JWT_SECRET_KEY"] = "vcdrftgybhnjm09876543wsdcvbnmk"  # Update to a secure key
 app.config["JWT_COOKIE_SECURE"] = False
 app.config["JWT_TOKEN_LOCATION"] = ["headers"]
-app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=10)
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=60)
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Database URL

@@ -6,9 +6,10 @@ import NewNotification from "./newnotification.jsx";
 const Matches = ({ getMatches, matches }) => {
   const { store, actions } = useContext(Context);
   const [isVisible, setIsVisible] = useState(true);
+  const [matchInfo, setMatchInfo] = useState(null)
 
   useEffect(() => { if (store.token) { getMatches(); } }, [store.token, getMatches]);
-
+  
   useEffect(() => {
     setIsVisible(store.var);
   }, [store.var]);
@@ -22,7 +23,7 @@ const Matches = ({ getMatches, matches }) => {
       </div>
       {Array.isArray(matches) && matches.length > 0 ? matches.map((data, ind) => {
         return (
-          <NewNotification data={data.user} key={ind} />
+          <NewNotification data={data.user} key={ind} getMatches={() => getMatches()}/>
         )
       }) : (<p></p>)}
     </div>

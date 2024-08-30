@@ -24,9 +24,10 @@ export const Private = () => {
     getUsers();
   }, []);
 
-  useEffect(() => {
+  
+ /*  useEffect(() => {
     console.log(matches);
-  }, [matches]);
+  }, [matches]); */
 
   const getUsers = async () => {
     const resp = await fetch(process.env.BACKEND_URL + "/api/users");
@@ -75,7 +76,7 @@ export const Private = () => {
             })}
         </div>
         <div className="col-3 text-start"></div>
-        <Matches getMatches={getMatches} matches={matches} />
+        <Matches getMatches={() => getMatches()} matches={matches} />
       </div>
     </div>
   );

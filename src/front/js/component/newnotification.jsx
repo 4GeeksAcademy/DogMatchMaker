@@ -4,10 +4,14 @@ import { Context } from "../store/appContext";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-const NewNotification = ({ data }) => {
+const NewNotification = ({ data, getMatches }) => {
     const { store, actions } = useContext(Context)
     const [show, setShow] = useState(false);
+    const [matchInfo, setMatchInfo] = useState(null)
 
+    useEffect(() => {
+        getMatches(null)
+    }, [matchInfo])
 
     const handleClose = () => {
         setShow(false);
@@ -42,6 +46,7 @@ const NewNotification = ({ data }) => {
             })
             .then(data => {
                 // Handle the response here if needed
+                console.log("Unmatched")
                 console.log(data.message); // Success message from the server
             })
             .catch(err => console.error(err));

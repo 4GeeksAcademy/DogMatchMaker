@@ -6,7 +6,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       token: "",
       section: null,
       var: true,
-      matches: [],
+      /* matches: [], */
       demo: [
         {
           title: "FIRST",
@@ -41,7 +41,7 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      getMatches: () => {
+      /* getMatches: () => {
         return async (dispatch, getState) => {
           const backend = process.env.BACKEND_URL;
           const url = "api/getuserlikes";
@@ -67,7 +67,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             console.error("Error fetching matches:", error);
           }
         };
-      },
+      }, */
 
       changeColor: (index, color) => {
         //get the store

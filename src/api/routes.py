@@ -31,14 +31,14 @@ with open(dir+"/public.pem", "wb") as f:
 
 def get_public_key():
     """Retrieve public key securely using pycryptodome methods."""
-    key_binary = open("./src/public.pem", 'rb')
+    key_binary = open(dir+"/public.pem", 'rb')
     key = RSA.import_key(key_binary.read())
     key_binary.close()
     return key.public_key().export_key()
 
 def get_private_key():
     """Retrieve private key securely using pycryptodome methods."""
-    key_binary = open("./src/private.pem", 'rb')
+    key_binary = open(dir+"/private.pem", 'rb')
     key = RSA.import_key(key_binary.read())
     key_binary.close()
     return key

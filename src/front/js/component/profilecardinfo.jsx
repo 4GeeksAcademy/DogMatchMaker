@@ -67,7 +67,7 @@ const ProfileInfo = ({ data }) => {
               className="bio form-control p-1 m-0"
               id="exampleFormControlTextarea1"
               placeholder="Your super cool bio!"
-              rows="5"
+              rows="7"
               readOnly
               defaultValue={data.bio}
             />

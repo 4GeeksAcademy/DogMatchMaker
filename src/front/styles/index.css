@@ -33,3 +33,12 @@
     height: 100vh;
   }
   
+.settings-btn-submit {
+    background: radial-gradient(circle, #344964 0%, #2b2c41 100%);
+    color: white;
+}
+.settings-btn-submit:hover {
+    background: radial-gradient(circle, #344964 0%, #2b2c41 100%);
+    color: white !important;
+    transform: translateY(-2px);
+}

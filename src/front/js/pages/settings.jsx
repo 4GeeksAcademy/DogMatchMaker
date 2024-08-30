@@ -138,7 +138,7 @@ const Settings = () => {
                                     required
                                 />
                             </div>
-                            <button type="submit" className="btn btn-primary mt-2" style={{ borderRadius: '1.5rem' }}>Update Email</button>
+                            <button type="submit" className="btn settings-btn-submit bt2 mt-2" style={{ borderRadius: '1.5rem' }}>Update Email</button>
                         </form>
                         <form onSubmit={handlePasswordChange} className="mb-4">
                             <div className="form-group">
@@ -165,7 +165,7 @@ const Settings = () => {
                                     required
                                 />
                             </div>
-                            <button type="submit" className="btn btn-primary mt-2" style={{ borderRadius: '1.5rem' }}>Update Password</button>
+                            <button type="submit" className="btn settings-btn-submit mt-2" style={{ borderRadius: '1.5rem' }}>Update Password</button>
                         </form>
                     </div>
                 </div>

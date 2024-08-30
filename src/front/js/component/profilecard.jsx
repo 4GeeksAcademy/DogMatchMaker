@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import girlwithdog from "../../img/girlanddog2.jpg";
 import ProfileInfo from "./profilecardinfo.jsx";
 import "../../styles/profilecards.css";
 import { Context } from "../store/appContext.js";
@@ -8,25 +7,25 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from "react-router-dom";
 import RandomMaleImage from "./random-males.jsx";
-import RandomFemaleImage from "./random-females.jsx"
+import RandomFemaleImage from "./random-females.jsx";
 
 const ProfileCard = ({ data, setNextCard, nextCard, getMatches }) => {
-  const { store, actions } = useContext(Context)
+  const { store } = useContext(Context);
   const [show, setShow] = useState(false);
-  const [matchInfo, setMatchInfo] = useState(null)
+  const [matchInfo, setMatchInfo] = useState(null);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   useEffect(() => {
     getMatches();
-  }, [matchInfo])
+  }, [matchInfo]);
 
   function fetchLike() {
-    const backend = process.env.BACKEND_URL
-    const url = 'api/like'
+    const backend = process.env.BACKEND_URL;
+    const url = 'api/like';
     const opts = {
       method: 'POST',
       headers: {
@@ -37,20 +36,26 @@ const ProfileCard = ({ data, setNextCard, nextCard, getMatches }) => {
         current_user_id: store.user,
         liked_user: data.user_id,
       })
-    }
+    };
     fetch(backend + url, opts)
       .then((resp) => {
         if (resp.ok) {
-          console.log("You liked this user")
-          return resp.json()
-        }
-        else {
-          throw new Error('Error')
+          console.log("You liked this user");
+          return resp.json();
+        } else {
+          throw new Error('Error');
         }
       })
-      .then(data => { if (data.like.match_likes === true) { handleShow(), setMatchInfo(data.user), console.log("Match") } })
-      .catch(err => console.error(err))
+      .then(data => {
+        if (data.like.match_likes) {
+          handleShow();
+          setMatchInfo(data.user);
+          console.log("Match");
+        }
+      })
+      .catch(err => console.error(err));
   }
+
   return (
     <div id="carouselExampleIndicators" className="profile-card carousel slide" data-bs-ride="carousel">
       <div className="carousel-indicators top-indicators">
@@ -62,11 +67,11 @@ const ProfileCard = ({ data, setNextCard, nextCard, getMatches }) => {
         <div className="carousel-item active">
           {data.owner_sex === 'Male' ? (
             <div className="img-wrapper">
-              <RandomMaleImage />
+              <RandomMaleImage userId={data.user_id} />
             </div>
           ) : (
             <div className="img-wrapper">
-              <RandomFemaleImage />
+              <RandomFemaleImage userId={data.user_id} />
             </div>
           )}
         </div>
@@ -82,7 +87,7 @@ const ProfileCard = ({ data, setNextCard, nextCard, getMatches }) => {
                 setNextCard({
                   prev: nextCard.prev + 1,
                   next: nextCard.next + 1
-                })
+                });
               }}></i>
             </div>
             <div>
@@ -90,7 +95,7 @@ const ProfileCard = ({ data, setNextCard, nextCard, getMatches }) => {
                 setNextCard({
                   prev: nextCard.prev - 1,
                   next: nextCard.next - 1
-                })
+                });
               }}></i>
             </div>
             <div>
@@ -99,7 +104,7 @@ const ProfileCard = ({ data, setNextCard, nextCard, getMatches }) => {
                 setNextCard({
                   prev: nextCard.prev + 1,
                   next: nextCard.next + 1
-                })
+                });
               }}></i>
             </div>
             <ProfileInfo data={data} />
@@ -136,8 +141,6 @@ const ProfileCard = ({ data, setNextCard, nextCard, getMatches }) => {
           <Button variant="primary" onClick={() => navigate("/messages")}>Message</Button>
         </Modal.Footer>
       </Modal>
-
-
     </div>
   );
 };

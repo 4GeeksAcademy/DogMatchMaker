@@ -23,7 +23,7 @@ const Matches = ({ getMatches, matches }) => {
       </div>
       {Array.isArray(matches) && matches.length > 0 ? matches.map((data, ind) => {
         return (
-          <NewNotification data={data.user} key={ind} getMatches={() => getMatches()}/>
+          <NewNotification data={data.user} key={ind} getMatches={getMatches} setMatchInfo={setMatchInfo} matchInfo={matchInfo}/>
         )
       }) : (<p></p>)}
     </div>

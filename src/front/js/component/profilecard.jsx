@@ -7,7 +7,8 @@ import FrontDogInfoPills from "./front-dog-info-pills.jsx";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { useNavigate } from "react-router-dom";
-import mandog from "../../img/mandog.jpg";
+import RandomMaleImage from "./random-males.jsx";
+import RandomFemaleImage from "./random-females.jsx"
 
 const ProfileCard = ({ data, setNextCard, nextCard, getMatches }) => {
   const { store, actions } = useContext(Context)
@@ -59,27 +60,17 @@ const ProfileCard = ({ data, setNextCard, nextCard, getMatches }) => {
       </div>
       <div className="carousel-inner">
         <div className="carousel-item active">
-          {data.dog_sex === 'Male' ? (
+          {data.owner_sex === 'Male' ? (
             <div className="img-wrapper">
-              <img src={mandog} className="card-img" alt="Man with dog" />
+              <RandomMaleImage />
             </div>
           ) : (
             <div className="img-wrapper">
-              <img src={girlwithdog} className="card-img" alt="Girl with dog" />
+              <RandomFemaleImage />
             </div>
           )}
         </div>
-        {/* <div className="carousel-item active">
-          <img src={girlwithdog} className="card-img" />
-        </div>
-        <div className="carousel-item">
-          <img src={girlwithdog} className="card-img" />
-        </div>
-        <div className="carousel-item">
-          <img src={girlwithdog} className="card-img" />
-        </div> */}
         <div className="mt-2">
-          <img src={girlwithdog} className="card-img" />
           <div className="front-card-names">
             <h2 className="front-dog-name"><strong>{data.dog_name}</strong></h2>
             <h5 className="front-owner-name">& {data.owner_name}</h5>

@@ -60,22 +60,21 @@ def setup_commands(app):
     ["Buster", "Male"], ["Zoey", "Female"]
 ]
        
-        owner_names = [
+        """ owner_names = [
     'Emily', 'Sarah', 'James', 'Jessica', 'John', 'Michael', 'David', 'Sophia', 
     'Olivia', 'Daniel',
     'Emma', 'Liam', 'Isabella', 'Noah', 'Mia', 'Ethan', 'Ava', 'Lucas', 
     'Charlotte', 'Alexander'
-]
+]"""
         
-        """ ownerNames = [
-            ["Emily", "Female"], ["Sarah", "Female"], ["James", "Male"], ["Jessica", "Female"], 
-            ["John", "Male"], ["Michael", "Male"], ["David", "Male"], ["Sophia", "Female"], 
-            ["Olivia", "Female"], ["Daniel", "Male"],
-            ["Emma", "Female"], ["Liam", "Male"], ["Isabella", "Female"], ["Noah", "Male"], 
-            ["Mia", "Female"], ["Ethan", "Male"], ["Ava", "Female"], ["Lucas", "Male"], 
-            ["Charlotte", "Female"], ["Alexander", "Male"]
-        ] """
-
+        ownerNames = [
+    ["Adam", "Male"], ["Olivia", "Female"], ["Ben", "Male"], ["Emma", "Female"],
+    ["Chris", "Male"], ["Sophia", "Female"], ["David", "Male"], ["Mia", "Female"],
+    ["Ethan", "Male"], ["Ava", "Female"], ["Finn", "Male"], ["Isabella", "Female"],
+    ["George", "Male"], ["Charlotte", "Female"], ["Harry", "Male"], ["Amelia", "Female"],
+    ["Ian", "Male"], ["Harper", "Female"], ["Jack", "Male"], ["Ella", "Female"],
+    ["Kyle", "Male"], ["Zoe", "Female"]
+]
 
        
         traits = ['Independent', 'Stubborn', 'Protective', 'Patient', 'Playful', 'Adaptable', 
@@ -88,15 +87,16 @@ def setup_commands(app):
                   'Pembroke Pines, FL', 'Boca Raton, FL', 'Miami, FL', 'Hollywood, FL', 'Hialeah, FL']
 
         for x in range(1,21):
-            owner_name = random.choice(owner_names)
             user = UserAccount()
-            user.owner_name = owner_name
+            randowner = random.choice(ownerNames)
+            user.owner_name = randowner[0]
+            user.owner_sex = randowner[1]
             user.email = "test_user" + str(x + 1) + "@test.com"
             user.password = "1234"
             randog = random.choice(dogNames)
             user.dog_name = randog[0]
-            user.dog_age = random.randint(1, 12)
             user.dog_sex = randog[1]
+            user.dog_age = random.randint(1, 12)
             user.breed = random.choice(breed_list)
             user.traits = random.sample(traits, 3)
             user.location = random.choice(cities)

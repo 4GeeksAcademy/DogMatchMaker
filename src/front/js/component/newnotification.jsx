@@ -1,17 +1,26 @@
 import React, { useContext, useEffect, useState } from "react";
-import "../../styles/notiboxes.css"
+import "../../styles/notiboxes.css";
 import { Context } from "../store/appContext";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-const NewNotification = ({ data, getMatches }) => {
-    const { store, actions } = useContext(Context)
+const NewNotification = ({ data, getMatches, matchInfo, setMatchInfo }) => {
+    const { store } = useContext(Context);
     const [show, setShow] = useState(false);
-    const [matchInfo, setMatchInfo] = useState(null)
+
+    // Function to handle fetching matches
+    const fetchMatches = async () => {
+        setMatchInfo(null);
+        try {
+            await getMatches();
+        } catch (error) {
+            console.error('Failed to fetch matches', error);
+        }
+    };
 
     useEffect(() => {
-        getMatches(null)
-    }, [matchInfo])
+        fetchMatches();
+    }, [matchInfo]); // Re-run fetchMatches when matchInfo changes
 
     const handleClose = () => {
         setShow(false);
@@ -20,7 +29,7 @@ const NewNotification = ({ data, getMatches }) => {
 
     const handleShow = () => setShow(true);
 
-    function deleteLike(data) {
+    const deleteLike = async (data) => {
         const backend = process.env.BACKEND_URL;
         const url = 'api/like';
         const opts = {
@@ -35,23 +44,23 @@ const NewNotification = ({ data, getMatches }) => {
             })
         };
 
-        fetch(backend + url, opts)
-            .then((resp) => {
-                if (resp.ok) {
-                    console.log("You removed your like for this user");
-                    return resp.json();
-                } else {
-                    throw new Error('Error');
-                }
-            })
-            .then(data => {
-                // Handle the response here if needed
-                console.log("Unmatched")
-                console.log(data.message); // Success message from the server
-            })
-            .catch(err => console.error(err));
-    }
+        try {
+            const resp = await fetch(backend + url, opts);
+            if (resp.ok) {
+                console.log("You removed your like for this user");
+                const result = await resp.json();
+                console.log("Unmatched");
+                console.log(result.message); // Success message from the server
 
+                // Fetch the updated list of matches after removing the like
+                await fetchMatches();
+            } else {
+                throw new Error('Error');
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    };
 
     return (
         <div className="notis-container container col-10 row">
@@ -60,7 +69,7 @@ const NewNotification = ({ data, getMatches }) => {
                 <h6 className="m-1">{data.dog_name} & {data.owner_name}</h6>
             </div>
             <div className="col-2 noti-box-icon">
-                <i onClick={() => handleShow()} className="noti-icon fa-solid fa-heart-crack"></i>
+                <i onClick={handleShow} className="noti-icon fa-solid fa-heart-crack"></i>
             </div>
             <Modal show={show} onHide={handleClose} centered>
                 <Modal.Header>
@@ -78,6 +87,6 @@ const NewNotification = ({ data, getMatches }) => {
             </Modal>
         </div>
     );
-}
+};
 
 export default NewNotification;

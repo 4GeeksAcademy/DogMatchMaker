@@ -11,6 +11,7 @@ class UserAccount(db.Model):
     profile_picture = db.Column(db.String(250), nullable=True)
     dog_name = db.Column(db.String(100), nullable=False)
     owner_name = db.Column(db.String(100), nullable=False)
+    owner_sex = db.Column(db.String(50), nullable=False)
     dog_age = db.Column(db.Integer, nullable=False)
     location = db.Column(db.String(250), nullable=False)
     breed = db.Column(db.String(100), nullable=False)
@@ -34,6 +35,7 @@ class UserAccount(db.Model):
             'location': self.location,
             'breed': self.breed,
             'dog_sex': self.dog_sex,
+            'owner_sex': self.owner_sex,
             'traits': self.traits,
             'bio': self.bio,
             'email': self.email,

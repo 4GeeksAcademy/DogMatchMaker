@@ -76,7 +76,7 @@ export const Private = () => {
             })}
         </div>
         <div className="col-3 text-start"></div>
-        <Matches getMatches={() => getMatches()} matches={matches} />
+        <Matches getMatches={getMatches} matches={matches} />
       </div>
     </div>
   );

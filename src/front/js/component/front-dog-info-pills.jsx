@@ -9,7 +9,7 @@ const FrontDogInfoPills = ({data}) => {
             <h5 className="front-dog-age-pill">
               {data.dog_age}
             </h5>
-        <h5 className="front-dog-sex-pill" style={data.dog_sex == 'Male' ? { backgroundColor: 'steelblue' } : { backgroundColor: 'violet' }}>
+        <h5 className="front-dog-sex-pill" style={data.dog_sex == 'male' ? { backgroundColor: 'steelblue' } : { backgroundColor: 'violet' }}>
               {data.dog_sex}
             </h5>
         </div>

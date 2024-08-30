@@ -96,19 +96,7 @@ const Sidebar = () => {
         <strong><i className="fa-solid fa-envelope"></i>Matches</strong>
       </a>
           </li>
-          <li className="nav-item mt-4 mb-4 ms-2">
-            <Link
-              id="profile-pill"
-              to="/profile"
-              className={style === "profile" ? "selected" : ""}
-              onClick={() => {
-                console.log("clicked on profile");
-                if (style !== "profile") setStyle("profile");
-              }}
-            >
-              <strong><i className="fa-solid fa-circle-user"></i>Profile</strong>
-            </Link>
-          </li>
+          
           <li className="nav-item mt-2 mb-4 ms-2">
             <Link
               id="settings-pill"

@@ -282,7 +282,7 @@ async def send_like():
     current_user = get_jwt_identity()
     data = request.json
     match = Like.query.filter_by(user_id = data['liked_user']).filter_by(liked_user_id = current_user).first()
-    check_match = True
+    check_match = False
     liked_user = UserAccount.query.filter_by(user_id = data['liked_user']).first()
     current_usera = UserAccount.query.filter_by(user_id = current_user).first()
     chat_id = None

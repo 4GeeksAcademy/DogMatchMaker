@@ -18,11 +18,15 @@ from base64 import b64decode
 
 key = RSA.generate(2048)
 private_key = key.export_key()
-with open("./src/private.pem", "wb") as f:
+
+dir = os.path.join(os.path.dirname(
+    os.path.realpath(__file__)), '../')
+
+with open(dir+"/private.pem", "wb") as f:
     f.write(private_key)
 
 public_key = key.publickey().export_key()
-with open("./src/public.pem", "wb") as f:
+with open(dir+"/public.pem", "wb") as f:
     f.write(public_key)
 
 def get_public_key():

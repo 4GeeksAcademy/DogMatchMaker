@@ -66,6 +66,16 @@ def setup_commands(app):
     'Emma', 'Liam', 'Isabella', 'Noah', 'Mia', 'Ethan', 'Ava', 'Lucas', 
     'Charlotte', 'Alexander'
 ]
+        
+        """ ownerNames = [
+            ["Emily", "Female"], ["Sarah", "Female"], ["James", "Male"], ["Jessica", "Female"], 
+            ["John", "Male"], ["Michael", "Male"], ["David", "Male"], ["Sophia", "Female"], 
+            ["Olivia", "Female"], ["Daniel", "Male"],
+            ["Emma", "Female"], ["Liam", "Male"], ["Isabella", "Female"], ["Noah", "Male"], 
+            ["Mia", "Female"], ["Ethan", "Male"], ["Ava", "Female"], ["Lucas", "Male"], 
+            ["Charlotte", "Female"], ["Alexander", "Male"]
+        ] """
+
 
        
         traits = ['Independent', 'Stubborn', 'Protective', 'Patient', 'Playful', 'Adaptable', 

@@ -24,7 +24,7 @@ const ProfileCard = ({ data, setNextCard, nextCard, getMatches }) => {
 
   function fetchLike() {
     const backend = process.env.BACKEND_URL
-    const url = 'api/like'
+    const url = '/api/like'
     const opts = {
       method: 'POST',
       headers: {

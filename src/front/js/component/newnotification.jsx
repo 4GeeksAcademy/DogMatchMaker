@@ -13,7 +13,7 @@ const NewNotification = ({ data }) => {
 
     function deleteLike(data) {
         const backend = process.env.BACKEND_URL;
-        const url = 'api/like';
+        const url = '/api/like';
         const opts = {
             method: 'DELETE',
             headers: {

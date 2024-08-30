@@ -25,7 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			/* getMatches: () => {
 				const store = getStore();
 				const backend = process.env.BACKEND_URL;
-				const url = "api/getuserlikes";
+				const url = "/api/getuserlikes";
 				const opts = {
 				method: "GET",
 				headers: {

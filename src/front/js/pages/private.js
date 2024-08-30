@@ -38,7 +38,7 @@ export const Private = () => {
 
     const getMatches = useCallback(async () => {
       const backend = process.env.BACKEND_URL;
-      const url = "api/getuserlikes";
+      const url = "/api/getuserlikes";
       const opts = {
         method: "GET",
         headers: {

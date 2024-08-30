@@ -47,6 +47,7 @@ class Like(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user_account.user_id'), nullable=False)
     liked_user_id = db.Column(db.Integer, nullable=False)
     match_likes = db.Column(db.Boolean, nullable=False)
+    chat_id = db.Column(db.Integer, nullable=True)
     date = db.Column(db.Date, default=datetime.utcnow)
     
     def __repr__(self):

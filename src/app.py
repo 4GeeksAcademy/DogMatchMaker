@@ -7,6 +7,7 @@ from flask_migrate import Migrate
 from flask_swagger import swagger
 from api.utils import APIException, generate_sitemap
 from api.models import db
+from flask_mail import Mail
 from api.routes import api
 from api.admin import setup_admin
 from api.commands import setup_commands
@@ -17,6 +18,7 @@ from flask_jwt_extended import JWTManager
 ENV = "development" if os.getenv("FLASK_DEBUG") == "1" else "production"
 static_file_dir = os.path.join(os.path.dirname(
     os.path.realpath(__file__)), '../public/')
+
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 app.config["JWT_SECRET_KEY"] = "asdasdask1458asda5654asd654asd651asd61sdf6as1d6"
@@ -29,8 +31,15 @@ if db_url is not None:
         "postgres://", "postgresql://")
 else:
     app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:////tmp/test.db"
-
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+app.config['MAIL_SERVER'] = 'smtp.example.com'
+app.config['MAIL_PORT'] = 587
+app.config['MAIL_USE_TLS'] = True
+app.config['MAIL_USERNAME'] = 'your_email@example.com'
+app.config['MAIL_PASSWORD'] = 'your_password'
+app.config['MAIL_DEFAULT_SENDER'] = 'your_email@example.com'
+
 MIGRATE = Migrate(app, db, compare_type=True)
 db.init_app(app)
 

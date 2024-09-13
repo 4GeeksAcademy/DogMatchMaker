@@ -3,11 +3,15 @@ from flask_cors import cross_origin
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity, set_access_cookies
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
+from flask_mail import Message
 from api.models import db, Profile, SignUp,Contact
 import os
 import re
 
 api = Blueprint('api', __name__)
+
+
+
 
 # Define the path where profile pictures will be stored
 UPLOAD_FOLDER = 'uploads'
@@ -245,6 +249,21 @@ def contact():
     if len(data['message']) < 10:
         return jsonify({"error": "Message must be at least 10 characters long"}), 400
 
+     # Prepare the email message
+    msg = Message(
+        subject=f'New Contact Form Submission: {data["subject"]}',
+        recipients=['admin@example.com'],  # Replace with the admin's email address
+        body=f"Name: {data['name']}\nEmail: {data['email']}\nPhone: {data.get('phone')}\nSubject: {data['subject']}\nMessage: {data['message']}"
+    )
+    
+    try:
+        # Send the email
+        mail.send(msg)
+    except Exception as e:
+        # Handle email sending errors
+        return jsonify({"error": f"Failed to send email: {str(e)}"}), 500
+    
+    
     new_contact = Contact(
         name=data['name'],
         email=data['email'],
